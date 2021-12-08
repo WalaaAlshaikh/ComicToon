@@ -4,26 +4,64 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import com.example.comictoon.R
+import com.example.comictoon.databinding.ActivitySplashBinding
 
 class Splash : AppCompatActivity() {
+    private lateinit var binding:ActivitySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
-        intent= Intent(this,MainActivity::class.java)
-        object: CountDownTimer(1000,1000){
-            override fun onTick(p0: Long) {
+        binding= ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
+        binding.motionLayout.setTransitionListener(object :MotionLayout.TransitionListener{
+            override fun onTransitionStarted(
+                motionLayout: MotionLayout?,
+                startId: Int,
+                endId: Int
+            ) {
+               ///
             }
 
-            override fun onFinish() {
-               startActivity(intent)
-
+            override fun onTransitionChange(
+                motionLayout: MotionLayout?,
+                startId: Int,
+                endId: Int,
+                progress: Float
+            ) {
+               ///
             }
 
-        }.start()
+            override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
+                val intent = Intent(this@Splash, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
+            override fun onTransitionTrigger(
+                motionLayout: MotionLayout?,
+                triggerId: Int,
+                positive: Boolean,
+                progress: Float
+            ) {
+
+            }
+        })
+//        intent= Intent(this,MainActivity::class.java)
+//        object: CountDownTimer(1000,1000){
+//            override fun onTick(p0: Long) {
+//
+//            }
+//
+//            override fun onFinish() {
+//               startActivity(intent)
+//
+//            }
+//
+//        }.start()
     }
 
 

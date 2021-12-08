@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/loloa/AndroidStudioProjects/ComicToon/app/src/main/res/drawable/login.xml" value="0.21197916666666666" />
+        <entry key="..\:/Users/loloa/AndroidStudioProjects/ComicToon/app/src/main/res/drawable/strikeshape.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/loloa/AndroidStudioProjects/ComicToon/app/src/main/res/layout/activity_main.xml" value="0.3380208333333333" />
-        <entry key="..\:/Users/loloa/AndroidStudioProjects/ComicToon/app/src/main/res/layout/activity_splash.xml" value="0.2601851851851852" />
+        <entry key="..\:/Users/loloa/AndroidStudioProjects/ComicToon/app/src/main/res/layout/activity_splash.xml" value="0.22" />
+        <entry key="..\:/Users/loloa/AndroidStudioProjects/ComicToon/app/src/main/res/layout/fragment_login.xml" value="0.22" />
+        <entry key="..\:/Users/loloa/AndroidStudioProjects/ComicToon/app/src/main/res/layout/fragment_register.xml" value="0.22" />
       </map>
     </option>
   </component>
@@ -13,5 +17,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.22" />
+      </ProjectState>
+    </option>
   </component>
 </project>

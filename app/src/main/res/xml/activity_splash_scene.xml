@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:layout_height="287dp"
+            android:layout_width="313dp"
+            android:id="@+id/imageView"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintVertical_bias="0.036"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            motion:layout_constraintVertical_bias="0.214"
+            android:layout_height="445dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="104dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintHorizontal_bias="0.39"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="370dp"
+            android:id="@+id/logo_image" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:layout_height="335dp"
+            android:layout_width="303dp"
+            android:id="@+id/imageView"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintVertical_bias="0.558" />
+    </ConstraintSet>
+    <Transition
+        motion:constraintSetStart="@+id/start"
+        motion:constraintSetEnd="@+id/end"
+        motion:autoTransition="animateToEnd"
+        motion:duration="1000" />
+</MotionScene>
