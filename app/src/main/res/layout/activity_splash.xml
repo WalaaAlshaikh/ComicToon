@@ -4,6 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFE991"
     tools:context=".views.main.Splash">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="234dp"
+        android:layout_height="194dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bangers" />
 </androidx.constraintlayout.widget.ConstraintLayout>
