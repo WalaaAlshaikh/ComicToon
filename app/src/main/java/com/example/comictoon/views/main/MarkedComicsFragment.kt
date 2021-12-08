@@ -1,4 +1,4 @@
-package com.example.comictoon.views.identity
+package com.example.comictoon.views.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.comictoon.R
 
 
-class ProfileFragment : Fragment() {
+class MarkedComicsFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -16,13 +16,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
+        return inflater.inflate(R.layout.fragment_marked_comics, container, false)
     }
 
 

@@ -9,11 +9,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import com.example.comictoon.R
 import com.example.comictoon.databinding.ActivitySplashBinding
+import com.example.comictoon.repositories.ApiReop
 
 class Splash : AppCompatActivity() {
     private lateinit var binding:ActivitySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ApiReop.init(this)
         binding= ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
