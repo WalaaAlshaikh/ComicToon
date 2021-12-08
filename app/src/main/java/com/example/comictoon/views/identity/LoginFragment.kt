@@ -26,6 +26,10 @@ private lateinit var binding:FragmentLoginBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.goToRegisTextView.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+
         binding.loginButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_comicsFragment)
         }
