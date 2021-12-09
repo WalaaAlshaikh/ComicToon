@@ -26,6 +26,11 @@ private lateinit var binding: FragmentProfileBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if(arguments != null){
+            binding.emailTextView.text=requireArguments().getString("email")
+            binding.userIdTextView.text=requireArguments().getString("userId")
+
+        }
         binding.logoutButton.setOnClickListener {
             //findNavController().navigate(R.id.actionPr)
         }
