@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.comictoon.model.comic.ComicModel
+import com.example.comictoon.model.comic.Result
 import com.example.comictoon.repositories.ApiReop
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,6 +19,8 @@ class ComicViewModel:ViewModel() {
     val apiRepo=ApiReop.get()
 
     val comicLiveData= MutableLiveData<ComicModel>()
+
+    val detailComicLiveData=MutableLiveData<Result>()
 
     fun callomics(){
         // Log.d(TAG,"Access to viewModel ")
@@ -46,6 +49,18 @@ class ComicViewModel:ViewModel() {
             }catch (e: Exception){
                 Log.d(TAG,e.message.toString())
 
+            }
+        }
+    }
+    fun detailComic(){
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+
+                val response=apiRepo.getDetailComic()
+                detailComicLiveData.postValue(response)
+
+            } catch (e:Exception){
+                Log.d(TAG,e.message.toString())
             }
         }
     }

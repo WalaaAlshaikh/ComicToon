@@ -4,6 +4,7 @@ package com.example.comictoon.adaptersimport
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +39,12 @@ class ComicAdapter(val comic:ComicViewModel) :
     override fun onBindViewHolder(holder: ComicViewHolder, position: Int) {
         val item = differ.currentList[position]
         holder.bind(item)
+
+        holder.itemView.setOnClickListener {
+            comic.detailComicLiveData.postValue(item)
+            holder.itemView.findNavController().navigate(R.id.action_comicsFragment_to_comicsDetailsFragment)
+
+        }
     }
 
     override fun getItemCount(): Int {

@@ -8,9 +8,41 @@
     tools:context=".views.main.MarkedComicFragment" >
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="402dp"
-        android:layout_height="600dp"
+        android:id="@+id/markedRecyclerView"
+        android:layout_width="403dp"
+        android:layout_height="667dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="2dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/comic_progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateDrawable="@drawable/progressbar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="410dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/vdarkred"
+        app:itemIconTint="?android:attr/textColorSecondaryInverseNoDisable"
+        app:itemTextColor="?android:attr/textColorHintInverse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/markedRecyclerView"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/nav_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

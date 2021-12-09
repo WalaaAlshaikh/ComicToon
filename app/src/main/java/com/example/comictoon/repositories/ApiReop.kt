@@ -17,6 +17,8 @@ class ApiReop {
     private val apiRetrofit = retrofitService.create(ComicApi::class.java)
     suspend fun getComics() = apiRetrofit.getComic()
 
+    suspend fun getDetailComic()=apiRetrofit.getDetailComic()
+
     companion object {
         private var instance: ApiReop? = null
 

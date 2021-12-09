@@ -15,4 +15,6 @@
     <string name="marked">Marked</string>
     <string name="welcome">Hello Comic Reader :)</string>
     <string name="logout">Logout</string>
+    <string name="mark">Mark this comic</string>
+    <string name="profile">Profile</string>
 </resources>

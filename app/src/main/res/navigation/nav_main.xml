@@ -33,5 +33,34 @@
         android:id="@+id/comicsFragment"
         android:name="com.example.comictoon.views.main.ComicsFragment"
         android:label="Comics"
-        tools:layout="@layout/fragment_comics" />
+        tools:layout="@layout/fragment_comics" >
+        <action
+            android:id="@+id/action_comicsFragment_to_comicsDetailsFragment"
+            app:destination="@id/comicsDetailsFragment" />
+        <action
+            android:id="@+id/action_comicsFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_comicsFragment_to_markedComicFragment"
+            app:destination="@id/markedComicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.comictoon.views.identity.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/comicsDetailsFragment"
+        android:name="com.example.comictoon.views.main.ComicsDetailsFragment"
+        android:label="fragment_comics_details"
+        tools:layout="@layout/fragment_comics_details" >
+        <action
+            android:id="@+id/action_comicsDetailsFragment_to_markedComicFragment"
+            app:destination="@id/markedComicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/markedComicFragment"
+        android:name="com.example.comictoon.views.main.MarkedComicFragment"
+        android:label="fragment_marked_comic"
+        tools:layout="@layout/fragment_marked_comic" />
 </navigation>
