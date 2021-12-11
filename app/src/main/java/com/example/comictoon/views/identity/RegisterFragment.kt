@@ -13,8 +13,11 @@ import com.example.comictoon.R
 import com.example.comictoon.databinding.FragmentRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
-
+private const val TAG = "RegisterFragment"
 class RegisterFragment : Fragment() {
 
     private lateinit var binding:FragmentRegisterBinding
@@ -29,6 +32,7 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val db = Firebase.firestore
 
         binding.goToLoginTextView.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
@@ -45,8 +49,25 @@ class RegisterFragment : Fragment() {
                             val firebaseUser: FirebaseUser =it.result!!.user!!
                             Toast.makeText(requireActivity(), "User Registered Successfully", Toast.LENGTH_SHORT).show()
                             val bundle= bundleOf("userId" to firebaseUser.uid, "email" to firebaseUser.email)
+                            Log.d("register", bundle.toString())
+
+                            val user = hashMapOf(
+                                "email" to registerEmail,
+                                "password" to registerPassword
+                            )
+
+// Add a new document with a generated ID
+                            db.collection("users").document("${firebaseUser.uid}").set(user)
+                                .addOnSuccessListener { documentReference ->
+                                    //
+                                }
+                                .addOnFailureListener { e ->
+                                    Log.w(TAG, "Error adding document", e)
+                                }
 
                             findNavController().navigate(R.id.action_registerFragment_to_profileFragment, bundle)
+                            
+                            
 
                         }else{
                             Toast.makeText(requireActivity(), it.exception!!.message.toString(), Toast.LENGTH_SHORT).show()

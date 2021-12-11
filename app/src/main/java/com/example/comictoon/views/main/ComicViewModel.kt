@@ -22,6 +22,7 @@ class ComicViewModel:ViewModel() {
 
     val detailComicLiveData=MutableLiveData<Result>()
 
+
     fun callomics(){
         // Log.d(TAG,"Access to viewModel ")
         viewModelScope.launch (Dispatchers.IO){
@@ -58,6 +59,7 @@ class ComicViewModel:ViewModel() {
 
                 val response=apiRepo.getDetailComic()
                 detailComicLiveData.postValue(response)
+                Log.d(TAG,response.toString())
 
             } catch (e:Exception){
                 Log.d(TAG,e.message.toString())

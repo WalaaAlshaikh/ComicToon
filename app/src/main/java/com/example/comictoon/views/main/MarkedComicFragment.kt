@@ -22,6 +22,8 @@ private lateinit var binding:FragmentMarkedComicBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
     }
 
 

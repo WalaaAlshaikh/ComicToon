@@ -7,6 +7,10 @@ import com.example.comictoon.model.comic.Result
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
+import java.lang.StringBuilder
 
 class MarkedAdapter(private val list: List<Result>) :
 
@@ -26,7 +30,16 @@ class MarkedAdapter(private val list: List<Result>) :
 
     override fun onBindViewHolder(holder: MarkedViewModel, position: Int) {
         val item = list[position]
-        TODO("bind view with data")
+        val favCollectionRef=Firebase.firestore.collection("users")
+
+        val querySnapshot=favCollectionRef.get()
+        val sb=StringBuilder()
+        for (document in querySnapshot.result!!.documents){
+          //  val favorite=document.toObject<List<>>()
+
+        }
+
+
     }
 
     override fun getItemCount(): Int {

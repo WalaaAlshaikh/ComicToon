@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.comictoon.R
 import com.example.comictoon.databinding.ActivityMainBinding
@@ -26,11 +27,12 @@ class MainActivity : AppCompatActivity() {
         navController=navHostFragment.navController
         setupActionBarWithNavController(navController)
 
+        //NavigationUI.setupWithNavController(binding.fragmentContainerView,navController)
 
 
-        var ref= FirebaseDatabase.getInstance().reference
-
-        ref.setValue("ComicModel")
+//        var ref= FirebaseDatabase.getInstance().reference
+//
+//        ref.setValue("ComicModel")
     }
 
     override fun onSupportNavigateUp(): Boolean {
