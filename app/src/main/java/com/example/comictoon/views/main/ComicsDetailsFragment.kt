@@ -22,18 +22,19 @@ import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 
 private const val TAG = "ComicsDetailsFragment"
+
 class ComicsDetailsFragment : Fragment() {
 
-    private lateinit var binding:FragmentComicsDetailsBinding
-    private lateinit var db:FirebaseFirestore
-    val comicViewModel:ComicViewModel by activityViewModels()
+    private lateinit var binding: FragmentComicsDetailsBinding
+    private lateinit var db: FirebaseFirestore
+    val comicViewModel: ComicViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding= FragmentComicsDetailsBinding.inflate(inflater,container,false)
+        binding = FragmentComicsDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -41,23 +42,20 @@ class ComicsDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observer()
-        Log.d(TAG,observer().toString())
+        Log.d(TAG, observer().toString())
         //comicViewModel.callomics()
-        db=Firebase.firestore
-
-
-
+        db = Firebase.firestore
 
 
     }
-    
-    fun observer(){
+
+    fun observer() {
         val db = Firebase.firestore
-        val userId= Firebase.auth.currentUser!!.uid
-        Log.d("testing","this is testing of $userId" )
-        comicViewModel.detailComicLiveData.observe(viewLifecycleOwner,{
+        val userId = Firebase.auth.currentUser!!.uid
+        Log.d("testing", "this is testing of $userId")
+        comicViewModel.detailComicLiveData.observe(viewLifecycleOwner, {
             Picasso.get().load(it.image.originalUrl).into(binding.imageView4)
-            binding.imageTitle.text=it.name
+            binding.imageTitle.text = it.name
 
             fun String.toSpanned(): Spanned {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -68,21 +66,23 @@ class ComicsDetailsFragment : Fragment() {
                 }
             }
 
-            binding.descriptionTextView.text=it.description.toSpanned()
+            binding.descriptionTextView.text = it.description.toSpanned()
             val comicFav = hashMapOf(
                 "image" to it.image.originalUrl,
                 "title" to it.name,
                 "comicId" to it.id
-                //"comicid" to it.id
+
             )
-            Log.d("value",comicFav.getValue("comicId").toString())
+            Log.d("value", comicFav.getValue("comicId").toString())
             binding.markComic.setOnClickListener {
 
 
 // orderByChild (id favourite (المفترض الاي دي الي داخل ) equalTo "comicId" { if id favourite موجود  toast else اسوي الي تحت }
-                db.collection("users").document("$userId").collection("favourite").document(comicFav.getValue("comicId").toString()).set(comicFav)
+                db.collection("users").document("$userId").collection("favourite")
+                    .document(comicFav.getValue("comicId").toString()).set(comicFav)
                     .addOnSuccessListener { documentReference ->
-                        Toast.makeText(requireActivity(), "Marked Successfully", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireActivity(), "Marked Successfully", Toast.LENGTH_SHORT)
+                            .show()
                     }
                     .addOnFailureListener { e ->
                         //Log.w(com.example.comictoon.views.identity.TAG, "Error adding document", e)
@@ -91,13 +91,7 @@ class ComicsDetailsFragment : Fragment() {
             }
 
 
-//            binding.descriptionTextView.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                Html.fromHtml(it.description, Html.FROM_HTML_MODE_COMPACT)
-//            } else {
-//                Html.fromHtml(it.description)
-//            }
-            //binding.descriptionTextView.text=it.description
-            binding.publishTextView.text="Publish year: ${it.startYear}"
+            binding.publishTextView.text = "Publish year: ${it.startYear}"
 
         })
     }

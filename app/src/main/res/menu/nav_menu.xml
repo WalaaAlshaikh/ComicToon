@@ -2,9 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/comicFragment"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/home" />
     <item
+        android:id="@+id/markedComicFragment"
         android:icon="@drawable/ic_baseline_bookmarks_24"
         android:title="@string/marked" />
 

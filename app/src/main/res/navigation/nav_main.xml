@@ -3,40 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/registerFragment">
+    app:startDestination="@id/comicFragment">
 
     <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.example.comictoon.views.identity.RegisterFragment"
-        android:label="@string/Register"
-        tools:layout="@layout/fragment_register">
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_registerFragment_to_comicsFragment"
-            app:destination="@id/comicsFragment" />
-        <action
-            android:id="@+id/action_registerFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.comictoon.views.identity.LoginFragment"
-        android:label="@string/login"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_comicsFragment"
-            app:destination="@id/comicsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/comicsFragment"
+        android:id="@+id/comicFragment"
         android:name="com.example.comictoon.views.main.ComicsFragment"
         android:label="Comics"
-        tools:layout="@layout/fragment_comics" >
+        tools:layout="@layout/fragment_comics">
         <action
             android:id="@+id/action_comicsFragment_to_comicsDetailsFragment"
             app:destination="@id/comicsDetailsFragment" />
@@ -45,25 +18,32 @@
             app:destination="@id/profileFragment" />
         <action
             android:id="@+id/action_comicsFragment_to_markedComicFragment"
-            app:destination="@id/markedComicFragment" />
+            app:destination="@id/comicFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.comictoon.views.identity.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_comicFragment"
+            app:destination="@id/comicFragment" />
+    </fragment>
     <fragment
         android:id="@+id/comicsDetailsFragment"
         android:name="com.example.comictoon.views.main.ComicsDetailsFragment"
-        android:label="fragment_comics_details"
-        tools:layout="@layout/fragment_comics_details" >
+        android:label="Comic Details"
+        tools:layout="@layout/fragment_comics_details">
         <action
             android:id="@+id/action_comicsDetailsFragment_to_markedComicFragment"
             app:destination="@id/markedComicFragment" />
+        <action
+            android:id="@+id/action_comicsDetailsFragment_to_comicFragment"
+            app:destination="@id/comicFragment" />
     </fragment>
     <fragment
         android:id="@+id/markedComicFragment"
         android:name="com.example.comictoon.views.main.MarkedComicFragment"
-        android:label="fragment_marked_comic"
+        android:label="Marked Comics"
         tools:layout="@layout/fragment_marked_comic" />
 </navigation>

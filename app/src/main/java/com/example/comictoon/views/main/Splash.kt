@@ -9,6 +9,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import com.example.comictoon.R
 import com.example.comictoon.databinding.ActivitySplashBinding
+import com.example.comictoon.model.identity.LoginActivity
+import com.example.comictoon.model.identity.RegisterActivity
 import com.example.comictoon.repositories.ApiReop
 
 class Splash : AppCompatActivity() {
@@ -38,7 +40,7 @@ class Splash : AppCompatActivity() {
             }
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-                val intent = Intent(this@Splash, MainActivity::class.java)
+                val intent = Intent(this@Splash, RegisterActivity::class.java)
                 startActivity(intent)
                 finish()
             }

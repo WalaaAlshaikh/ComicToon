@@ -6,6 +6,8 @@ import android.view.*
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comictoon.R
@@ -19,6 +21,7 @@ private const val TAG = "ComicsFragment"
 class ComicsFragment : Fragment() {
     private lateinit var binding:FragmentComicsBinding
     private lateinit var comicAdapter:ComicAdapter
+    private lateinit var vanController:NavController
 
     private val comicViewModel:ComicViewModel by activityViewModels()
     private var list= mutableListOf<Result>()
@@ -43,6 +46,9 @@ class ComicsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        val navComicostFrag= childFragmentManager.primaryNavigationFragment as NavHostFragment
+
+
 
         val db = Firebase.firestore
 

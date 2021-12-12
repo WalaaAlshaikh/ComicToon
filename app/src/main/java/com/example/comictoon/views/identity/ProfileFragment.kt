@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.comictoon.R
 import com.example.comictoon.databinding.FragmentComicsDetailsBinding
 import com.example.comictoon.databinding.FragmentProfileBinding
+import com.google.firebase.auth.FirebaseAuth
 
 
 class ProfileFragment : Fragment() {
@@ -26,13 +27,17 @@ private lateinit var binding: FragmentProfileBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(arguments != null){
-            binding.emailTextView.text=requireArguments().getString("email")
-            binding.userIdTextView.text=requireArguments().getString("userId")
-
+        FirebaseAuth.getInstance().currentUser?.let {
+            binding.userIdTextView.text=it.uid
+            binding.emailTextView.text=it.email
         }
+
+
+
         binding.logoutButton.setOnClickListener {
-            //findNavController().navigate(R.id.actionPr)
+            FirebaseAuth.getInstance().signOut()
+            findNavController().navigate(R.id.action_profileFragment_to_comicFragment)
+
         }
 
 

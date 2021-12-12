@@ -27,12 +27,9 @@ class MainActivity : AppCompatActivity() {
         navController=navHostFragment.navController
         setupActionBarWithNavController(navController)
 
-        //NavigationUI.setupWithNavController(binding.fragmentContainerView,navController)
+        NavigationUI.setupWithNavController(binding.bottomNavigation,navController)
 
 
-//        var ref= FirebaseDatabase.getInstance().reference
-//
-//        ref.setValue("ComicModel")
     }
 
     override fun onSupportNavigateUp(): Boolean {
