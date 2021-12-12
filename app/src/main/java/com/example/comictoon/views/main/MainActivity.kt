@@ -14,6 +14,7 @@ import com.google.firebase.database.ktx.FirebaseDatabaseKtxRegistrar
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
 

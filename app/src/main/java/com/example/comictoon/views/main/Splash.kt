@@ -1,5 +1,6 @@
 package com.example.comictoon.views.main
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,7 +13,9 @@ import com.example.comictoon.databinding.ActivitySplashBinding
 import com.example.comictoon.model.identity.LoginActivity
 import com.example.comictoon.model.identity.RegisterActivity
 import com.example.comictoon.repositories.ApiReop
-
+const val SHARED_PREF_FILE="login state"
+const val STATE="state"
+const val USER_ID= "userId"
 class Splash : AppCompatActivity() {
     private lateinit var binding:ActivitySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +23,10 @@ class Splash : AppCompatActivity() {
         ApiReop.init(this)
         binding= ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
+         val sharedPref= getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
+        var sharedPrefEditor=sharedPref.edit()
+
+
 
         binding.motionLayout.setTransitionListener(object :MotionLayout.TransitionListener{
             override fun onTransitionStarted(
@@ -40,9 +47,20 @@ class Splash : AppCompatActivity() {
             }
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-                val intent = Intent(this@Splash, RegisterActivity::class.java)
-                startActivity(intent)
-                finish()
+//                sharedPrefEditor.putBoolean(STATE,false)
+//                sharedPrefEditor.commit()
+                if(sharedPref.getBoolean(STATE, false)) {
+                    val intent = Intent(this@Splash,MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }else{
+                    val intent = Intent(this@Splash, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+
+
+
             }
 
             override fun onTransitionTrigger(
