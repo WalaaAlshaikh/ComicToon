@@ -21,7 +21,7 @@ private const val TAG = "ComicsFragment"
 class ComicsFragment : Fragment() {
     private lateinit var binding:FragmentComicsBinding
     private lateinit var comicAdapter:ComicAdapter
-    private lateinit var vanController:NavController
+
 
     private val comicViewModel:ComicViewModel by activityViewModels()
     private var list= mutableListOf<Result>()
@@ -46,7 +46,6 @@ class ComicsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val navComicostFrag= childFragmentManager.primaryNavigationFragment as NavHostFragment
 
 
 
@@ -61,41 +60,6 @@ class ComicsFragment : Fragment() {
             binding.comicProgressBar.animate().alpha(0f)
             comicAdapter.submittedList(it.results)
         })
-
-//       var test=db.collection("users").get()
-//            .addOnSuccessListener { result ->
-//                for (document in result) {
-//                    Log.d(TAG, "${document.id} => ${document.data}")
-//                    return@addOnSuccessListener
-//                }
-//            }
-//            .addOnFailureListener { exception ->
-//                Log.w(TAG, "Error getting documents.", exception)
-//            }
-//
-//        Log.d(TAG,test.toString())
-        var list= listOf("")
-
-      fun test(){ val docRef = db.collection("users").document("kMtA4JrmLHEruAYG1ZKr")
-          docRef.get()
-              .addOnSuccessListener { document ->
-                  if (document != null) {
-                      Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-                      list=listOf("${document.data}")
-                      //Log.d("test",list.toString())
-                  } else {
-                      Log.d(TAG, "No such document")
-                  }
-              }
-              .addOnFailureListener { exception ->
-                  Log.d(TAG, "get failed with ", exception)
-              }}
-        test()
-
-        Log.d("test",list.toString())
-
-       // Log.d(TAG, docRef.toString())
-
 
 
 

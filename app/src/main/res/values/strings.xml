@@ -17,4 +17,5 @@
     <string name="logout">Logout</string>
     <string name="mark">Mark this comic</string>
     <string name="profile">Profile</string>
+    <string name="adding">Add a persnal review</string>
 </resources>

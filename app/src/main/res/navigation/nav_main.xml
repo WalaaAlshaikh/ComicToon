@@ -35,11 +35,11 @@
         android:label="Comic Details"
         tools:layout="@layout/fragment_comics_details">
         <action
-            android:id="@+id/action_comicsDetailsFragment_to_markedComicFragment"
-            app:destination="@id/markedComicFragment" />
-        <action
             android:id="@+id/action_comicsDetailsFragment_to_comicFragment"
             app:destination="@id/comicFragment" />
+        <action
+            android:id="@+id/action_comicsDetailsFragment_to_markedComicFragment"
+            app:destination="@id/markedComicFragment" />
     </fragment>
     <fragment
         android:id="@+id/markedComicFragment"

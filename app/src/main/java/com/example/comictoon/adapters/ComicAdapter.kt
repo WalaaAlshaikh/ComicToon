@@ -42,6 +42,7 @@ class ComicAdapter(val comic:ComicViewModel) :
 
         holder.itemView.setOnClickListener {
             comic.detailComicLiveData.postValue(item)
+            comic.lisrOfResult = item
             holder.itemView.findNavController().navigate(R.id.action_comicsFragment_to_comicsDetailsFragment)
 
         }
