@@ -13,6 +13,8 @@ import com.example.comictoon.databinding.ActivitySplashBinding
 import com.example.comictoon.model.identity.LoginActivity
 import com.example.comictoon.model.identity.RegisterActivity
 import com.example.comictoon.repositories.ApiReop
+import com.example.comictoon.repositories.FireBaseRepo
+
 const val SHARED_PREF_FILE="login state"
 const val STATE="state"
 const val USER_ID= "userId"
@@ -21,10 +23,11 @@ class Splash : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ApiReop.init(this)
+        FireBaseRepo.init(this)
         binding= ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
          val sharedPref= getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
-        var sharedPrefEditor=sharedPref.edit()
+        //var sharedPrefEditor=sharedPref.edit()
 
 
 
