@@ -2,6 +2,7 @@ package com.example.comictoon.views.main
 
 import MarkedComicViewModel
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +10,28 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.viewModelScope
 import com.example.comictoon.R
 import com.example.comictoon.databinding.FragmentUpdateBinding
+import com.example.comictoon.model.comic.MarkedModel
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.*
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
 
 class UpdateFragment(val comicId: String, val personalNote: String) : DialogFragment() {
 
 private lateinit var binding:FragmentUpdateBinding
-private val comicViewModel:MarkedComicViewModel by activityViewModels()
+private val updateViewModel:UpdateViewModel by activityViewModels()
+    private val markViewModel:MarkedComicViewModel by activityViewModels()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,15 +44,18 @@ private val comicViewModel:MarkedComicViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observer()
+        //var test=markViewModel.receiveItemFromFireBase(Firebase.auth.currentUser!!.uid)
+
+        binding.reviewEditText.setText(personalNote)
 
         binding.saveButton.setOnClickListener {
+            observer()
             var userNote=binding.reviewEditText.text.toString()
-            if (personalNote.isNotBlank()) {
-                userNote=personalNote
-            }
-            comicViewModel.updateNote(Firebase.auth.currentUser!!.uid,userNote, comicId)
-            comicViewModel.receiveItemFromFireBase(Firebase.auth.currentUser!!.uid)
+//            if (use rNote == "") {
+//                userNote=personalNote
+//            }
+            updateViewModel.updateNote(Firebase.auth.currentUser!!.uid,userNote, comicId)
+          //markViewModel.receiveItemFromFireBase(Firebase.auth.currentUser!!.uid)
             dismiss()
 
         }
@@ -61,10 +77,21 @@ private val comicViewModel:MarkedComicViewModel by activityViewModels()
 //            }
 //
 //        })
-        comicViewModel.markedComicErrorLiveData.observe(viewLifecycleOwner,{
+
+        updateViewModel.updateStringLiveData.observe(viewLifecycleOwner,{
+            it?.let{
+
+                //markViewModel.receiveItemFromFireBase(Firebase.auth.currentUser!!.uid)
+                updateViewModel.updateStringLiveData.postValue(null)
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+
+
+        }
+        })
+        updateViewModel.updateErrorLiveData.observe(viewLifecycleOwner,{
             it?.let {
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
-                comicViewModel.markedComicErrorLiveData.postValue(null)
+                updateViewModel.updateErrorLiveData.postValue(null)
             }
         })
     }

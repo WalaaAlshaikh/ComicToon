@@ -43,9 +43,8 @@ private lateinit var db:FirebaseFirestore
         markList= mutableListOf()
         markedAdapter= MarkedAdapter(requireActivity(),requireActivity().supportFragmentManager,comic)
         binding.comicProgressBar.animate().alpha(0f).setDuration(1000)
-        //markedAdapter.submittedList(markList)
         binding.markedRecyclerView.adapter=markedAdapter
-       // eventChangeList()
+
 
         comic.receiveItemFromFireBase(Firebase.auth.uid.toString())
 

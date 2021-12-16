@@ -36,25 +36,7 @@ class MarkedComicViewModel:ViewModel() {
 
 //////////////////////////////////////////////////////
 
-fun updateNote(userId: String, data: String, docId: String) {
-    viewModelScope.launch(Dispatchers.IO) {
 
-        try {
-            val response = fireBasePero.updateItem(userId, data, docId)
-            response.addOnCompleteListener {
-                if (it.isSuccessful) {
-                    markedStringComicLiveData.postValue("Successful")
-                } else {
-                    markedComicErrorLiveData.postValue(response.exception!!.message)
-                }
-            }
-
-        } catch (e: Exception) {
-            Log.d(TAG, e.message.toString())
-            markedComicErrorLiveData.postValue(e.message.toString())
-        }
-    }
-}
 
 //////////////////////////////////////////////////////////
 

@@ -80,7 +80,7 @@ RecyclerView.Adapter<MarkedAdapter.MarkedViewModel>() {
         holder.delete.setOnClickListener {
             //observer()
             comic.deleteItem(Firebase.auth.currentUser!!.uid, item.comicId.toString())
-
+//
 //            val markList= mutableListOf<MarkedModel>()
 //            markList.addAll(differ.currentList)
 //            markList.removeAt(position)
@@ -89,7 +89,7 @@ RecyclerView.Adapter<MarkedAdapter.MarkedViewModel>() {
 
 
         }
-        val dialog=UpdateFragment(item.comicId.toString(), item.personalNote.toString())
+        val dialog=UpdateFragment(item.comicId.toString(), item.personalNote.toString(),)
 
 
         holder.update.setOnClickListener {
