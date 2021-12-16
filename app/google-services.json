@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "37450831147",
+    "project_id": "comictoon-5d80c",
+    "storage_bucket": "comictoon-5d80c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37450831147:android:51bb2c3636c3f11939616e",
+        "android_client_info": {
+          "package_name": "com.example.comictoon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37450831147-0ctt3kn1ukrk3u7us64mc202tk0fmnic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeUuJVU71AOh7rUZPcN1IsBdGjCnnQWKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37450831147-0ctt3kn1ukrk3u7us64mc202tk0fmnic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
