@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.comictoon.model.comic.Result
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -29,6 +30,14 @@ class FireBaseRepo {
 
     fun markClick(userId: String , id:Int)=users.document(userId).collection(FAVOURITE).whereEqualTo(
         COMIC_ID,id).get()
+
+    fun receiveItemsFromFireBase(userId:String)=users.document(userId).collection(FAVOURITE).orderBy("title",
+        Query.Direction.ASCENDING)
+
+    fun updateItem(userId: String,data:String, docId:String)=users.document(userId).collection(FAVOURITE).document(docId
+       ).update("personalNote",data)
+
+    fun deleteItem(userId: String,docId:String)=users.document(userId).collection(FAVOURITE).document(docId).delete()
 
 
 

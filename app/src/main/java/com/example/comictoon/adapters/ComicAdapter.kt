@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.comictoon.R
 import com.example.comictoon.databinding.ItemLayoutBinding
 import com.example.comictoon.model.comic.Result
+import com.example.comictoon.views.main.ComicDetailViewModel
 import com.example.comictoon.views.main.ComicViewModel
 import com.squareup.picasso.Picasso
 
-class ComicAdapter(val comic:ComicViewModel) :
+class ComicAdapter(val comic:ComicDetailViewModel) :
     RecyclerView.Adapter<ComicAdapter.ComicViewHolder>() {
     val DIFF_CALLBACK=object : DiffUtil.ItemCallback<Result>(){
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
@@ -42,8 +43,9 @@ class ComicAdapter(val comic:ComicViewModel) :
 
         holder.itemView.setOnClickListener {
             comic.detailComicLiveData.postValue(item)
-            comic.lisrOfResult = item
+            comic.listOfResult= item
             holder.itemView.findNavController().navigate(R.id.action_comicsFragment_to_comicsDetailsFragment)
+
 
         }
     }

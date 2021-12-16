@@ -40,7 +40,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/personalReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"

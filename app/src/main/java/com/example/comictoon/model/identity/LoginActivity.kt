@@ -39,8 +39,6 @@ class LoginActivity : AppCompatActivity() {
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
                             Toast.makeText(this, "Login Successfully !", Toast.LENGTH_SHORT).show()
-//                        val user= Firebase.auth.currentUser
-//                        Log.d("testing","this is testing of $user" )
 
                             sharedPferfEdit.putBoolean(STATE, true)
                             sharedPferfEdit.putString(USER_ID,FirebaseAuth.getInstance().currentUser!!.uid)

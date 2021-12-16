@@ -44,6 +44,7 @@ private lateinit var binding: FragmentProfileBinding
             binding.userIdTextView.text=it.uid
             binding.emailTextView.text=it.email
 
+
         }
 
 

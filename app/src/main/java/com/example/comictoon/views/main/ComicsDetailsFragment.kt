@@ -32,9 +32,9 @@ class ComicsDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentComicsDetailsBinding
 
-    val comicViewModel: ComicViewModel by activityViewModels()
+    val comicDetailViewModel: ComicDetailViewModel by activityViewModels()
 
-    private lateinit var list: Result
+    private lateinit var resultList: Result
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,10 +49,9 @@ class ComicsDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         binding.markComic.setOnClickListener {
 
-            comicViewModel.getComicfromClickComic(Firebase.auth.currentUser!!.uid)
+            comicDetailViewModel.getComicfromClickComic(Firebase.auth.currentUser!!.uid)
         }
 
     }
@@ -60,31 +59,27 @@ class ComicsDetailsFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     fun observers() {
 
-        comicViewModel.markedLiveData.observe(viewLifecycleOwner, {
+        comicDetailViewModel.markedLiveData.observe(viewLifecycleOwner, {
 
             it?.let {
+                Log.d(TAG,"the observer result")
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+                comicDetailViewModel.markedLiveData.postValue(null)
                 findNavController().navigate(R.id.action_comicsDetailsFragment_to_markedComicFragment)
-
-//                try {
-//
-//                }catch (e:Exception){
-//                    //
-//                }
-                Log.d(TAG,"dgd")
-
-                comicViewModel.markedLiveData.postValue(null)
-
             }
 
         })
 
 
-        comicViewModel.detailComicLiveData.observe(viewLifecycleOwner, {
+        comicDetailViewModel.detailComicLiveData.observe(viewLifecycleOwner, {
             Picasso.get().load(it.image.originalUrl).into(binding.imageView4)
             binding.imageTitle.text = it.name
-            list = it
+            resultList = it
 
-            try{fun String.toSpanned(): Spanned {
+            try{
+
+                // this function is used to translate the HTML file as a string and then putting it in a Text View
+                    fun String.toSpanned(): Spanned {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     return Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
                 } else {
@@ -105,10 +100,10 @@ class ComicsDetailsFragment : Fragment() {
 
         })
 
-        comicViewModel.comicMarkedErrorLiveData.observe(viewLifecycleOwner,{
+        comicDetailViewModel.comicDetailErrorLiveData.observe(viewLifecycleOwner,{
             it?.let {
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
-                comicViewModel.comicMarkedErrorLiveData.postValue(null)
+                comicDetailViewModel.comicDetailErrorLiveData.postValue(null)
             }
 
 

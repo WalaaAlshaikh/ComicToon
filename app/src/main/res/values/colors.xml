@@ -12,4 +12,5 @@
     <color name="red">#C81818</color>
     <color name="darkred">#AB0B00</color>
     <color name="vdarkred">#7C0F07</color>
+    <color name="lightGray">#757575</color>
 </resources>

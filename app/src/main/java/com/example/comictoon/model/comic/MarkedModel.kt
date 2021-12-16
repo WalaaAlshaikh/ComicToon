@@ -1,3 +1,3 @@
 package com.example.comictoon.model.comic
 
-data class MarkedModel(var image:String?=null, var title:String?=null,var note:String?=null)
+data class MarkedModel(var comicId:Int? =null,var image:String?=null, var title:String?=null,var personalNote:String?=null)

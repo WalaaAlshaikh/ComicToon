@@ -1,5 +1,8 @@
 package com.example.comictoon.adaptersimport
 
+import MarkedComicViewModel
+import android.app.AlertDialog
+import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comictoon.R
 import com.example.comictoon.model.comic.Result
@@ -17,13 +20,24 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import java.lang.StringBuilder
+import android.content.DialogInterface
 
-class MarkedAdapter() :
+import android.text.Editable
+
+import android.widget.EditText
+import androidx.fragment.app.FragmentManager
+import com.example.comictoon.views.main.ComicViewModel
+import com.example.comictoon.views.main.UpdateFragment
+import com.google.firebase.auth.ktx.auth
+
+
+class MarkedAdapter(val context:Context,val fragmentManger:FragmentManager, val comic:MarkedComicViewModel) :
 RecyclerView.Adapter<MarkedAdapter.MarkedViewModel>() {
+
     val DIFF_CALLBACK=object : DiffUtil.ItemCallback<MarkedModel>(){
 
         override fun areItemsTheSame(oldItem: MarkedModel, newItem: MarkedModel): Boolean {
-           return oldItem==newItem
+           return oldItem.comicId==newItem.comicId
 
         }
 
@@ -33,6 +47,7 @@ RecyclerView.Adapter<MarkedAdapter.MarkedViewModel>() {
 
 
     }
+
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -47,7 +62,7 @@ RecyclerView.Adapter<MarkedAdapter.MarkedViewModel>() {
         )
     }
 
-    override fun onBindViewHolder(holder: MarkedViewModel, position: Int) {
+    override fun onBindViewHolder(holder: MarkedViewModel, position: Int,) {
         val item = differ.currentList[position]
 
         holder.title.text=item.title
@@ -63,8 +78,27 @@ RecyclerView.Adapter<MarkedAdapter.MarkedViewModel>() {
 //        }
 
         holder.delete.setOnClickListener {
+            //observer()
+            comic.deleteItem(Firebase.auth.currentUser!!.uid, item.comicId.toString())
+
+//            val markList= mutableListOf<MarkedModel>()
+//            markList.addAll(differ.currentList)
+//            markList.removeAt(position)
+//
+//            differ.submitList(markList)
+
 
         }
+        val dialog=UpdateFragment(item.comicId.toString(), item.personalNote.toString())
+
+
+        holder.update.setOnClickListener {
+
+            dialog.show(fragmentManger,"")
+
+        }
+
+
 
 
 
@@ -78,11 +112,15 @@ RecyclerView.Adapter<MarkedAdapter.MarkedViewModel>() {
         differ.submitList(list)
 
     }
+//    fun observer(){
+//        comic.comicMarkedErrorLiveData.postValue()
+//    }
 
     class MarkedViewModel(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val title:TextView=itemView.findViewById(R.id.marked_title_textView)
         val image:ImageView=itemView.findViewById(R.id.markedimageView)
         val delete:ImageView=itemView.findViewById(R.id.delete_image)
+        val update:TextView=itemView.findViewById(R.id.personalReview)
     }
 }

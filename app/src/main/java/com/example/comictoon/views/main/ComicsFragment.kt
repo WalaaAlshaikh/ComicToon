@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -24,6 +25,7 @@ class ComicsFragment : Fragment() {
 
 
     private val comicViewModel:ComicViewModel by activityViewModels()
+    private val comicDetailViewModel:ComicDetailViewModel by activityViewModels()
     private var list= mutableListOf<Result>()
     private lateinit var profileItem: MenuItem
 
@@ -31,8 +33,8 @@ class ComicsFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
 
-
     }
+    //klk;
 
 
     override fun onCreateView(
@@ -48,21 +50,26 @@ class ComicsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
-        val db = Firebase.firestore
-
         val recyclerView: RecyclerView =view.findViewById(R.id.comic_recyclerView)
-       comicAdapter= ComicAdapter(comicViewModel)
+       comicAdapter= ComicAdapter(comicDetailViewModel)
         recyclerView.adapter=comicAdapter
         comicViewModel.callomics()
 
         comicViewModel.comicLiveData.observe(viewLifecycleOwner,{
             binding.comicProgressBar.animate().alpha(0f)
             comicAdapter.submittedList(it.results)
+            list= it.results as MutableList<Result>
+            binding.comicRecyclerView.animate().alpha(1f)
+
         })
 
+        comicViewModel.comicErrorLiveData.observe(viewLifecycleOwner,{
+            it?.let {
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
 
-
+                comicViewModel.comicErrorLiveData.postValue(null)
+            }
+        })
 
 
     }
