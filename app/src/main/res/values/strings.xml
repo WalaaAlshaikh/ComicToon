@@ -21,4 +21,7 @@
     <string name="save">save</string>
     <string name="personal">Add My Personal Review</string>
     <string name="Cancel">Cancel</string>
+    <string name="msg_token_fmt">testigk</string>
+
+
 </resources>
