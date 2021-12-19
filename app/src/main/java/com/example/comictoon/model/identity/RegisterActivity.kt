@@ -19,6 +19,7 @@ import com.example.comictoon.views.main.MainActivity
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -51,11 +52,11 @@ class RegisterActivity : AppCompatActivity() {
         observer()
         binding.registerButton.setOnClickListener {
             val registerEmail = binding.rEmailEditText.text.toString()
-            val registerEmailConfirm = binding.rEmailconfEditText.text.toString()
+            val registerusername = binding.rEmailconfEditText.text.toString()
             val registerPassword = binding.rPasswordEditText.text.toString()
             val registerPasswordConfirm = binding.rPasswordconfEditText.text.toString()
-            if (registerEmail.isNotBlank() && registerEmailConfirm.isNotBlank() && registerPassword.isNotBlank() && registerPasswordConfirm.isNotBlank()) {
-                if (registerEmail == registerEmailConfirm && registerPassword == registerPasswordConfirm) {
+            if (registerEmail.isNotBlank() && registerusername.isNotBlank() && registerPassword.isNotBlank() && registerPasswordConfirm.isNotBlank()) {
+                if (registerPassword == registerPasswordConfirm) {
                     if (validator.emailIsValid(registerEmail)) {
                         if (validator.passIsValid(registerPassword)) {
 
@@ -65,23 +66,38 @@ class RegisterActivity : AppCompatActivity() {
                                 .addOnCompleteListener {
                                     if (it.isSuccessful) {
                                         val firebaseUser: FirebaseUser = it.result!!.user!!
+
+                                        var profileUpdate=UserProfileChangeRequest.Builder().setDisplayName(registerusername).build()
+
+
                                         Toast.makeText(
                                             this,
                                             "User Registered Successfully",
                                             Toast.LENGTH_SHORT
+
+
                                         ).show()
+
+
+
 
 
                                         val user = hashMapOf(
                                             "email" to registerEmail,
-                                            "password" to registerPassword
+                                            "password" to registerPassword,
+                                            "displayname" to registerusername
                                         )
+
 
 // Add a new document with a generated ID
                                         registerViewModel.userInfo(firebaseUser.uid, user)
+                                        firebaseAuth.currentUser?.updateProfile(profileUpdate)
+
                                         val intent = Intent(this, MainActivity::class.java)
-                                        intent.putExtra("UserId", firebaseUser.uid)
-                                        intent.putExtra("Email", firebaseUser.email)
+                                        Log.d(TAG,firebaseUser.displayName.toString())
+
+
+
 
                                         startActivity(intent)
                                         finish()

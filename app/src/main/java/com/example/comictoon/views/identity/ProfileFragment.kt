@@ -29,6 +29,7 @@ private lateinit var binding: FragmentProfileBinding
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         sharedPref=requireActivity().getSharedPreferences(SHARED_PREF_FILE,Context.MODE_PRIVATE)
         sharedPrfEditer=sharedPref.edit()
         binding= FragmentProfileBinding.inflate(inflater,container,false)
@@ -39,9 +40,12 @@ private lateinit var binding: FragmentProfileBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         FirebaseAuth.getInstance().currentUser?.let {
+            val userId= requireActivity().intent.getStringExtra("UserId")
             Log.d(TAG, it.displayName.toString())
-            binding.userIdTextView.text=it.uid
+            binding.userIdTextView.text=it.displayName
             binding.emailTextView.text=it.email
 
 
