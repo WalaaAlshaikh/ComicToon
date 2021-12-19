@@ -23,8 +23,8 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.comictoon.views.identity.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_comicFragment"
             app:destination="@id/comicFragment" />
@@ -45,5 +45,9 @@
         android:id="@+id/markedComicFragment"
         android:name="com.example.comictoon.views.main.MarkedComicFragment"
         android:label="Marked Comics"
-        tools:layout="@layout/fragment_marked_comic" />
+        tools:layout="@layout/fragment_marked_comic" >
+        <action
+            android:id="@+id/action_markedComicFragment_to_comicsDetailsFragment"
+            app:destination="@id/comicsDetailsFragment" />
+    </fragment>
 </navigation>

@@ -14,6 +14,7 @@ import com.example.comictoon.R
 import com.example.comictoon.adaptersimport.MarkedAdapter
 import com.example.comictoon.databinding.FragmentMarkedComicBinding
 import com.example.comictoon.model.comic.MarkedModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.*
 import com.google.firebase.ktx.Firebase
@@ -25,12 +26,15 @@ private lateinit var markList:MutableList<MarkedModel>
 private lateinit var markedAdapter:MarkedAdapter
 private lateinit var db:FirebaseFirestore
  val comic:MarkedComicViewModel by activityViewModels()
+    private lateinit var bottomNav: BottomNavigationView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         observer()
         // Inflate the layout for this fragment
+        bottomNav=activity!!.findViewById(R.id.bottomNavigation)
+        bottomNav.visibility=View.VISIBLE
         binding= FragmentMarkedComicBinding.inflate(inflater,container,false)
         return binding.root
 

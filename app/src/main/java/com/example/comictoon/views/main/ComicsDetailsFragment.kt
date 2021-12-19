@@ -29,6 +29,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.findNavController
 import com.example.comictoon.model.comic.Result
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.Exception
 
 
@@ -41,6 +42,7 @@ class ComicsDetailsFragment : Fragment() {
     var notificationId=1
 
     val comicDetailViewModel: ComicDetailViewModel by activityViewModels()
+    private lateinit var bottomNav: BottomNavigationView
 
     private lateinit var resultList: Result
 
@@ -49,6 +51,8 @@ class ComicsDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        bottomNav=activity!!.findViewById(R.id.bottomNavigation)
+        bottomNav.visibility=View.VISIBLE
         binding = FragmentComicsDetailsBinding.inflate(inflater, container, false)
         observers()
         return binding.root
@@ -138,7 +142,6 @@ class ComicsDetailsFragment : Fragment() {
             val channel = NotificationChannel(channelId, name, importance).apply {
                 description = descriptionText
             }
-            // Register the channel with the system
             // Register the channel with the system
             val notificationManager: NotificationManager =
                 getActivity()?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

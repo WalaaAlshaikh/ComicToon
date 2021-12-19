@@ -44,8 +44,8 @@ class LoginActivity : AppCompatActivity() {
                             sharedPferfEdit.putString(USER_ID,FirebaseAuth.getInstance().currentUser!!.uid)
                             sharedPferfEdit.commit()
                             val intent = Intent(this, MainActivity::class.java)
-                            intent.putExtra("UserId", FirebaseAuth.getInstance().currentUser!!.uid)
-                            intent.putExtra("Email", FirebaseAuth.getInstance().currentUser!!.email)
+//                            intent.putExtra("UserId", FirebaseAuth.getInstance().currentUser!!.uid)
+//                            intent.putExtra("Email", FirebaseAuth.getInstance().currentUser!!.email)
                             startActivity(intent)
                             finish()
 

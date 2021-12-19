@@ -16,37 +16,42 @@ import com.example.comictoon.databinding.FragmentProfileBinding
 import com.example.comictoon.model.identity.LoginActivity
 import com.example.comictoon.views.main.SHARED_PREF_FILE
 import com.example.comictoon.views.main.STATE
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
 private const val TAG = "ProfileFragment"
 
 class ProfileFragment : Fragment() {
-private lateinit var binding: FragmentProfileBinding
+    private lateinit var binding: FragmentProfileBinding
     private lateinit var sharedPref: SharedPreferences
     private lateinit var sharedPrfEditer: SharedPreferences.Editor
+
+    private lateinit var bottomNav:BottomNavigationView
+//
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        sharedPref=requireActivity().getSharedPreferences(SHARED_PREF_FILE,Context.MODE_PRIVATE)
-        sharedPrfEditer=sharedPref.edit()
-        binding= FragmentProfileBinding.inflate(inflater,container,false)
+        bottomNav=activity!!.findViewById(R.id.bottomNavigation)
+
+        sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
+        sharedPrfEditer = sharedPref.edit()
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        bottomNav.visibility=View.GONE
 
 
         FirebaseAuth.getInstance().currentUser?.let {
-            val userId= requireActivity().intent.getStringExtra("UserId")
             Log.d(TAG, it.displayName.toString())
-            binding.userIdTextView.text=it.displayName
-            binding.emailTextView.text=it.email
+            binding.userIdTextView.text = it.displayName
+            binding.emailTextView.text = it.email
 
 
         }
@@ -55,16 +60,12 @@ private lateinit var binding: FragmentProfileBinding
 
         binding.logoutButton.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            sharedPrfEditer.putBoolean(STATE,false).commit()
+            sharedPrfEditer.putBoolean(STATE, false).commit()
 
-            startActivity(Intent(requireActivity(),LoginActivity::class.java))
+            startActivity(Intent(requireActivity(), LoginActivity::class.java))
             requireActivity().finish()
 
-
-
         }
-
-
 
     }
 

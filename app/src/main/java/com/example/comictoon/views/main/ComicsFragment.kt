@@ -15,6 +15,7 @@ import com.example.comictoon.R
 import com.example.comictoon.adaptersimport.ComicAdapter
 import com.example.comictoon.databinding.FragmentComicsBinding
 import com.example.comictoon.model.comic.Result
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -28,9 +29,12 @@ class ComicsFragment : Fragment() {
     private val comicDetailViewModel:ComicDetailViewModel by activityViewModels()
     private var list= mutableListOf<Result>()
     private lateinit var profileItem: MenuItem
+    private lateinit var bottomNav: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         setHasOptionsMenu(true)
 
     }
@@ -42,6 +46,8 @@ class ComicsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        bottomNav=activity!!.findViewById(R.id.bottomNavigation)
+        bottomNav.visibility=View.VISIBLE
         binding= FragmentComicsBinding.inflate(inflater,container,false)
         return binding.root
     }

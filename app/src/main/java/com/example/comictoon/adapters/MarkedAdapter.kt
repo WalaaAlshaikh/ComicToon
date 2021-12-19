@@ -68,15 +68,6 @@ RecyclerView.Adapter<MarkedAdapter.MarkedViewModel>() {
         holder.title.text=item.title
       Picasso.get().load(item.image).into(holder.image)
 
-//        val favCollectionRef=Firebase.firestore.collection("users")
-//
-//        val querySnapshot=favCollectionRef.get()
-//        val sb=StringBuilder()
-//        for (document in querySnapshot.result!!.documents){
-//          //  val favorite=document.toObject<List<>>()
-//
-//        }
-
         holder.delete.setOnClickListener {
             //observer()
             comic.deleteItem(Firebase.auth.currentUser!!.uid, item.comicId.toString())
@@ -87,20 +78,16 @@ RecyclerView.Adapter<MarkedAdapter.MarkedViewModel>() {
 //
 //            differ.submitList(markList)
 
-
         }
-        val dialog=UpdateFragment(item.comicId.toString(), item.personalNote.toString(),)
 
+
+        val dialog=UpdateFragment(item.comicId.toString(), item.personalNote.toString(),)
 
         holder.update.setOnClickListener {
 
             dialog.show(fragmentManger,"")
 
         }
-
-
-
-
 
     }
 
@@ -112,9 +99,6 @@ RecyclerView.Adapter<MarkedAdapter.MarkedViewModel>() {
         differ.submitList(list)
 
     }
-//    fun observer(){
-//        comic.comicMarkedErrorLiveData.postValue()
-//    }
 
     class MarkedViewModel(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.comictoon.model.comic.MarkedModel
+import com.example.comictoon.model.comic.Result
 
 import com.example.comictoon.repositories.FireBaseRepo
 import com.google.firebase.firestore.DocumentChange
@@ -29,6 +30,7 @@ class MarkedComicViewModel:ViewModel() {
     val markedComicErrorLiveData=MutableLiveData<String>()
     val markedStringComicLiveData=MutableLiveData<String>()
     var markLiveData = MutableLiveData<List<MarkedModel>>()
+    var selectedItemLiveData=MutableLiveData<Result>()
 
 
 

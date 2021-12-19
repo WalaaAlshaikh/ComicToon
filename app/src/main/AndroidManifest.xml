@@ -11,10 +11,12 @@
         android:theme="@style/Theme.ComicToon">
         <activity
             android:name=".model.identity.RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Splash"/>
         <activity
             android:name=".model.identity.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Splash"/>
         <activity
             android:name=".views.main.MainActivity"
             android:exported="true" />
