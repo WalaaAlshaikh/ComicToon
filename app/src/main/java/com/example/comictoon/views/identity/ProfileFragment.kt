@@ -54,9 +54,12 @@ private lateinit var binding: FragmentProfileBinding
             sharedPrfEditer.putBoolean(STATE,false).commit()
 
             startActivity(Intent(requireActivity(),LoginActivity::class.java))
+            requireActivity().finish()
+
 
 
         }
+
 
 
     }

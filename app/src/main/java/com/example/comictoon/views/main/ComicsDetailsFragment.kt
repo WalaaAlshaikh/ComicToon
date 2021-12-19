@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -76,24 +77,25 @@ class ComicsDetailsFragment : Fragment() {
             binding.imageTitle.text = it.name
             resultList = it
 
-            try{
+            try {
 
                 // this function is used to translate the HTML file as a string and then putting it in a Text View
-                    fun String.toSpanned(): Spanned {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    return Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
-                } else {
-                    @Suppress("DEPRECATION")
-                    return Html.fromHtml(this)
-                }
-            }
+                val convert =
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        Html.fromHtml(it.description, Html.FROM_HTML_MODE_LEGACY)
+                    } else {
+                        @Suppress("DEPRECATION")
+                        Html.fromHtml(it.description)
+                    }
 
-            binding.descriptionTextView.text = it.description.toSpanned()}
-            catch (e:Exception){
+
+                binding.descriptionTextView.text = convert
+            }catch (e:Exception){
 
                 binding.descriptionTextView.setText("This comic has no description")
             }
             binding.descriptionTextView.movementMethod = ScrollingMovementMethod()
+            binding.descriptionTextView.movementMethod=LinkMovementMethod.getInstance()
 
 
             binding.publishTextView.text = "Publish year: ${it.startYear}"
