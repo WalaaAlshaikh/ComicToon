@@ -3,8 +3,9 @@ package com.example.comictoon.views.main
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.SearchView
+
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController

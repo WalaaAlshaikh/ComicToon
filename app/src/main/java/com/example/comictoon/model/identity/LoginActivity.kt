@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
 
             val emailAdress = binding.lEmailEditText.text.toString()
             val password = binding.lPasswordEditText.text.toString()
-            if (emailAdress.isNotBlank() && password.isNotBlank())
+            if (emailAdress.isNotBlank() && password.isNotBlank()){
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(emailAdress, password)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
@@ -59,6 +59,8 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
 
+        }else{
+                Toast.makeText(this, "Email and Password must not be empty", Toast.LENGTH_SHORT).show()
         }
     }
-}
+}}

@@ -22,7 +22,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-
+private const val TAG = "UpdateFragment"
 class UpdateFragment(val comicId: String, val personalNote: String) : DialogFragment() {
 
 private lateinit var binding:FragmentUpdateBinding
@@ -37,6 +37,9 @@ private val updateViewModel:UpdateViewModel by activityViewModels()
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        Log.d(TAG,comicId)
+
         // Inflate the layout for this fragment
         binding= FragmentUpdateBinding.inflate(inflater,container,false)
         return binding.root
@@ -45,18 +48,18 @@ private val updateViewModel:UpdateViewModel by activityViewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //var test=markViewModel.receiveItemFromFireBase(Firebase.auth.currentUser!!.uid)
+        observer()
 
         binding.reviewEditText.setText(personalNote)
 
         binding.saveButton.setOnClickListener {
-            observer()
+
             var userNote=binding.reviewEditText.text.toString()
 //            if (use rNote == "") {
 //                userNote=personalNote
 //            }
             updateViewModel.updateNote(Firebase.auth.currentUser!!.uid,userNote, comicId)
           //markViewModel.receiveItemFromFireBase(Firebase.auth.currentUser!!.uid)
-            dismiss()
 
         }
 
@@ -84,6 +87,7 @@ private val updateViewModel:UpdateViewModel by activityViewModels()
                 //markViewModel.receiveItemFromFireBase(Firebase.auth.currentUser!!.uid)
                 updateViewModel.updateStringLiveData.postValue(null)
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+                dismiss()
 
 
         }

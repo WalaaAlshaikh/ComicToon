@@ -24,8 +24,10 @@ class UpdateViewModel: ViewModel() {
                  val response = fireBaseRepo.updateItem(userId, data, docId)
                 response.addOnCompleteListener {
                     if (it.isSuccessful) {
+                        Log.d(TAG,response.result.toString())
                         updateStringLiveData.postValue("updated Successful")
                     } else {
+                        Log.d(TAG,response.exception!!.message.toString())
                         updateErrorLiveData.postValue(response.exception!!.message)
                     }
                 }
