@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -66,6 +68,7 @@ class ComicsDetailsFragment : Fragment() {
             comicDetailViewModel.getComicfromClickComic(Firebase.auth.currentUser!!.uid)
         }
 
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -108,6 +111,14 @@ class ComicsDetailsFragment : Fragment() {
             }
             binding.descriptionTextView.movementMethod = ScrollingMovementMethod()
             binding.descriptionTextView.movementMethod=LinkMovementMethod.getInstance()
+
+            binding.moreInfoTextView.setOnClickListener {
+                val parsrUri= Uri.parse(resultList.siteDetailUrl)
+                val intent= Intent(Intent.ACTION_VIEW,parsrUri)
+                context!!.startActivity(intent)
+
+
+            }
 
 
             binding.publishTextView.text = "Publish year: ${it.startYear}"
