@@ -22,6 +22,8 @@
     <string name="personal">Add My Personal Review</string>
     <string name="Cancel">Cancel</string>
     <string name="msg_token_fmt">testigk</string>
+    <string name="noMarkComics">No Mark Comics availible here</string>
+    <string name="goTo"><![CDATA[Go to Home -> Choose any comic and Mark it!]]></string>
 
 
 </resources>

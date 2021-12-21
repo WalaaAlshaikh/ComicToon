@@ -66,6 +66,11 @@ private lateinit var db:FirebaseFirestore
            it?.let {
 
                Log.d(TAG, it.size.toString())
+               if(it.isNotEmpty()){
+                   binding.visibilityLayout.visibility=View.INVISIBLE
+               }else{
+                   binding.visibilityLayout.visibility=View.VISIBLE
+               }
                markedAdapter.submittedList(it)
 
                comic.markLiveData.postValue(null)
@@ -79,6 +84,7 @@ private lateinit var db:FirebaseFirestore
 
         comic.markedStringComicLiveData.observe(viewLifecycleOwner,{
             it?.let {
+
                 comic.receiveItemFromFireBase(Firebase.auth.uid.toString())
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                 comic.markedStringComicLiveData.postValue(null)
