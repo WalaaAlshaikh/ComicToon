@@ -6,7 +6,7 @@
     <string name="login">Login</string>
     <string name="New">New Here? Register</string>
     <string name="Register">Register</string>
-    <string name="confirm">Confirm Email</string>
+    <string name="Username">Username</string>
     <string name="password">Password</string>
     <string name="confirmPass">Confirm Password</string>
     <string name="register">Register</string>

@@ -52,10 +52,10 @@ class RegisterActivity : AppCompatActivity() {
         observer()
         binding.registerButton.setOnClickListener {
             val registerEmail = binding.rEmailEditText.text.toString()
-            val registerusername = binding.rEmailconfEditText.text.toString()
+            val registerUsername = binding.rUsernameEditText.text.toString()
             val registerPassword = binding.rPasswordEditText.text.toString()
             val registerPasswordConfirm = binding.rPasswordconfEditText.text.toString()
-            if (registerEmail.isNotBlank() && registerusername.isNotBlank() && registerPassword.isNotBlank() && registerPasswordConfirm.isNotBlank()) {
+            if (registerPassword.isNotBlank() && registerPasswordConfirm.isNotBlank()) {
                 if (registerPassword == registerPasswordConfirm) {
                     if (validator.emailIsValid(registerEmail)) {
                         if (validator.passIsValid(registerPassword)) {
@@ -67,9 +67,8 @@ class RegisterActivity : AppCompatActivity() {
                                     if (it.isSuccessful) {
                                         val firebaseUser: FirebaseUser = it.result!!.user!!
 
-                                        var profileUpdate=UserProfileChangeRequest.Builder().setDisplayName(registerusername).build()
-
-
+                                        var profileUpdate = UserProfileChangeRequest.Builder()
+                                            .setDisplayName(registerUsername).build()
                                         Toast.makeText(
                                             this,
                                             "User Registered Successfully",
@@ -78,14 +77,10 @@ class RegisterActivity : AppCompatActivity() {
 
                                         ).show()
 
-
-
-
-
                                         val user = hashMapOf(
                                             "email" to registerEmail,
                                             "password" to registerPassword,
-                                            "displayname" to registerusername
+                                            "displayname" to registerUsername
                                         )
 
 
@@ -94,15 +89,10 @@ class RegisterActivity : AppCompatActivity() {
                                         firebaseAuth.currentUser?.updateProfile(profileUpdate)
 
                                         val intent = Intent(this, MainActivity::class.java)
-                                        Log.d(TAG,firebaseUser.displayName.toString())
-
-
-
+                                        Log.d(TAG, firebaseUser.displayName.toString())
 
                                         startActivity(intent)
                                         finish()
-
-
                                     } else {
                                         Toast.makeText(
                                             this,
@@ -112,7 +102,6 @@ class RegisterActivity : AppCompatActivity() {
                                     }
 
                                 }
-
                         } else {
                             Toast.makeText(
                                 this,
@@ -133,7 +122,7 @@ class RegisterActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(
                         this,
-                        "Either email or password fields are not matched",
+                        "Password fields are not matched",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -160,8 +149,6 @@ class RegisterActivity : AppCompatActivity() {
             }
         })
 
-
-
         registerViewModel.registerErrorLiveData.observe(this, {
             it?.let {
                 progressDialog.dismiss()
@@ -170,6 +157,4 @@ class RegisterActivity : AppCompatActivity() {
             }
         })
     }
-
-
 }

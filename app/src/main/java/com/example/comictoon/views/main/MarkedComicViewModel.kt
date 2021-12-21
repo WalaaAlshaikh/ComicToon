@@ -30,7 +30,7 @@ class MarkedComicViewModel:ViewModel() {
     val markedComicErrorLiveData=MutableLiveData<String>()
     val markedStringComicLiveData=MutableLiveData<String>()
     var markLiveData = MutableLiveData<List<MarkedModel>>()
-    var selectedItemLiveData=MutableLiveData<Result>()
+   // var selectedItemLiveData=MutableLiveData<Result>()
 
 
 
