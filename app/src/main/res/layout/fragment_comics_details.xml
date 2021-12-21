@@ -94,14 +94,16 @@
 
     <TextView
         android:id="@+id/description_textView"
+        style="@style/hyperLink"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:padding="10dp"
-        android:text="TextView"
         android:scrollbars="vertical"
+        android:text="TextView"
         android:textAlignment="center"
         android:textColor="@color/black"
+        android:textColorLink="@color/vdarkred"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

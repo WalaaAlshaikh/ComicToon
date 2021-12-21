@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="hyperLink" parent="TextAppearance.AppCompat">
+        <item name="colorAccent">@color/vdarkred</item>
+    </style>
+</resources>
