@@ -20,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val sharedPref = getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
-        val sharedPferfEdit = sharedPref.edit()
+        val sharedPrefEdit = sharedPref.edit()
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -32,17 +32,17 @@ class LoginActivity : AppCompatActivity() {
 
         binding.loginButton.setOnClickListener {
 
-            val emailAdress = binding.lEmailEditText.text.toString()
+            val emailAddress = binding.lEmailEditText.text.toString()
             val password = binding.lPasswordEditText.text.toString()
-            if (emailAdress.isNotBlank() && password.isNotBlank()){
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(emailAdress, password)
+            if (emailAddress.isNotBlank() && password.isNotBlank()){
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(emailAddress, password)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
                             Toast.makeText(this, "Login Successfully !", Toast.LENGTH_SHORT).show()
 
-                            sharedPferfEdit.putBoolean(STATE, true)
-                            sharedPferfEdit.putString(USER_ID,FirebaseAuth.getInstance().currentUser!!.uid)
-                            sharedPferfEdit.commit()
+                            sharedPrefEdit.putBoolean(STATE, true)
+                            sharedPrefEdit.putString(USER_ID,FirebaseAuth.getInstance().currentUser!!.uid)
+                            sharedPrefEdit.commit()
                             val intent = Intent(this, MainActivity::class.java)
 //                            intent.putExtra("UserId", FirebaseAuth.getInstance().currentUser!!.uid)
 //                            intent.putExtra("Email", FirebaseAuth.getInstance().currentUser!!.email)
