@@ -11,18 +11,26 @@
         android:theme="@style/Theme.ComicToon">
         <activity
             android:name=".model.identity.RegisterActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Splash"/>
         <activity
             android:name=".model.identity.LoginActivity"
             android:exported="false"
-            android:theme="@style/Splash"/>
+            android:theme="@style/Splash"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".views.main.MainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".views.main.Splash"
             android:exported="true"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

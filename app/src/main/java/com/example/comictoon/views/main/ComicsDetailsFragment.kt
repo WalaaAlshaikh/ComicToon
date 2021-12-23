@@ -109,7 +109,7 @@ class ComicsDetailsFragment : Fragment() {
 
                 binding.descriptionTextView.setText("This comic has no description")
             }
-            binding.descriptionTextView.movementMethod = ScrollingMovementMethod()
+            //binding.descriptionTextView.movementMethod = ScrollingMovementMethod()
             binding.descriptionTextView.movementMethod=LinkMovementMethod.getInstance()
 
             binding.moreInfoTextView.setOnClickListener {

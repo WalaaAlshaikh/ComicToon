@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import com.example.comictoon.R
@@ -61,13 +62,14 @@ class RegisterActivity : AppCompatActivity() {
         }
         observer()
         binding.registerButton.setOnClickListener {
-            val registerEmail = binding.rEmailEditText.text.toString()
-            val registerUsername = binding.rUsernameEditText.text.toString()
-            val registerPassword = binding.rPasswordEditText.text.toString()
-            val registerPasswordConfirm = binding.rPasswordconfEditText.text.toString()
-            if (registerPassword.isNotBlank() && registerPasswordConfirm.isNotBlank()) {
+            val registerEmail = binding.rEmailTextfield.editText?.text.toString()
+
+            val registerUsername = binding.rUsernameTextfield.editText?.text.toString()
+            val registerPassword = binding.rPasswordTextfield.editText?.text.toString()
+            val registerPasswordConfirm = binding.rPasswordConTextfield.editText?.text.toString()
+            if (registerPassword.isNotBlank() && registerPasswordConfirm.isNotBlank() && registerEmail.isNotBlank() && registerUsername.isNotBlank())  {
                 if (registerPassword == registerPasswordConfirm) {
-                    if (validator.emailIsValid(registerEmail)) {
+//                    if (validator.emailIsValid(registerEmail)) {
                         if (validator.passIsValid(registerPassword)) {
                             dialog.show()
 
@@ -106,47 +108,57 @@ class RegisterActivity : AppCompatActivity() {
                                         finish()
                                     } else {
                                         dialog.hide()
+
+                                            binding.rEmailTextfield.error=it.exception!!.message.toString()
+
                                        // progressDialog.dismiss()
-                                        Toast.makeText(
-                                            this,
-                                            it.exception!!.message.toString(),
-                                            Toast.LENGTH_SHORT
-                                        ).show()
+//                                        Toast.makeText(
+//                                            this,
+//                                            it.exception!!.message.toString(),
+//                                            Toast.LENGTH_SHORT
+//                                        ).show()
                                     }
 
                                 }
                         } else {
-                            Toast.makeText(
-                                this,
-                                "Your password should be strong ",
-                                Toast.LENGTH_SHORT
-                            ).show()
+//                            Toast.makeText(
+//                                this,
+//                                "",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+
+                            binding.rPasswordTextfield.error="Your password should be strong "
                         }
 
 
-                    } else {
-                        Toast.makeText(
-                            this,
-                            "Your email address should be correct",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+//                    } else {
+//                     binding.rEmailTextfield.error="Your email address should be correct"
+//                    }
 
                 } else {
-                    Toast.makeText(
-                        this,
-                        "Password fields are not matched",
-                        Toast.LENGTH_SHORT
-                    ).show()
+//                    Toast.makeText(
+//                        this,
+//                        "Password fields are not matched",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+
+                    binding.rPasswordConTextfield.error="Password fields are not matched"
+                    binding.rPasswordTextfield.error="Password fields are not matched"
+
                 }
 
 
             } else {
-                Toast.makeText(
-                    this,
-                    "Registration fields must not be empty",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    this,
+//                    "Registration fields must not be empty",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+
+                binding.rPasswordConTextfield.error="Required!"
+                binding.rPasswordTextfield.error="Required!"
+                binding.rEmailTextfield.error="Required!"
+                binding.rUsernameTextfield.error="Required!"
             }
         }
 
