@@ -68,7 +68,11 @@ class RegisterActivity : AppCompatActivity() {
             val registerPassword = binding.rPasswordTextfield.editText?.text.toString()
             val registerPasswordConfirm = binding.rPasswordConTextfield.editText?.text.toString()
             if (registerPassword.isNotBlank() && registerPasswordConfirm.isNotBlank() && registerEmail.isNotBlank() && registerUsername.isNotBlank())  {
-                if (registerPassword == registerPasswordConfirm) {
+
+
+
+
+                if (registerPassword == registerPasswordConfirm ) {
 //                    if (validator.emailIsValid(registerEmail)) {
                         if (validator.passIsValid(registerPassword)) {
                             dialog.show()
@@ -159,6 +163,7 @@ class RegisterActivity : AppCompatActivity() {
                 binding.rPasswordTextfield.error="Required!"
                 binding.rEmailTextfield.error="Required!"
                 binding.rUsernameTextfield.error="Required!"
+
             }
         }
 
