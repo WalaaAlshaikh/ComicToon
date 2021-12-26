@@ -1,6 +1,7 @@
 package com.example.comictoon.views.main
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.*
 
@@ -38,6 +39,7 @@ class ComicsFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
+
     }
     //klk;
 
@@ -50,17 +52,29 @@ class ComicsFragment : Fragment() {
         bottomNav=activity!!.findViewById(R.id.bottomNavigation)
         bottomNav.visibility=View.VISIBLE
         binding= FragmentComicsBinding.inflate(inflater,container,false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.swiperefresh.setOnRefreshListener {
+            comicViewModel.callomics()
+            Handler().postDelayed(Runnable {
+                binding.swiperefresh.isRefreshing=false
+            },4000)
+
+        }
+
+
+
 
 
         val recyclerView: RecyclerView =view.findViewById(R.id.comic_recyclerView)
        comicAdapter= ComicAdapter(comicDetailViewModel)
         recyclerView.adapter=comicAdapter
         comicViewModel.callomics()
+
 
         comicViewModel.comicLiveData.observe(viewLifecycleOwner,{
             binding.comicProgressBar.animate().alpha(0f)

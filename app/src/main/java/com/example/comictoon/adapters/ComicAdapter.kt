@@ -46,7 +46,6 @@ class ComicAdapter(val comic:ComicDetailViewModel) :
             comic.listOfResult= item
             holder.itemView.findNavController().navigate(R.id.action_comicsFragment_to_comicsDetailsFragment)
 
-
         }
     }
 
