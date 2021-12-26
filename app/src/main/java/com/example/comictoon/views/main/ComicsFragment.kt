@@ -62,7 +62,7 @@ class ComicsFragment : Fragment() {
             comicViewModel.callomics()
             Handler().postDelayed(Runnable {
                 binding.swiperefresh.isRefreshing=false
-            },4000)
+            },3000)
 
         }
 

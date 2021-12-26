@@ -105,7 +105,7 @@ class RegisterActivity : AppCompatActivity() {
                                         registerViewModel.userInfo(firebaseUser.uid, user)
                                         firebaseAuth.currentUser?.updateProfile(profileUpdate)
 
-                                        val intent = Intent(this, MainActivity::class.java)
+                                        val intent = Intent(this, LoginActivity::class.java)
                                         Log.d(TAG, firebaseUser.displayName.toString())
 
                                         startActivity(intent)

@@ -26,15 +26,6 @@ class ApiReop {
 
 
 
-    // Define all the retrofit clients
-//    private val restApiClient by lazy {
-//        Retrofit.Builder()
-//            .baseUrl(BASE_URL)
-//            .client(okHttpClient)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//    }
-
 
     companion object {
         private var instance: ApiReop? = null
@@ -44,9 +35,11 @@ class ApiReop {
                 instance = ApiReop()
         }
 
+
         fun get(): ApiReop {
             return instance ?: throw Exception("ApiServiceRepositories must be initialized ")
         }
+
     }
 
 }
