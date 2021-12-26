@@ -1,5 +1,6 @@
 package com.example.comictoon.views.identity
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -24,7 +25,7 @@ private const val TAG = "ProfileFragment"
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var sharedPref: SharedPreferences
-    private lateinit var sharedPrfEditer: SharedPreferences.Editor
+    private lateinit var sharedPrfEditor: SharedPreferences.Editor
 
     private lateinit var bottomNav:BottomNavigationView
 //
@@ -37,7 +38,7 @@ class ProfileFragment : Fragment() {
         bottomNav=activity!!.findViewById(R.id.bottomNavigation)
 
         sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
-        sharedPrfEditer = sharedPref.edit()
+        sharedPrfEditor = sharedPref.edit()
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         return binding.root
@@ -59,11 +60,27 @@ class ProfileFragment : Fragment() {
 
 
         binding.logoutButton.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            sharedPrfEditer.putBoolean(STATE, false).commit()
+            // pop up warning window for confirmation of logging out from account
+            val aluilder = AlertDialog.Builder(requireContext())
+            aluilder.setTitle("Logout Notification")
+            aluilder.setMessage("You are about to logout from your account \n Are you sure?")
+            aluilder.setPositiveButton("Yes") { dialogInterface, which ->
+                FirebaseAuth.getInstance().signOut()
+                sharedPrfEditor.putBoolean(STATE, false).commit()
 
-            startActivity(Intent(requireActivity(), LoginActivity::class.java))
-            requireActivity().finish()
+                startActivity(Intent(requireActivity(), LoginActivity::class.java))
+                requireActivity().finish()
+            }
+
+            aluilder.setNegativeButton("No") { dialogInterface, which ->
+
+            }
+            val theDialog: AlertDialog = aluilder.create()
+            theDialog.setCancelable(false)
+            theDialog.show()
+
+
+
 
         }
 

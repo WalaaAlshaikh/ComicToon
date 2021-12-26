@@ -7,6 +7,8 @@ import android.net.wifi.WifiManager
 import android.os.Build
 import androidx.annotation.RequiresApi
 
+//WiFiService class that will hold the connectivityManager
+
 class WifiService {
 
     private lateinit var wifiManager: WifiManager

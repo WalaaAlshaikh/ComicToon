@@ -67,20 +67,22 @@ class RegisterActivity : AppCompatActivity() {
             val registerUsername = binding.rUsernameTextfield.editText?.text.toString()
             val registerPassword = binding.rPasswordTextfield.editText?.text.toString()
             val registerPasswordConfirm = binding.rPasswordConTextfield.editText?.text.toString()
-            if (registerPassword.isNotBlank() && registerPasswordConfirm.isNotBlank() && registerEmail.isNotBlank() && registerUsername.isNotBlank())  {
+          if (registerPassword.isNotBlank() && registerPasswordConfirm.isNotBlank() && registerEmail.isNotBlank() && registerUsername.isNotBlank())  {
 
 
 
 
-                if (registerPassword == registerPasswordConfirm ) {
-//                    if (validator.emailIsValid(registerEmail)) {
-                        if (validator.passIsValid(registerPassword)) {
+              if (registerPassword == registerPasswordConfirm ) {
+////                    if (validator.emailIsValid(registerEmail)) {
+                      if (validator.passIsValid(registerPassword)) {
                             dialog.show()
 
 //                            progressDialog.show()
                             firebaseAuth
                                 .createUserWithEmailAndPassword(registerEmail, registerPassword)
                                 .addOnCompleteListener {
+
+
                                     if (it.isSuccessful) {
                                         val firebaseUser: FirebaseUser = it.result!!.user!!
 
@@ -110,10 +112,12 @@ class RegisterActivity : AppCompatActivity() {
 
                                         startActivity(intent)
                                         finish()
-                                    } else {
-                                        dialog.hide()
+                                    }  else {
 
-                                            binding.rEmailTextfield.error=it.exception!!.message.toString()
+                                        dialog.hide()
+                                        binding.rEmailTextfield.error=it.exception!!.message.toString()
+                                        //checkFields(registerUsername,registerEmail,registerPassword,registerPasswordConfirm)
+
 
                                        // progressDialog.dismiss()
 //                                        Toast.makeText(
@@ -133,12 +137,12 @@ class RegisterActivity : AppCompatActivity() {
 
                             binding.rPasswordTextfield.error="Your password should be strong "
                         }
-
-
-//                    } else {
-//                     binding.rEmailTextfield.error="Your email address should be correct"
-//                    }
-
+//
+//
+////                    } else {
+////                     binding.rEmailTextfield.error="Your email address should be correct"
+////                    }
+//
                 } else {
 //                    Toast.makeText(
 //                        this,
@@ -158,11 +162,15 @@ class RegisterActivity : AppCompatActivity() {
 //                    "Registration fields must not be empty",
 //                    Toast.LENGTH_SHORT
 //                ).show()
+              //checkFields(registerUsername,registerEmail,registerPassword,registerPasswordConfirm)
 
-                binding.rPasswordConTextfield.error="Required!"
-                binding.rPasswordTextfield.error="Required!"
-                binding.rEmailTextfield.error="Required!"
-                binding.rUsernameTextfield.error="Required!"
+
+
+                checkFields(registerUsername,registerEmail,registerPassword,registerPasswordConfirm)
+//                binding.rPasswordConTextfield.error="Required!"
+//                binding.rPasswordTextfield.error="Required!"
+//                binding.rEmailTextfield.error="Required!"
+//                binding.rUsernameTextfield.error="Required!"
 
             }
         }
@@ -231,5 +239,56 @@ class RegisterActivity : AppCompatActivity() {
             dialog.window?.attributes = layoutParams
         }
         return dialog
+    }
+
+    private fun checkFields(
+        fullName: String,
+        email: String,
+        password: String,
+        confirmPassword: String
+    ): Boolean {
+        var state = true
+        val emailLayout = binding.rEmailTextfield
+        val fullNameLayout = binding.rUsernameTextfield
+        val passwordLayout = binding.rPasswordTextfield
+        val confirmPassLayout = binding.rPasswordConTextfield
+
+        emailLayout.error = null
+        fullNameLayout.error = null
+        passwordLayout.error = null
+        confirmPassLayout.error = null
+
+        // Get needed string messages from strings.xml resource
+        val require = "required!"
+        val wrongEmailFormat = "Your email address should be correct"
+        val passwordConditions = "Password fields are not matched"
+
+        if (fullName.isBlank()) {
+            fullNameLayout.error = require
+            state = false
+        }
+
+        if (email.isBlank()) {
+            emailLayout.error = require
+            state = false
+        } else if (!validator.emailIsValid(email)) {
+            emailLayout.error = wrongEmailFormat
+            state = false
+        }
+
+        if (password.isBlank()) {
+            passwordLayout.error = require
+            state = false
+        } else if (!validator.passIsValid(password)) {
+            passwordLayout.error = passwordConditions
+            state = false
+        }
+
+        if (confirmPassword.isBlank()) {
+            confirmPassLayout.error = require
+            state = false
+        }
+
+        return state
     }
 }

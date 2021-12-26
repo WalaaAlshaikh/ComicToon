@@ -16,6 +16,7 @@ import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
+
     companion object {
         lateinit var instance:  MainActivity
     }
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         instance=this
+        // calling the function for WifiService initialization
         setupServices()
 
 
@@ -42,9 +44,12 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+    //this function initializes the WifiService
     private fun setupServices() {
         WifiService.instance.initializeWithApplicationContext(this)
     }
+
+    //
 
     override fun onSupportNavigateUp(): Boolean {
         return  navController.navigateUp() || super.onSupportNavigateUp()
