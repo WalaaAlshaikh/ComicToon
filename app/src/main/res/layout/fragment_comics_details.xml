@@ -9,124 +9,134 @@
 
 
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="450dp"
                 android:layout_height="523dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="4dp"
                 android:fadingEdge="horizontal"
                 android:fadingEdgeLength="30dp"
                 android:requiresFadingEdge="vertical"
                 tools:src="@tools:sample/avatars" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_gravity="bottom"
-                    android:background="@drawable/custom_gradient_bottom" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/custom_gradient_bottom" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_gravity="top"
-                    android:background="@drawable/custom_gradient_top" />
-            </FrameLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_gravity="top"
+                android:background="@drawable/custom_gradient_top" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/unmarked_imageview"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="bottom|right"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/circle"
+                android:backgroundTintMode="add"
+                android:padding="10dp"
+
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_baseline_bookmarks_24"
+                tools:ignore="RtlHardcoded" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadingEdge="horizontal|vertical"
+            android:orientation="vertical"
+            android:requiresFadingEdge="vertical">
+
+            <TextView
+                android:id="@+id/image_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/nunito_bold"
+                android:padding="10dp"
+                android:shadowColor="@color/Yellow"
+                android:shadowRadius="2"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@color/vdarkred"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/moreInfo_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="more Info" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fadingEdge="horizontal|vertical"
-                android:fadingEdgeLength="30dp"
-                android:orientation="vertical"
-                android:requiresFadingEdge="vertical">
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/image_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
-                    android:padding="10dp"
-                    android:shadowColor="@color/black"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/moreInfo_textView"
+                    android:id="@+id/mark_comic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:text="more Info" />
-
-                <LinearLayout
-                    android:id="@+id/linearLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/mark_comic"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="5dp"
-                        android:paddingTop="10dp"
-                        android:paddingEnd="5dp"
-                        android:paddingBottom="10dp"
-                        android:text="@string/mark"
-                        android:textAlignment="center"
-                        android:textColor="@color/darkred" />
-
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_baseline_bookmarks_24"
-                        app:srcCompat="@drawable/ic_baseline_bookmarks_242" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/publish_textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:padding="10dp"
-                    android:text="TextView"
+                    android:paddingStart="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="5dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/mark"
                     android:textAlignment="center"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/description_textView"
-                    style="@style/hyperLink"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:linksClickable="true"
-                    android:padding="10dp"
-                    android:scrollbars="vertical"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textColorLink="@color/vdarkred" />
+                    android:textColor="@color/darkred" />
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/publish_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:padding="10dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/description_textView"
+                style="@style/hyperLink"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:linksClickable="true"
+                android:padding="10dp"
+                android:scrollbars="vertical"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textColorLink="@color/vdarkred" />
+
         </LinearLayout>
+
+    </LinearLayout>
 
 
 </ScrollView>

@@ -67,6 +67,7 @@ class ComicDetailViewModel:ViewModel() {
                 response.addOnSuccessListener {
                     if (it.count() > 0) {
                         comicDetailErrorLiveData.postValue("This comic has already been added")
+
                     } else {
                         sendComictoFireBase(userId)
                     }

@@ -32,8 +32,8 @@ class LoginActivity : AppCompatActivity() {
 
         binding.loginButton.setOnClickListener {
 
-            val emailAddress = binding.lEmailEditText.text.toString()
-            val password = binding.lPasswordEditText.text.toString()
+            val emailAddress = binding.emailTextfield.editText?.text.toString()
+            val password = binding.passwordTextfield.editText?.text.toString()
             if (emailAddress.isNotBlank() && password.isNotBlank()){
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(emailAddress, password)
                     .addOnCompleteListener {
@@ -51,16 +51,42 @@ class LoginActivity : AppCompatActivity() {
 
                         } else {
 
-                            Toast.makeText(
-                                this,
-                                it.exception!!.message.toString(),
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            binding.passwordTextfield.error=it.exception?.message.toString()
                         }
                     }
 
         }else{
-                Toast.makeText(this, "Email and Password must not be empty", Toast.LENGTH_SHORT).show()
+                checkFields(emailAddress,password)
         }
     }
-}}
+}
+
+    private fun checkFields(
+        email: String,
+        password: String,
+    ): Boolean {
+        var state = true
+        val emailLayout = binding.emailTextfield
+        val passwordLayout = binding.passwordTextfield
+
+        emailLayout.error = null
+
+        passwordLayout.error = null
+
+        // Get needed string messages from strings.xml resource
+        val require = "required!"
+
+        if (email.isBlank()) {
+            emailLayout.error = require
+            state = false
+        }
+
+        if (password.isBlank()) {
+            passwordLayout.error = require
+            state = false
+        }
+
+
+        return state
+    }
+}

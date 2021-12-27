@@ -57,15 +57,21 @@ class ComicsDetailsFragment : Fragment() {
         bottomNav.visibility=View.VISIBLE
         binding = FragmentComicsDetailsBinding.inflate(inflater, container, false)
         observers()
+
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.markComic.setOnClickListener {
+
+
+
+        binding.unmarkedImageview.setOnClickListener {
 
             comicDetailViewModel.getComicfromClickComic(Firebase.auth.currentUser!!.uid)
+            binding.unmarkedImageview.setImageResource(R.drawable.ic_baseline_bookmarks_242)
         }
 
 
@@ -92,6 +98,15 @@ class ComicsDetailsFragment : Fragment() {
             binding.imageTitle.text = it.name
             resultList = it
 
+            Firebase.firestore.collection("users").document(Firebase.auth.currentUser!!.uid).collection("favourite")
+                .whereEqualTo("comicId",resultList.id).get().addOnSuccessListener {
+                    if(it.count()> 0){
+                        binding.unmarkedImageview.setImageResource(R.drawable.ic_baseline_bookmarks_242)
+                    }else{
+                        binding.unmarkedImageview.setImageResource(R.drawable.ic_baseline_bookmarks_24)
+                    }
+                }
+
             try {
 
                 // this function is used to translate the HTML file as a string and then putting it in a Text View
@@ -106,10 +121,10 @@ class ComicsDetailsFragment : Fragment() {
 
                 binding.descriptionTextView.text = convert
             }catch (e:Exception){
+                // this will set the text to default string value if there is no description
 
-                binding.descriptionTextView.setText("This comic has no description")
+                binding.descriptionTextView.setText(R.string.noDescription)
             }
-            //binding.descriptionTextView.movementMethod = ScrollingMovementMethod()
             binding.descriptionTextView.movementMethod=LinkMovementMethod.getInstance()
 
             binding.moreInfoTextView.setOnClickListener {

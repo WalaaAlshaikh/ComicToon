@@ -39,26 +39,8 @@ class ComicsFragment : Fragment() {
 
 
         setHasOptionsMenu(true)
-//        requireActivity().onBackPressedDispatcher.addCallback(
-//            this,
-//            object : OnBackPressedCallback(true) {
-//                override fun handleOnBackPressed() {
-//                    Log.d(TAG, "Fragment back pressed invoked")
-//                    Toast.makeText(requireActivity(), "press back twice", Toast.LENGTH_SHORT).show()
-//
-//                    // if you want onBackPressed() to be called as normal afterwards
-//                    if (isEnabled) {
-//                        isEnabled = false
-//                        requireActivity().onBackPressed()
-//                    }
-//                }
-//            }
-//        )
-
 
     }
-    //klk;
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,10 +63,6 @@ class ComicsFragment : Fragment() {
             },3000)
 
         }
-
-
-
-
 
         val recyclerView: RecyclerView =view.findViewById(R.id.comic_recyclerView)
        comicAdapter= ComicAdapter(comicDetailViewModel)
@@ -122,6 +100,7 @@ class ComicsFragment : Fragment() {
 
     }
 
+//the system calls onCreateOptionsMenu() when starting the activity, in order to show items to the app bar.
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         requireActivity().menuInflater.inflate(R.menu.main_menu,menu)
         val searchItem=menu.findItem(R.id.app_bar_search)
@@ -154,13 +133,6 @@ class ComicsFragment : Fragment() {
 
         })
 
-
     }
-
-
-
-
-
-
 
 }
