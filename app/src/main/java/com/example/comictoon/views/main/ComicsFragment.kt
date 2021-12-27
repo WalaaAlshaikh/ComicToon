@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.*
 
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -38,6 +39,21 @@ class ComicsFragment : Fragment() {
 
 
         setHasOptionsMenu(true)
+//        requireActivity().onBackPressedDispatcher.addCallback(
+//            this,
+//            object : OnBackPressedCallback(true) {
+//                override fun handleOnBackPressed() {
+//                    Log.d(TAG, "Fragment back pressed invoked")
+//                    Toast.makeText(requireActivity(), "press back twice", Toast.LENGTH_SHORT).show()
+//
+//                    // if you want onBackPressed() to be called as normal afterwards
+//                    if (isEnabled) {
+//                        isEnabled = false
+//                        requireActivity().onBackPressed()
+//                    }
+//                }
+//            }
+//        )
 
 
     }
@@ -140,6 +156,9 @@ class ComicsFragment : Fragment() {
 
 
     }
+
+
+
 
 
 
