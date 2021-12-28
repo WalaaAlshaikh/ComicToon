@@ -59,7 +59,7 @@ class ComicAdapter(val comic:ComicDetailViewModel) :
 
     class ComicViewHolder(val binding: ItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Result) {
-            // displaying the image in the list
+            // displaying the image in the list with its title
             Picasso.get().load(item.image.originalUrl).into(binding.imageComic)
             binding.ComicTitle.text=item.name
         }

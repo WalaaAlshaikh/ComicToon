@@ -4,12 +4,12 @@ import MarkedComicViewModel
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.comictoon.R
 import com.example.comictoon.adaptersimport.MarkedAdapter
 import com.example.comictoon.databinding.FragmentMarkedComicBinding
@@ -27,6 +27,11 @@ private lateinit var markedAdapter:MarkedAdapter
 private lateinit var db:FirebaseFirestore
  val comic:MarkedComicViewModel by activityViewModels()
     private lateinit var bottomNav: BottomNavigationView
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setHasOptionsMenu(true)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -72,10 +77,14 @@ private lateinit var db:FirebaseFirestore
                    binding.visibilityLayout.visibility=View.VISIBLE
                }
                markedAdapter.submittedList(it)
+               markList=it as MutableList<MarkedModel>
+               binding.markedRecyclerView.animate().alpha(1f)
 
-               comic.markLiveData.postValue(null)
+
+
 
            }
+            comic.markLiveData.postValue(null)
         })
         comic.markedComicErrorLiveData.observe(viewLifecycleOwner,{
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
@@ -88,7 +97,12 @@ private lateinit var db:FirebaseFirestore
                 comic.receiveItemFromFireBase(Firebase.auth.uid.toString())
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                 comic.markedStringComicLiveData.postValue(null)
+
                 markedAdapter.submittedList(markList)
+
+
+
+
 
         }
         })
@@ -102,34 +116,39 @@ private lateinit var db:FirebaseFirestore
 
     }
 
-// the function below will get the data from Firestore Database after it was saved when clicking on mark comic
 
-//   private fun eventChangeList(){
-//       val userId = Firebase.auth.currentUser!!.uid
-//       db = FirebaseFirestore.getInstance()
-//
-//       db.collection("users").document(userId).collection("favourite").orderBy("title",Query.Direction.ASCENDING)
-//           .addSnapshotListener(object :EventListener<QuerySnapshot>{
-//               @SuppressLint("NotifyDataSetChanged")
-//               override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-//                  if(error != null){
-//                      Log.e("FireStore Error",error.message.toString())
-//                      return
-//                  }
-//                   for(dc:DocumentChange in value?.documentChanges!!){
-//                       if (dc.type == DocumentChange.Type.ADDED){
-//                           markList.add(dc.document.toObject(MarkedModel::class.java))
-//                       }
-//                   }
-//
-//                   Log.d(TAG,markList.size.toString())
-//                   markedAdapter.submittedList(markList)
-//
-//               }
-//
-//           })
-//
-//   }
+    //the system calls onCreateOptionsMenu() when starting the activity, in order to show items to the app bar.
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        requireActivity().menuInflater.inflate(R.menu.main_menu,menu)
+        val searchItem=menu.findItem(R.id.app_bar_search)
 
+        val searchView=searchItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                markedAdapter.submittedList(markList.filter { it.title!!.lowercase().contains(query!!.lowercase()) })
+                return true
+
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+
+        })
+
+        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener{
+            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                markedAdapter.submittedList(markList)
+                return true
+            }
+
+        })
+
+    }
 
 }

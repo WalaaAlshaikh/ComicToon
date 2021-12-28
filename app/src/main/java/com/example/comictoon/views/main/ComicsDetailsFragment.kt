@@ -93,14 +93,14 @@ class ComicsDetailsFragment : Fragment() {
             // this function is used to translate the HTML file as a string and then putting it in a Text View
             val convert =
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    Html.fromHtml(resultList.description, Html.FROM_HTML_MODE_LEGACY)
+                    Html.fromHtml("${resultList.description} ...", Html.FROM_HTML_MODE_LEGACY)
                 } else {
                     @Suppress("DEPRECATION")
-                    Html.fromHtml(resultList.description)
+                    Html.fromHtml("${resultList.description} ...")
                 }
 
 
-            binding.descriptionTextView.text = convert
+            binding.descriptionTextView.text = "${convert} ...."
         }catch (e:Exception){
             // this will set the text to default string value if there is no description
 

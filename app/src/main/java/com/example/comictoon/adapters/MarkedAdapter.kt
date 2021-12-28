@@ -23,26 +23,33 @@ import java.lang.StringBuilder
 import android.content.DialogInterface
 
 import android.text.Editable
+import android.util.Log
 
 import android.widget.EditText
 import androidx.fragment.app.FragmentManager
 import com.example.comictoon.views.main.ComicViewModel
 import com.example.comictoon.views.main.UpdateFragment
 import com.google.firebase.auth.ktx.auth
+import java.lang.IndexOutOfBoundsException
 
+private const val TAG = "MarkedAdapter"
 
-class MarkedAdapter(val context:Context,val fragmentManger:FragmentManager, val comic:MarkedComicViewModel) :
-RecyclerView.Adapter<MarkedAdapter.MarkedViewModel>() {
+class MarkedAdapter(
+    val context: Context,
+    val fragmentManger: FragmentManager,
+    val comic: MarkedComicViewModel
+) :
+    RecyclerView.Adapter<MarkedAdapter.MarkedViewModel>() {
 
-    val DIFF_CALLBACK=object : DiffUtil.ItemCallback<MarkedModel>(){
+    val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MarkedModel>() {
 
         override fun areItemsTheSame(oldItem: MarkedModel, newItem: MarkedModel): Boolean {
-           return oldItem.comicId==newItem.comicId
+            return oldItem.comicId == newItem.comicId
 
         }
 
         override fun areContentsTheSame(oldItem: MarkedModel, newItem: MarkedModel): Boolean {
-            return oldItem==newItem
+            return oldItem == newItem
         }
 
 
@@ -62,30 +69,26 @@ RecyclerView.Adapter<MarkedAdapter.MarkedViewModel>() {
         )
     }
 
-    override fun onBindViewHolder(holder: MarkedViewModel, position: Int,) {
+    override fun onBindViewHolder(holder: MarkedViewModel, position: Int) {
         val item = differ.currentList[position]
 
-        holder.title.text=item.title
-      Picasso.get().load(item.image).into(holder.image)
+        holder.title.text = item.title
+        Picasso.get().load(item.image).into(holder.image)
 
         holder.delete.setOnClickListener {
-            //observer()
-            comic.deleteItem(Firebase.auth.currentUser!!.uid, item.comicId.toString())
-//
-//            val markList= mutableListOf<MarkedModel>()
-//            markList.addAll(differ.currentList)
-//            markList.removeAt(position)
-//
-//            differ.submitList(markList)
+            try {
+                comic.deleteItem(Firebase.auth.currentUser!!.uid, item.comicId.toString())
+            } catch (e: IndexOutOfBoundsException) {
+                Log.d(TAG, e.message.toString())
+            }
 
         }
-
-
-        val dialog=UpdateFragment(item.comicId.toString(), item.personalNote.toString(),)
+        // To move to detail dialog fragment
+        val dialog = UpdateFragment(item.comicId.toString(), item.personalNote.toString())
 
         holder.update.setOnClickListener {
 
-            dialog.show(fragmentManger,"")
+            dialog.show(fragmentManger, "")
 
         }
 
@@ -102,9 +105,9 @@ RecyclerView.Adapter<MarkedAdapter.MarkedViewModel>() {
 
     class MarkedViewModel(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val title:TextView=itemView.findViewById(R.id.marked_title_textView)
-        val image:ImageView=itemView.findViewById(R.id.markedimageView)
-        val delete:ImageView=itemView.findViewById(R.id.delete_image)
-        val update:TextView=itemView.findViewById(R.id.personalReview)
+        val title: TextView = itemView.findViewById(R.id.marked_title_textView)
+        val image: ImageView = itemView.findViewById(R.id.markedimageView)
+        val delete: ImageView = itemView.findViewById(R.id.delete_image)
+        val update: TextView = itemView.findViewById(R.id.personalReview)
     }
 }
