@@ -31,6 +31,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.findNavController
 import com.example.comictoon.model.comic.Result
+import com.example.comictoon.util.Notification
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.Exception
 
@@ -65,7 +66,10 @@ class ComicsDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.shimmerViewContainer.showShimmer(true)
+
+
+
+
 
 
         resultList= comicDetailViewModel.listOfResult!!
@@ -124,6 +128,7 @@ class ComicsDetailsFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     fun observers() {
+        val notifi = Notification(requireContext())
 
         comicDetailViewModel.markedLiveData.observe(viewLifecycleOwner, {
 
@@ -131,7 +136,7 @@ class ComicsDetailsFragment : Fragment() {
                 Log.d(TAG,"the observer result")
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
 
-                createNotificationChannel("Notice","Marked Comic",notificationId)
+                notifi.createNotificationChannel("Notice","Marked Comic",notificationId)
                 findNavController().navigate(R.id.action_comicsDetailsFragment_to_markedComicFragment)
             }
             comicDetailViewModel.markedLiveData.postValue(null)
@@ -161,33 +166,5 @@ class ComicsDetailsFragment : Fragment() {
         })
     }
 
-    fun createNotificationChannel(name:String,descriptionText:String,id:Int) {
-        var builder = NotificationCompat.Builder(requireContext(), channelId)
-            .setSmallIcon(R.drawable.bangers)
-            .setContentTitle("Comic Toon")
-            .setContentText("Yay you liked this comic :)")
-            .setStyle(
-                NotificationCompat.BigTextStyle()
-                .bigText("Yay you liked this comic :)"))
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name ="Notification"
-            val descriptionText ="channel des"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(channelId, name, importance).apply {
-                description = descriptionText
-            }
-            // Register the channel with the system
-            val notificationManager: NotificationManager =
-                getActivity()?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-            with(NotificationManagerCompat.from(requireContext())) {
-                // notificationId is a unique int for each notification that you must define
-                notify(notificationId, builder.build())
 
-            }
-        }
-    }
 }

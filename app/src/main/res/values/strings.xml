@@ -25,7 +25,8 @@
     <string name="noMarkComics">No Mark Comics availible here</string>
     <string name="goTo"><![CDATA[Go to Home -> Choose any comic and Mark it!]]></string>
     <string name="noDescription"> This comic has no description</string>
-
+    <string name="comictitle">Comic Title</string>
+    <string name="descriptiontext">Description</string>
 
 
 </resources>
