@@ -119,21 +119,11 @@ class RegisterActivity : AppCompatActivity() {
                                         //checkFields(registerUsername,registerEmail,registerPassword,registerPasswordConfirm)
 
 
-                                       // progressDialog.dismiss()
-//                                        Toast.makeText(
-//                                            this,
-//                                            it.exception!!.message.toString(),
-//                                            Toast.LENGTH_SHORT
-//                                        ).show()
                                     }
 
                                 }
                         } else {
-//                            Toast.makeText(
-//                                this,
-//                                "",
-//                                Toast.LENGTH_SHORT
-//                            ).show()
+
 
                             binding.rPasswordTextfield.error="Your password should be strong "
                         }
@@ -144,12 +134,7 @@ class RegisterActivity : AppCompatActivity() {
 ////                    }
 //
                 } else {
-//                    Toast.makeText(
-//                        this,
-//                        "Password fields are not matched",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-
+//
                     binding.rPasswordConTextfield.error="Password fields are not matched"
                     binding.rPasswordTextfield.error="Password fields are not matched"
 
@@ -157,14 +142,6 @@ class RegisterActivity : AppCompatActivity() {
 
 
             } else {
-//                Toast.makeText(
-//                    this,
-//                    "Registration fields must not be empty",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-              //checkFields(registerUsername,registerEmail,registerPassword,registerPasswordConfirm)
-
-
 
                 checkFields(registerUsername,registerEmail,registerPassword,registerPasswordConfirm)
 //                binding.rPasswordConTextfield.error="Required!"

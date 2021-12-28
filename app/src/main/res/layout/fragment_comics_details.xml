@@ -27,6 +27,8 @@
                 android:requiresFadingEdge="vertical"
                 tools:src="@tools:sample/avatars" />
 
+
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
@@ -38,6 +40,34 @@
                 android:layout_height="120dp"
                 android:layout_gravity="top"
                 android:background="@drawable/custom_gradient_top" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:backgroundTint="@android:color/transparent"
+                app:shimmer_clip_to_children="true"
+                app:shimmer_colored="false"
+                app:shimmer_highlight_color="@android:color/transparent"
+                app:shimmer_intensity="20">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/shimmer_imageview"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/circle"
+                    android:backgroundTintMode="add"
+                    android:padding="10dp"
+
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_baseline_bookmarks_242"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/unmarked_imageview"
@@ -51,8 +81,13 @@
                 android:padding="10dp"
 
                 android:scaleType="fitCenter"
+                android:visibility="invisible"
                 app:srcCompat="@drawable/ic_baseline_bookmarks_24"
                 tools:ignore="RtlHardcoded" />
+
+
+
+
 
         </FrameLayout>
 

@@ -19,7 +19,7 @@ class ComicDetailViewModel:ViewModel() {
     val markedLiveData = MutableLiveData<String>()
 
     val comicDetailErrorLiveData=MutableLiveData<String>()
-    val detailComicLiveData = MutableLiveData<Result>()
+    var detailComicLiveData = MutableLiveData<Result>()
 
 
     fun sendComictoFireBase(userId: String) {
