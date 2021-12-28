@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
+import android.text.TextUtils
 import android.text.method.LinkMovementMethod
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -34,6 +35,14 @@ import com.example.comictoon.model.comic.Result
 import com.example.comictoon.util.Notification
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.Exception
+import android.view.ViewTreeObserver
+
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
+
+import android.widget.TextView
+
+
+
 
 
 private const val TAG = "ComicsDetailsFragment"
@@ -58,18 +67,11 @@ class ComicsDetailsFragment : Fragment() {
         bottomNav=activity!!.findViewById(R.id.bottomNavigation)
         bottomNav.visibility=View.VISIBLE
         binding = FragmentComicsDetailsBinding.inflate(inflater, container, false)
-
-
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
-
 
 
         resultList= comicDetailViewModel.listOfResult!!
@@ -93,14 +95,15 @@ class ComicsDetailsFragment : Fragment() {
             // this function is used to translate the HTML file as a string and then putting it in a Text View
             val convert =
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    Html.fromHtml("${resultList.description} ...", Html.FROM_HTML_MODE_LEGACY)
+                    Html.fromHtml(resultList.description, Html.FROM_HTML_MODE_LEGACY)
                 } else {
                     @Suppress("DEPRECATION")
                     Html.fromHtml("${resultList.description} ...")
                 }
 
 
-            binding.descriptionTextView.text = "${convert} ...."
+            binding.descriptionTextView.text = convert
+            makeTextViewResizable(binding.descriptionTextView,3,"  ...")
         }catch (e:Exception){
             // this will set the text to default string value if there is no description
 
@@ -108,6 +111,7 @@ class ComicsDetailsFragment : Fragment() {
         }
         binding.descriptionTextView.movementMethod=LinkMovementMethod.getInstance()
 
+        // using implicit intent to navigate to website of the comic
         binding.moreInfoTextView.setOnClickListener {
             val parsrUri= Uri.parse(resultList.siteDetailUrl)
             val intent= Intent(Intent.ACTION_VIEW,parsrUri)
@@ -143,18 +147,6 @@ class ComicsDetailsFragment : Fragment() {
 
         })
 
-
-//        comicDetailViewModel.detailComicLiveData.observe(viewLifecycleOwner, {
-//            it?.let{
-//                //Picasso.get().load(it.image.originalUrl).into(binding.imageView4)
-//
-//                resultList = it
-//
-//        }
-//            comicDetailViewModel.detailComicLiveData.postValue(null)
-//
-//        })
-
         comicDetailViewModel.comicDetailErrorLiveData.observe(viewLifecycleOwner,{
             it?.let {
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
@@ -163,6 +155,30 @@ class ComicsDetailsFragment : Fragment() {
 
 
 
+        })
+    }
+
+    fun makeTextViewResizable(tv: TextView, maxLine: Int, expandText: String) {
+        if (tv.tag == null) {
+            tv.tag = tv.text
+        }
+        val vto = tv.viewTreeObserver
+        vto.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                val obs = tv.viewTreeObserver
+                obs.removeGlobalOnLayoutListener(this)
+                if (maxLine <= 0) {
+                    val lineEndIndex = tv.layout.getLineEnd(0)
+                    val text = tv.text.subSequence(0, lineEndIndex - expandText.length + 1)
+                        .toString() + " " + expandText
+                    tv.text = text
+                } else if (tv.lineCount >= maxLine) {
+                    val lineEndIndex = tv.layout.getLineEnd(maxLine - 1)
+                    val text = tv.text.subSequence(0, lineEndIndex - expandText.length + 1)
+                        .toString() + " " + expandText
+                    tv.text = text
+                }
+            }
         })
     }
 

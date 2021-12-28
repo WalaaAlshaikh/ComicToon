@@ -125,8 +125,8 @@
                 android:fontFamily="@font/acme"
                 android:linksClickable="true"
                 android:maxLines="3"
+
                 android:padding="10dp"
-                android:scrollbars="vertical"
                 android:text="@string/descriptiontext"
                 android:textAlignment="center"
                 android:textColor="@color/black"
