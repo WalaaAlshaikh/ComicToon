@@ -125,6 +125,7 @@ class ComicsDetailsFragment : Fragment() {
         binding.unmarkedImageview.setOnClickListener {
 
             comicDetailViewModel.getComicfromClickComic(Firebase.auth.currentUser!!.uid)
+            //binding.pogressBarmain.visibility=View.VISIBLE
             binding.unmarkedImageview.setImageResource(R.drawable.ic_baseline_bookmarks_242)
         }
 

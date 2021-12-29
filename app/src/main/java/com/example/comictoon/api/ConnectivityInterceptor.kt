@@ -15,8 +15,10 @@ class ConnectivityInterceptor():Interceptor{
     @RequiresApi(Build.VERSION_CODES.M)
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!WifiService.instance.isOnline()) {
+            var text ="No internet connection \nCheck your internet then swipe down to refresh"
+            text.
 
-            throw IOException("No internet connection\\n Check your internet then swipe down to refresh\"")
+            throw IOException(text)
         } else {
             return chain.proceed(chain.request())
         }

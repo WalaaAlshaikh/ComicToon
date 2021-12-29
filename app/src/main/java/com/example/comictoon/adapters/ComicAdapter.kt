@@ -1,9 +1,11 @@
 package com.example.comictoon.adaptersimport
 
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -36,12 +38,18 @@ class ComicAdapter(val comic:ComicDetailViewModel) :
         viewType: Int
     ): ComicAdapter.ComicViewHolder {
         val binding = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding.pogressBarmain.visibility=View.INVISIBLE
+
         return ComicViewHolder(binding)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ComicViewHolder, position: Int) {
         val item = differ.currentList[position]
         holder.bind(item)
+
+
+
 
         holder.itemView.setOnClickListener {
 
@@ -49,8 +57,6 @@ class ComicAdapter(val comic:ComicDetailViewModel) :
             comic.detailComicLiveData.postValue(item)
             comic.listOfResult= item
             holder.binding.pogressBarmain.visibility=View.VISIBLE
-            holder.binding.pogressBarmain.animate().alpha(1f)
-//            //delay(1000)
             holder.itemView.findNavController().navigate(R.id.action_comicsFragment_to_comicsDetailsFragment)
 
         }
