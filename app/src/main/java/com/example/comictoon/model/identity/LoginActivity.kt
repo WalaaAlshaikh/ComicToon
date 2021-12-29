@@ -51,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
 
                         } else {
 
-                            binding.passwordTextfield.error=it.exception?.message.toString()
+                            binding.passwordTextfield.error="Either Email or Password is incorrect)"
                         }
                     }
 

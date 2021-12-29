@@ -50,4 +50,9 @@
             android:id="@+id/action_markedComicFragment_to_comicsDetailsFragment"
             app:destination="@id/comicsDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/videoFragment2"
+        android:name="com.example.comictoon.views.videos.VideoFragment"
+        android:label="fragment_video"
+        tools:layout="@layout/fragment_video" />
 </navigation>

@@ -9,5 +9,9 @@
         android:id="@+id/markedComicFragment"
         android:icon="@drawable/ic_baseline_bookmarks_24"
         android:title="@string/marked" />
+    <item
+        android:id="@+id/videoFragment2"
+        android:icon="@drawable/ic_baseline_bookmarks_24"
+        android:title="Video" />
 
 </menu>

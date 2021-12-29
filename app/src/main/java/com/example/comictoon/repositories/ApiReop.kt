@@ -23,6 +23,7 @@ class ApiReop {
 
     private val apiRetrofit = retrofitService.create(ComicApi::class.java)
     suspend fun getComics() = apiRetrofit.getComic()
+    suspend fun getVideos()=apiRetrofit.getVideos()
 
 
 
