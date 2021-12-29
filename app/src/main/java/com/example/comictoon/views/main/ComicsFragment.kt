@@ -71,10 +71,12 @@ class ComicsFragment : Fragment() {
 
 
         comicViewModel.comicLiveData.observe(viewLifecycleOwner,{
+
             binding.comicProgressBar.animate().alpha(0f)
             comicAdapter.submittedList(it.results)
             list= it.results as MutableList<Result>
             binding.comicRecyclerView.animate().alpha(1f)
+
 
         })
 

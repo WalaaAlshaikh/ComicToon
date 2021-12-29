@@ -26,6 +26,7 @@ import android.text.Editable
 import android.util.Log
 
 import android.widget.EditText
+import android.widget.ProgressBar
 import androidx.fragment.app.FragmentManager
 import com.example.comictoon.views.main.ComicViewModel
 import com.example.comictoon.views.main.UpdateFragment
@@ -109,5 +110,6 @@ class MarkedAdapter(
         val image: ImageView = itemView.findViewById(R.id.markedimageView)
         val delete: ImageView = itemView.findViewById(R.id.delete_image)
         val update: TextView = itemView.findViewById(R.id.personalReview)
+
     }
 }

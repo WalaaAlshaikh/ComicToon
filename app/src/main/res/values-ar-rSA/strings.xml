@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ComicToon</string>
+    <string name="email">الايميل الشخصي</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="New">حساب جديد؟ تسجيل</string>
+    <string name="Register">تسجيل</string>
+    <string name="Username">اسم المستخدم</string>
+    <string name="password">كلمة المرور</string>
+    <string name="confirmPass">تأكيد كلمة المرور</string>
+    <string name="register">تسجيل</string>
+    <string name="register1">لديك حساب بالفعل؟ تسجيل الدخول</string>
+    <string name="home">الرئيسية</string>
+    <string name="welcome">أهلا بك يا قارئ الكوميك</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="marked">المفضلة</string>
+    <string name="mark">اضفها الى المفضلة</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="adding">اضافة\\ تعديل مراجعة شخصية</string>
+    <string name="save">حفظ</string>
+    <string name="personal">أصف مراجعتي الشخصية</string>
+    <string name="Cancel">الغاء</string>
+    <string name="noMarkComics">لا توجد قصص مصورة في المفضلة</string>
+    <string name="goTo">"اذهب ألى الرئيسية واختر كوميك  "</string>
+    <string name="noDescription">هذه الكوميك ليس لديها وصف</string>
+    <string name="comictitle">عنوان الكوميك</string>
+    <string name="publish">سنة النشر</string>
+    <string name="publisher">دار النشر</string>
+    <string name="readmore">اقرأ المزيد</string>
+</resources>

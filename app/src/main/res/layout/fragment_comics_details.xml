@@ -28,7 +28,6 @@
                 tools:src="@tools:sample/avatars" />
 
 
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
@@ -68,6 +67,20 @@
                     tools:ignore="RtlHardcoded" />
 
             </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/pogressBarmain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:indeterminate="true"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/comic_progressBar" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/unmarked_imageview"
@@ -109,7 +122,7 @@
                 android:shadowRadius="2"
                 android:text="@string/comictitle"
                 android:textAlignment="center"
-                android:textColor="@color/vdarkred"
+                android:textColor="@color/darkred"
                 android:textSize="34sp"
                 android:textStyle="bold" />
 
@@ -126,30 +139,94 @@
                 android:linksClickable="true"
                 android:maxLines="3"
 
-                android:padding="10dp"
                 android:text="@string/descriptiontext"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textColorLink="@color/vdarkred" />
 
             <TextView
-                android:id="@+id/publish_textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:padding="10dp"
-                android:text="TextView"
-                android:textAlignment="center"
-                android:textColor="@color/black" />
-
-            <TextView
                 android:id="@+id/moreInfo_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:text="@string/readmore"
+                android:textColor="@color/lightRed"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="more Info" />
+                android:layout_marginEnd="10dp"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:text="@string/publish"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/nunito_bold"
+                    android:gravity="center"
+                    android:text="@string/publisher"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/publishDate_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/acme"
+                    android:gravity="center"
+                    android:text="@string/date"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/publisher_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/acme"
+                    android:gravity="center"
+                    android:text="@string/publishers"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
         </LinearLayout>
 

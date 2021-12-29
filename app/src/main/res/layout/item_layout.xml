@@ -32,6 +32,20 @@
             android:text="TextView"
             android:textAlignment="center"
             android:textColor="@color/black" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/pogressBarmain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/comic_progressBar" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

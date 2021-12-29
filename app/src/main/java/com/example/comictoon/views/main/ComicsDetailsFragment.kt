@@ -119,7 +119,8 @@ class ComicsDetailsFragment : Fragment() {
 
 
         }
-        binding.publishTextView.text = "Publish year: ${resultList.startYear}"
+        binding.publishDateTextView.text = resultList.startYear
+        binding.publisherTextView.text=resultList.publisher.name
 
         binding.unmarkedImageview.setOnClickListener {
 
@@ -134,14 +135,19 @@ class ComicsDetailsFragment : Fragment() {
     fun observers() {
         val notifi = Notification(requireContext())
 
+
         comicDetailViewModel.markedLiveData.observe(viewLifecycleOwner, {
 
             it?.let {
                 Log.d(TAG,"the observer result")
+
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
 
                 notifi.createNotificationChannel("Notice","Marked Comic",notificationId)
+
+                //binding.pogressBarmain.animate().alpha(1f)
                 findNavController().navigate(R.id.action_comicsDetailsFragment_to_markedComicFragment)
+               // binding.pogressBarmain.visibility=View.INVISIBLE
             }
             comicDetailViewModel.markedLiveData.postValue(null)
 

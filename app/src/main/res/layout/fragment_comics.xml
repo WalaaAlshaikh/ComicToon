@@ -36,6 +36,8 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
+
+
     <ProgressBar
         android:id="@+id/comic_progressBar"
         style="?android:attr/progressBarStyle"

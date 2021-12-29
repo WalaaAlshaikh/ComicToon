@@ -14,6 +14,8 @@ import com.example.comictoon.model.comic.Result
 import com.example.comictoon.views.main.ComicDetailViewModel
 import com.example.comictoon.views.main.ComicViewModel
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.Delay
+import kotlinx.coroutines.delay
 
 class ComicAdapter(val comic:ComicDetailViewModel) :
     RecyclerView.Adapter<ComicAdapter.ComicViewHolder>() {
@@ -42,8 +44,13 @@ class ComicAdapter(val comic:ComicDetailViewModel) :
         holder.bind(item)
 
         holder.itemView.setOnClickListener {
+
+
             comic.detailComicLiveData.postValue(item)
             comic.listOfResult= item
+            holder.binding.pogressBarmain.visibility=View.VISIBLE
+            holder.binding.pogressBarmain.animate().alpha(1f)
+//            //delay(1000)
             holder.itemView.findNavController().navigate(R.id.action_comicsFragment_to_comicsDetailsFragment)
 
         }
@@ -62,6 +69,7 @@ class ComicAdapter(val comic:ComicDetailViewModel) :
             // displaying the image in the list with its title
             Picasso.get().load(item.image.originalUrl).into(binding.imageComic)
             binding.ComicTitle.text=item.name
+
         }
 
     }

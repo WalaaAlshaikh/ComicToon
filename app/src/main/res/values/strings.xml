@@ -21,12 +21,16 @@
     <string name="save">save</string>
     <string name="personal">Add My Personal Review</string>
     <string name="Cancel">Cancel</string>
-    <string name="msg_token_fmt">testigk</string>
     <string name="noMarkComics">No Mark Comics availible here</string>
     <string name="goTo"><![CDATA[Go to Home -> Choose any comic and Mark it!]]></string>
     <string name="noDescription"> This comic has no description</string>
     <string name="comictitle">Comic Title</string>
     <string name="descriptiontext">Description</string>
+    <string name="publish">Publish Year</string>
+    <string name="publisher">Publisher</string>
+    <string name="date">Date</string>
+    <string name="publishers">publishers</string>
+    <string name="readmore">Read More</string>
 
 
 </resources>
