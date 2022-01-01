@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_baseline_bookmarks_24"
         android:title="@string/marked" />
     <item
-        android:id="@+id/videoFragment2"
+        android:id="@+id/videoFragment"
         android:icon="@drawable/ic_baseline_bookmarks_24"
         android:title="Video" />
 

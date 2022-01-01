@@ -1,10 +1,12 @@
 package com.example.comictoon.views.videos
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comictoon.R
@@ -12,6 +14,7 @@ import com.example.comictoon.adaptersimport.VideoAdapter
 import com.example.comictoon.databinding.FragmentVideoBinding
 import com.example.comictoon.model.videos.Result
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlin.math.log
 
 
 private const val TAG = "VideoFragment"
@@ -37,9 +40,26 @@ class VideoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val videoRecyclerView: RecyclerView =view.findViewById(R.id.video_recyclerView)
-        videoAdapter=VideoAdapter(list,requireActivity())
+        videoAdapter=VideoAdapter(requireActivity())
         videoRecyclerView.adapter=videoAdapter
         videoViewModel.callvideos()
+
+
+
+        videoViewModel.videoLiveData.observe(viewLifecycleOwner,{
+            videoAdapter.submittedList(it.results)
+            list=it.results as MutableList<Result>
+          //  binding.videoRecyclerView.animate().alpha(1f)
+            Log.d(TAG,list.toString())
+        })
+
+        videoViewModel.videoErrorLiveData.observe(viewLifecycleOwner,{
+            it?.let {
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+
+               videoViewModel.videoErrorLiveData.postValue(null)
+            }
+        })
 
 
 

@@ -10,11 +10,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.MediaController
+import android.widget.TextView
 import android.widget.VideoView
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import com.example.comictoon.R
 
-class VideoAdapter(private val list: List<Result>,val context: Context) :
+class VideoAdapter(val context: Context) :
     RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
+    val DIFF_CALLBACK=object : DiffUtil.ItemCallback<Result>(){
+        override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
+            return oldItem.id==newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
+            return oldItem==newItem
+        }
+
+
+
+    }
+    private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
+
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -29,7 +47,7 @@ class VideoAdapter(private val list: List<Result>,val context: Context) :
     }
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-        val item = list[position]
+        val item = differ.currentList[position]
 
         var mediaControls: MediaController? = null
         if (mediaControls == null) {
@@ -40,16 +58,22 @@ class VideoAdapter(private val list: List<Result>,val context: Context) :
             mediaControls.setAnchorView(holder.video)
            holder.video.setMediaController(mediaControls)
           holder.video.setVideoURI(
-              Uri.parse("https://www.youtube.com/watch?v=${item.youtubeId}"))
+              Uri.parse(item.highUrl))
             holder.video.requestFocus()
         }
+        holder.name.text=item.name
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return differ.currentList.size
+    }
+    fun submittedList(list: List<Result>) {
+        differ.submitList(list)
+
     }
 
     class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val video:VideoView=itemView.findViewById(R.id.simpleVideoView)
+        val name:TextView=itemView.findViewById(R.id.videotitle)
     }
 }

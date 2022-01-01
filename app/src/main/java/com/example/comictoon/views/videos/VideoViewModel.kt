@@ -28,7 +28,7 @@ class VideoViewModel:ViewModel() {
             try {
                 val response = apiRepo.getVideos()
 
-                withContext(Dispatchers.Main) {
+
 
                     if (response.isSuccessful) {
                         response.body()?.run {
@@ -43,7 +43,7 @@ class VideoViewModel:ViewModel() {
                         videoErrorLiveData.postValue(response.message())
 
                     }
-                }
+
 
 
             } catch (e: Exception) {
