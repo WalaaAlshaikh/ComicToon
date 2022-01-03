@@ -31,6 +31,8 @@
     <string name="date">Date</string>
     <string name="publishers">publishers</string>
     <string name="readmore">Read More</string>
+    <string name="arabic">Arabic (العربية)</string>
+    <string name="english">English</string>
 
 
 </resources>

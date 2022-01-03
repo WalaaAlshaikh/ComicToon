@@ -11,6 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
+import com.akexorcist.localizationactivity.core.OnLocaleChangedListener
 import com.example.comictoon.R
 import com.example.comictoon.databinding.FragmentComicsDetailsBinding
 import com.example.comictoon.databinding.FragmentProfileBinding
@@ -26,6 +28,7 @@ class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var sharedPref: SharedPreferences
     private lateinit var sharedPrfEditor: SharedPreferences.Editor
+
 
     private lateinit var bottomNav:BottomNavigationView
 //
@@ -46,7 +49,20 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val localizationDelegate = LocalizationActivityDelegate(requireActivity())
         bottomNav.visibility=View.GONE
+        binding.acivBotton.setOnClickListener {
+            localizationDelegate.setLanguage(requireContext(),"ar")
+
+        }
+
+        binding.engButton.setOnClickListener{
+            localizationDelegate.setLanguage(requireContext(),"en")
+
+        }
+
+
+
 
 
         FirebaseAuth.getInstance().currentUser?.let {
