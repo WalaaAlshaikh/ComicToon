@@ -1,12 +1,12 @@
 ![Image of Tuwaiq](https://camo.githubusercontent.com/37ca472e2afb74974a0314d89af8f470422a79582bed0d188f9927777230195d/68747470733a2f2f6c61756e63682e73612f6173736574732f696d616765732f6c6f676f732f7475776169712d61636164656d792d6c6f676f2e737667)
-# Capstone 2
-Tuwaiq Academy Second Project.
-NEARMe Android Application
+# FINAL CAPSTONE
+Tuwaiq Academy final Project.
+ComicToon Android Application using Kotlin
 ## Overview:
 ![Image of app logo](https://g.top4top.io/p_2195pgt901.png)
 
 
-This project represents an android application **ComicToon**, which helps the comic readers display the famouse classic comics, espicaillay 1990s onces
+This project represents an android application **ComicToon**,that allows comic readers to view famous classic comics, particularly from the 1990s. including each comic book's details
 ## Technologies used:
 This application was built using the following technologies:
 ### For Designing the logo of the app:
@@ -20,12 +20,13 @@ This application was built using the following technologies:
 ### For Programming the app:
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=windows) for improving code quality.
 * Android Architecture Components:Room,LiveData,ViewModel and Data binding.
-* Room DataBase.
 * RecyclerViews & Adapters.
 * Required Libraries
-* Comicvine
+* [Comicvine](https://comicvine.gamespot.com)
+* [Comicvine Api](https://comicvine.gamespot.com/api/)
 * Video View
-* [Firebase](https://comicvine.gamespot.com)
+* [Firebase](https://firebase.google.com)
+* 
 
 ## Wireframes and User stories:
 
@@ -34,13 +35,17 @@ This application was built using the following technologies:
 link to Figma [Figma Wireframe](https://www.figma.com/file/ImjWEZmgzFlljOfWqHUWb9/ComicToon?node-id=0%3A1)
 
 
-- As a user,I want to see the pictures in my location so that I can see the places near me.
+- As a user,I want to display the comics so that I get to know classic comics
 
-- As a user, I would like to be able to choose any location on the map so that I can the picture  in that location.
+- As a user I want to see the details of each comic so that I can see additional information about it (such as description of the comic, publisher , publish date ..etc)  .
 
-- As a user I want to see the details of each image so that I can see additional information about it (such as title and date taken)  .
+- As a user I want to mark my favourite comic so that I can get back to them easily.
+- 
+- As a user I would like to be able to add/ edit my personal review for my favourite comic so that I write down my personal opinion and thoughts.
 
-- As a user I want to share images so that I can sent it to other people.
+- As a user I would like to be able to delete the comics that I marked so that I can remove the one that no longer see it a favourite.
+
+- 
 
 -------------------------------------------------------------------------
 ## Installation:
