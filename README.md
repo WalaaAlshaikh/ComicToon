@@ -3,7 +3,7 @@
 Tuwaiq Academy Second Project.
 NEARMe Android Application
 ## Overview:
-![Image of app logo](https://j.top4top.io/p_21957b7yt2.png)
+![Image of app logo](https://g.top4top.io/p_2195pgt901.png)
 
 
 This project represents an android application **ComicToon**, which helps the comic readers display the famouse classic comics, espicaillay 1990s onces
@@ -29,7 +29,7 @@ This application was built using the following technologies:
 
 ## Wireframes and User stories:
 
-![Wireframe](https://g.top4top.io/p_2162gto4c3.png)
+![Wireframe](https://i.top4top.io/p_2195qdtzk1.png)
 
 link to Figma [Figma Wireframe](https://www.figma.com/file/EijD6OOHpwJd3i9X3bGNM1/NEARMe-App?node-id=4%3A273)
 
