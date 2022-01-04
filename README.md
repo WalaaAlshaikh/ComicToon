@@ -129,7 +129,7 @@ Follow the steps below to get started with the project's development environment
     
 ```
 
-* for langiage
+* for language (Localization)
 ```kotlin
     dependencies {
     implementation 'com.akexorcist:localization:1.2.11'
