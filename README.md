@@ -25,7 +25,7 @@ This application was built using the following technologies:
 * Required Libraries
 * Comicvine
 * Video View
-* Firebase
+* [Firebase](https://comicvine.gamespot.com)
 
 ## Wireframes and User stories:
 
