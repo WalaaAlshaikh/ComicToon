@@ -23,15 +23,15 @@ This application was built using the following technologies:
 * Room DataBase.
 * RecyclerViews & Adapters.
 * Required Libraries
-* Figma
-* Google map
-* Flikr Api
+* Comicvine
+* Video View
+* Firebase
 
 ## Wireframes and User stories:
 
 ![Wireframe](https://i.top4top.io/p_2195qdtzk1.png)
 
-link to Figma [Figma Wireframe](https://www.figma.com/file/EijD6OOHpwJd3i9X3bGNM1/NEARMe-App?node-id=4%3A273)
+link to Figma [Figma Wireframe](https://www.figma.com/file/ImjWEZmgzFlljOfWqHUWb9/ComicToon?node-id=0%3A1)
 
 
 - As a user,I want to see the pictures in my location so that I can see the places near me.
@@ -42,7 +42,6 @@ link to Figma [Figma Wireframe](https://www.figma.com/file/EijD6OOHpwJd3i9X3bGNM
 
 - As a user I want to share images so that I can sent it to other people.
 
--As a user I want to see the recent images offline so that I can use the app without internet connection.
 -------------------------------------------------------------------------
 ## Installation:
 Follow the steps below to get started with the project's development environment:
