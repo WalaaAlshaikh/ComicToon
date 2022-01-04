@@ -53,11 +53,11 @@ Follow the steps below to get started with the project's development environment
 1. Install Android Studio from [Android Studio](https://developer.android.com/studio?gclid=Cj0KCQjw5oiMBhDtARIsAJi0qk2WOPjxp2Wij5sgO3bAK6Rp18zrs4Y0L5S6W89Fk7OClhAiVuNr1mgaAsT-EALw_wcB&gclsrc=aw.ds)
 2. Clone this repository:
  ```kotlin 
- $ git clone https://github.com/WalaaAlshaikh/NEARMe.git
+ $ git clone https://github.com/WalaaAlshaikh/ComicToon.git
  ```
 3. Navigate to the project directory:
  ```kotlin 
- $ cd NEARMe
+ $ cd ComicToon
  ```
  4. List of the depencenceies used in the project:
    * for navigation fragments
@@ -73,6 +73,9 @@ Follow the steps below to get started with the project's development environment
     val core_version = "1.6.0"
     dependencies {
     implementation("androidx.core:core-ktx:$core_version")
+    
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.0'
+    
     }
 ```
     
@@ -89,14 +92,15 @@ Follow the steps below to get started with the project's development environment
    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-rc01"
    }
 ```
-   * for Room Database
+   * for Firebase Database
 ```kotlin
     dependencies { 
-   id 'kotlin-kapt'
-
-   implementation "androidx.room:room-runtime:2.3.0"
-   implementation "androidx.room:room-ktx:2.3.0"
-   kapt "androidx.room:room-compiler:2.3.0"
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.0.0'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.0.0'
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.3'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.0'
+    implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'
    }
 ```
    * for coroutines
@@ -112,18 +116,24 @@ Follow the steps below to get started with the project's development environment
    implementation 'com.squareup.picasso:picasso:2.71828'
    implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    // for making pic circular
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
    }
 ```
 
 
-* for map
+* for animation
 ```kotlin
-    dependencies { 
-   // for current location
-    implementation 'com.google.android.gms:play-services-location:18.0.0'
-    //for enabling map
-    implementation 'com.google.android.gms:play-services-maps:18.0.0'
-   }
+    dependencies {
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    
+```
+
+* for langiage
+```kotlin
+    dependencies {
+    implementation 'com.akexorcist:localization:1.2.11'
+    
 ```
 
 
