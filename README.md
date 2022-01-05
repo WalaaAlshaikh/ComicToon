@@ -40,12 +40,11 @@ link to Figma [Figma Wireframe](https://www.figma.com/file/ImjWEZmgzFlljOfWqHUWb
 - As a user I want to see the details of each comic so that I can see additional information about it (such as description of the comic, publisher , publish date ..etc)  .
 
 - As a user I want to mark my favourite comic so that I can get back to them easily.
-- 
+ 
 - As a user I would like to be able to add/ edit my personal review for my favourite comic so that I write down my personal opinion and thoughts.
 
 - As a user I would like to be able to delete the comics that I marked so that I can remove the one that no longer see it a favourite.
 
-- 
 
 -------------------------------------------------------------------------
 ## Installation:
@@ -141,13 +140,11 @@ Follow the steps below to get started with the project's development environment
  -----------------------------------------------------------------
  
 ## Development Process and Problem-solving Strategy:
-Firstly, Our developer team brainstormed some ideas related to the requirement of to the app and then took a general idea of the design and the mechanisim of some popular apps from app store
-Secondly, we designed a logo according to the purpose of the app and gave it name.
-Thirdly, we designed the screens each of them suitable for a specific action using the Figma and Photoshop,after that we statred programming the app using the android studio by dividing the project into several tasks that each member of the team work on it: at first, we installed the required libraries and dependencies and the required api from [FlikrApi](https://www.flickr.com/services/api/).
-For many problems that we faced,we needed first to decide the nature of the error (if it's syntax, runtime or logical), and then find the solution accordingly.Such solutions that can be disovered when debugging the error, using (Log.d)to specifty the location of the error, searching for similar cases online in [stackoverflow](https://stackoverflow.com/) and asking for the help of the experts.
+Firstly, I brainstormed some ideas related to the requirement of the app and then took a general idea of the design and the mechanisim of some popular apps from app store
+Secondly, I designed a logo according to the purpose of the app and gave it name.
+Thirdly, I designed the screens each of them suitable for a specific action using the Figma and Photoshop,after that I statred programming the app using the android studio by dividing the project into several tasks that each member of the team work on it: at first, I installed the required libraries and dependencies and the required api from [FlikrApi](https://comicvine.gamespot.com/api/).
+As for the obstacles that I faced,first I needed to decide the nature of the error (if it's syntax, runtime or logical), and then find the solution accordingly.Such solutions that can be disovered when debugging the error, using (Log.d)to specifty the location of the error, searching for similar cases online in [stackoverflow](https://stackoverflow.com/) and asking for the help of the experts.
 ## Unsolved Problems which would be fixed in future iterations:
-* seeting the favourite image in a separate list which can potentially fixed by using a certain api from  [FlikrApi](https://www.flickr.com/services/api/) and do the authentication .
-* some bugs regarding maps such as the marker would not disappear when moving to another place .
 * some minor issues regarding the enhancment of the design to make the user expereince more dynamic.
 
 ## My favorite functions work:
