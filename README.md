@@ -26,7 +26,6 @@ This application was built using the following technologies:
 * [Comicvine Api](https://comicvine.gamespot.com/api/)
 * Video View
 * [Firebase](https://firebase.google.com)
-* 
 
 ## Wireframes and User stories:
 
@@ -142,15 +141,22 @@ Follow the steps below to get started with the project's development environment
 ## Development Process and Problem-solving Strategy:
 Firstly, I brainstormed some ideas related to the requirement of the app and then took a general idea of the design and the mechanisim of some popular apps from app store
 Secondly, I designed a logo according to the purpose of the app and gave it name.
-Thirdly, I designed the screens each of them suitable for a specific action using the Figma and Photoshop,after that I statred programming the app using the android studio by dividing the project into several tasks that each member of the team work on it: at first, I installed the required libraries and dependencies and the required api from [FlikrApi](https://comicvine.gamespot.com/api/).
-As for the obstacles that I faced,first I needed to decide the nature of the error (if it's syntax, runtime or logical), and then find the solution accordingly.Such solutions that can be disovered when debugging the error, using (Log.d)to specifty the location of the error, searching for similar cases online in [stackoverflow](https://stackoverflow.com/) and asking for the help of the experts.
+Thirdly, I designed the screens each of them suitable for a specific action using the Figma and Photoshop,after that I statred programming the app using the android studio by dividing the project into several tasks to work on it: at first, I installed the required libraries and dependencies and the required api from [ComicVine](https://comicvine.gamespot.com/api/).
+As for the obstacles that I faced,first I needed to decide the nature of the error (if it's syntax, runtime or logical), and then find the solution accordingly.Such solutions that can be disovered when debugging the error, using (Log.d)to specifty the location of the error, searching for similar cases online in [stackoverflow](https://stackoverflow.com/) and asking for the help of the experts. After managing to finish all the requirements of the projects, I started adding more features to the app such as :
+* Videos
+* switching to eng\ar 
+* internet connection handling
+* and more.
 ## Unsolved Problems which would be fixed in future iterations:
-*
+* The issue of playing\puasing videos in VideoView, which can potentially be solved by adding some functions to add the action bar for videos.
+* Some conflects in ui regarding Localization (when switching from English into Arabic).
 * some minor issues regarding the enhancment of the design to make the user expereince more dynamic.
 
 ## My favorite functions work:
 * video View
-
+to display video url (.mp4)
+ 
+ ```kotlin
 // in class.kt file
 var video:VideoView=view.findViewById(R.id.videoView)
  var mediaControls: MediaController? = null
@@ -159,7 +165,7 @@ var video:VideoView=view.findViewById(R.id.videoView)
             mediaControls = MediaController(context)
 
             // set the anchor view for the video view
-            mediaControls.setAnchorView(holder.video)
+            mediaControls.setAnchorView(video)
          video.setMediaController(mediaControls)
         video.setVideoURI(
               Uri.parse(item.highUrl))
@@ -172,9 +178,24 @@ var video:VideoView=view.findViewById(R.id.videoView)
   //...//
             />
 ```            
-* using Bundle
-It is useful when you want to pass a specific data from one fragment to another.
+* using Meta (facebook) library for animation
+ an Android library that provides an easy way to add a shimmer effect to any view in your Android app. It is useful as an unobtrusive loading indicator that was originally developed for Facebook Home.
+
  ```kotlin
+ 
+ // Gradle dependency on Shimmer for Android
+dependencies {
+  implementation 'com.facebook.shimmer:shimmer:0.5.0'
+}
+
+in xml
+<com.facebook.shimmer.ShimmerFrameLayout
+     android:id="@+id/shimmer_view_container"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+>
+     ...(your complex view here)...
+</com.facebook.shimmer.ShimmerFrameLayout>
  
 
 ```
