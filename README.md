@@ -78,7 +78,7 @@ Follow the steps below to get started with the project's development environment
     }
 ```
     
-   * for [ViewModel] (https://developer.android.com/topic/libraries/architecture/viewmodel)
+   * for [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
 ```kotlin
     dependencies {
    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-rc01"
