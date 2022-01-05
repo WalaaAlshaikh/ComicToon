@@ -19,7 +19,7 @@ This application was built using the following technologies:
 * Adobe Photoshop
 ### For Programming the app:
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=windows) for improving code quality.
-* Android Architecture Components:Room,LiveData,ViewModel and Data binding.
+* Android Architecture Components:MVVM,Navigation, Livedata.
 * RecyclerViews & Adapters.
 * Required Libraries
 * [Comicvine](https://comicvine.gamespot.com)
