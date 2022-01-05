@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.comictoon.model.comic.ComicModel
+import com.example.comictoon.model.videos.Result
 import com.example.comictoon.model.videos.VideosModel
 import com.example.comictoon.repositories.ApiReop
 
@@ -19,9 +20,10 @@ class VideoViewModel:ViewModel() {
     val apiRepo = ApiReop.get()
 
 
-
+    //var listOfVideos:Result?=null
     val videoLiveData = MutableLiveData<VideosModel>()
     val videoErrorLiveData = MutableLiveData<String>()
+    val selectedLiveData=MutableLiveData<Result>()
 
     fun callvideos() {
         viewModelScope.launch(Dispatchers.IO) {

@@ -2,6 +2,7 @@ package com.example.comictoon.adaptersimport
 
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comictoon.model.videos.Result
 
@@ -18,10 +19,13 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.example.comictoon.R
 import com.example.comictoon.views.videos.VideoDialogFragment
+import com.example.comictoon.views.videos.VideoViewModel
 import com.squareup.picasso.Picasso
 
+private const val TAG = "VideoAdapter"
 class VideoAdapter(val context: Context ,
-                   val fragmentManger: FragmentManager
+                   val fragmentManger: FragmentManager,
+                   val videoViewModel:VideoViewModel
 ) :
     RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
     val DIFF_CALLBACK=object : DiffUtil.ItemCallback<Result>(){
@@ -59,7 +63,11 @@ class VideoAdapter(val context: Context ,
         val dialog=VideoDialogFragment()
 
         holder.image.setOnClickListener {
+            videoViewModel.selectedLiveData.postValue(item)
+
             dialog.show(fragmentManger, "")
+            Log.d(TAG,item.highUrl)
+
         }
 
 

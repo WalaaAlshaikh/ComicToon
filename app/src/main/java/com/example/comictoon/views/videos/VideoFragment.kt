@@ -40,7 +40,7 @@ class VideoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val videoRecyclerView: RecyclerView =view.findViewById(R.id.video_recyclerView)
-        videoAdapter=VideoAdapter(requireActivity(),requireActivity().supportFragmentManager)
+        videoAdapter=VideoAdapter(requireActivity(),requireActivity().supportFragmentManager,videoViewModel)
         videoRecyclerView.adapter=videoAdapter
         videoViewModel.callvideos()
 
