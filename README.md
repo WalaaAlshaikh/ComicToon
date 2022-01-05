@@ -151,6 +151,7 @@ As for the obstacles that I faced,first I needed to decide the nature of the err
 
 ## My favorite functions work:
 * video View
+to display video url (.mp4)
  
  ```kotlin
 // in class.kt file
@@ -161,7 +162,7 @@ var video:VideoView=view.findViewById(R.id.videoView)
             mediaControls = MediaController(context)
 
             // set the anchor view for the video view
-            mediaControls.setAnchorView(holder.video)
+            mediaControls.setAnchorView(video)
          video.setMediaController(mediaControls)
         video.setVideoURI(
               Uri.parse(item.highUrl))
@@ -174,9 +175,24 @@ var video:VideoView=view.findViewById(R.id.videoView)
   //...//
             />
 ```            
-* using Bundle
-It is useful when you want to pass a specific data from one fragment to another.
+* using Meta (facebook) library for animation
+ an Android library that provides an easy way to add a shimmer effect to any view in your Android app. It is useful as an unobtrusive loading indicator that was originally developed for Facebook Home.
+
  ```kotlin
+ 
+ // Gradle dependency on Shimmer for Android
+dependencies {
+  implementation 'com.facebook.shimmer:shimmer:0.5.0'
+}
+
+in xml
+<com.facebook.shimmer.ShimmerFrameLayout
+     android:id="@+id/shimmer_view_container"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+>
+     ...(your complex view here)...
+</com.facebook.shimmer.ShimmerFrameLayout>
  
 
 ```
