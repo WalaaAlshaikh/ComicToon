@@ -142,11 +142,15 @@ Follow the steps below to get started with the project's development environment
 ## Development Process and Problem-solving Strategy:
 Firstly, I brainstormed some ideas related to the requirement of the app and then took a general idea of the design and the mechanisim of some popular apps from app store
 Secondly, I designed a logo according to the purpose of the app and gave it name.
-Thirdly, I designed the screens each of them suitable for a specific action using the Figma and Photoshop,after that I statred programming the app using the android studio by dividing the project into several tasks to work on it: at first, I installed the required libraries and dependencies and the required api from [FlikrApi](https://comicvine.gamespot.com/api/).
-As for the obstacles that I faced,first I needed to decide the nature of the error (if it's syntax, runtime or logical), and then find the solution accordingly.Such solutions that can be disovered when debugging the error, using (Log.d)to specifty the location of the error, searching for similar cases online in [stackoverflow](https://stackoverflow.com/) and asking for the help of the experts.
+Thirdly, I designed the screens each of them suitable for a specific action using the Figma and Photoshop,after that I statred programming the app using the android studio by dividing the project into several tasks to work on it: at first, I installed the required libraries and dependencies and the required api from [ComicVine](https://comicvine.gamespot.com/api/).
+As for the obstacles that I faced,first I needed to decide the nature of the error (if it's syntax, runtime or logical), and then find the solution accordingly.Such solutions that can be disovered when debugging the error, using (Log.d)to specifty the location of the error, searching for similar cases online in [stackoverflow](https://stackoverflow.com/) and asking for the help of the experts. After managing to finish all the requirements of the projects, I started adding more features to the app such as :
+* Videos
+* swiching to eng\ar 
+*  internet connection handling
+*  and more.
 ## Unsolved Problems which would be fixed in future iterations:
-* The issue of playing\puasing videos in VideoView, which can be solved potentially by adding some functions to add the action bar for videos.
-* 
+* The issue of playing\puasing videos in VideoView, which can potentially be solved by adding some functions to add the action bar for videos.
+* Some conflects in ui regarding Localization (when switching from English into Arabic).
 * some minor issues regarding the enhancment of the design to make the user expereince more dynamic.
 
 ## My favorite functions work:
