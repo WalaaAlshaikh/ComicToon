@@ -85,13 +85,13 @@ Follow the steps below to get started with the project's development environment
    implementation "androidx.fragment:fragment-ktx:1.3.6"
     }
 ```
-   * for live data
+   * for [live data](https://developer.android.com/topic/libraries/architecture/livedata)
 ```kotlin
     dependencies { 
    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-rc01"
    }
 ```
-   * for Firebase Database
+   * for [Firebase Database](https://firebase.google.com/)
 ```kotlin
     dependencies { 
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
@@ -102,7 +102,7 @@ Follow the steps below to get started with the project's development environment
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'
    }
 ```
-   * for coroutines
+   * for [coroutines](https://developer.android.com/kotlin/coroutines)
 ```kotlin
     dependencies { 
    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
@@ -145,51 +145,36 @@ Secondly, I designed a logo according to the purpose of the app and gave it name
 Thirdly, I designed the screens each of them suitable for a specific action using the Figma and Photoshop,after that I statred programming the app using the android studio by dividing the project into several tasks that each member of the team work on it: at first, I installed the required libraries and dependencies and the required api from [FlikrApi](https://comicvine.gamespot.com/api/).
 As for the obstacles that I faced,first I needed to decide the nature of the error (if it's syntax, runtime or logical), and then find the solution accordingly.Such solutions that can be disovered when debugging the error, using (Log.d)to specifty the location of the error, searching for similar cases online in [stackoverflow](https://stackoverflow.com/) and asking for the help of the experts.
 ## Unsolved Problems which would be fixed in future iterations:
+*
 * some minor issues regarding the enhancment of the design to make the user expereince more dynamic.
 
 ## My favorite functions work:
-* sharing images
-it is useful when you want to send a certain image to any app.
-```kotlin
+* video View
 
-            val image:Bitmap?= getBitmapFromView(binding.imageItem)
-            val share= Intent(Intent.ACTION_SEND)
-            share.type="image/*"
-            share.putExtra(Intent.EXTRA_STREAM,getImageUri(requireActivity(),image!!))
-            startActivity(Intent.createChooser(share, "Share Via:"))
+// in class.kt file
+var video:VideoView=view.findViewById(R.id.videoView)
+ var mediaControls: MediaController? = null
+        if (mediaControls == null) {
+           //  creating an object of media controller class
+            mediaControls = MediaController(context)
 
+            // set the anchor view for the video view
+            mediaControls.setAnchorView(holder.video)
+         video.setMediaController(mediaControls)
+        video.setVideoURI(
+              Uri.parse(item.highUrl))
+           video.requestFocus()
+           video.start()
         }
-
-    }
-
-    /// those two functions for sharing the pic
-
-    private fun getBitmapFromView(view: ImageView):Bitmap?{
-        val bitmap= Bitmap.createBitmap(view.width,view.height,Bitmap.Config.ARGB_8888)
-        val paint=Canvas(bitmap)
-        view.draw(paint)
-        return bitmap
-
-    }
-    private fun getImageUri(inContext:Context, inImage:Bitmap): Uri?{
-        val byte=ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG,100,byte)
-        val path= MediaStore.Images.Media.insertImage(inContext.contentResolver,inImage,"Title",null)
-        return Uri.parse(path)
-
-    }
+        
+ // in xml file
+ <VideoView
+  //...//
+            />
 ```            
 * using Bundle
 It is useful when you want to pass a specific data from one fragment to another.
  ```kotlin
  
- // in first fragment
-var bundle= bundleOf("Lat" to  imageViewModel.lat,"Long" to imageViewModel.long)
-                }
-  /// in second fragment
-  if(arguments!= null)
-        {
-            imageViewModel.lat=requireArguments().getDouble("Lat")
-            imageViewModel.long= requireArguments().getDouble("Long")
-        }
+
 ```
