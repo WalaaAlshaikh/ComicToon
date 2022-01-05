@@ -4,14 +4,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
 import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
-import com.example.comictoon.R
 import com.example.comictoon.databinding.ActivitySplashBinding
-import com.example.comictoon.model.identity.LoginActivity
-import com.example.comictoon.model.identity.RegisterActivity
+import com.example.comictoon.views.identity.LoginActivity
 import com.example.comictoon.repositories.ApiReop
 import com.example.comictoon.repositories.FireBaseRepo
 

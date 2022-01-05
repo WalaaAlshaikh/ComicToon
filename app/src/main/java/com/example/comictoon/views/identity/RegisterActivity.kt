@@ -1,6 +1,5 @@
-package com.example.comictoon.model.identity
+package com.example.comictoon.views.identity
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -16,22 +15,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.core.os.bundleOf
-import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.ViewModel
-import androidx.navigation.fragment.findNavController
 import com.example.comictoon.R
 import com.example.comictoon.databinding.ActivityRegisterBinding
-import com.example.comictoon.repositories.FireBaseRepo
 import com.example.comictoon.util.RegisterValidation
+import com.example.comictoon.views.identity.LoginActivity
 import com.example.comictoon.views.identity.RegisterViewModel
-import com.example.comictoon.views.main.MainActivity
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 private const val TAG = "RegisterActivity"
 

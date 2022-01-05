@@ -16,7 +16,7 @@
             android:exported="false"
             android:theme="@style/Splash"/>
         <activity
-            android:name=".model.identity.LoginActivity"
+            android:name=".views.identity.LoginActivity"
             android:exported="false"
             android:theme="@style/Splash"
             android:configChanges="orientation"

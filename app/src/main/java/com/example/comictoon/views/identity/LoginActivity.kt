@@ -1,12 +1,10 @@
-package com.example.comictoon.model.identity
+package com.example.comictoon.views.identity
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
-import com.example.comictoon.R
 import com.example.comictoon.databinding.ActivityLoginBinding
 import com.example.comictoon.views.main.MainActivity
 import com.example.comictoon.views.main.SHARED_PREF_FILE

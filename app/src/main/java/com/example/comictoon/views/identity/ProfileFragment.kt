@@ -1,6 +1,5 @@
 package com.example.comictoon.views.identity
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -11,13 +10,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
-import com.akexorcist.localizationactivity.core.OnLocaleChangedListener
 import com.example.comictoon.R
-import com.example.comictoon.databinding.FragmentComicsDetailsBinding
 import com.example.comictoon.databinding.FragmentProfileBinding
-import com.example.comictoon.model.identity.LoginActivity
 import com.example.comictoon.views.main.SHARED_PREF_FILE
 import com.example.comictoon.views.main.STATE
 import com.google.android.material.bottomnavigation.BottomNavigationView
