@@ -9,14 +9,20 @@ import com.example.comictoon.model.videos.Result
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.MediaController
 import android.widget.TextView
 import android.widget.VideoView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.example.comictoon.R
+import com.example.comictoon.views.videos.VideoDialogFragment
+import com.squareup.picasso.Picasso
 
-class VideoAdapter(val context: Context) :
+class VideoAdapter(val context: Context ,
+                   val fragmentManger: FragmentManager
+) :
     RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
     val DIFF_CALLBACK=object : DiffUtil.ItemCallback<Result>(){
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
@@ -49,19 +55,14 @@ class VideoAdapter(val context: Context) :
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
         val item = differ.currentList[position]
 
-        var mediaControls: MediaController? = null
-        if (mediaControls == null) {
-           //  creating an object of media controller class
-            mediaControls = MediaController(context)
+        Picasso.get().load(item.image.mediumUrl).into(holder.image)
+        val dialog=VideoDialogFragment()
 
-            // set the anchor view for the video view
-            mediaControls.setAnchorView(holder.video)
-           holder.video.setMediaController(mediaControls)
-          holder.video.setVideoURI(
-              Uri.parse(item.highUrl))
-            holder.video.requestFocus()
-            //holder.video.start()
+        holder.image.setOnClickListener {
+            dialog.show(fragmentManger, "")
         }
+
+
         holder.name.text=item.name
     }
 
@@ -74,7 +75,7 @@ class VideoAdapter(val context: Context) :
     }
 
     class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val video:VideoView=itemView.findViewById(R.id.simpleVideoView)
+        val image:ImageView=itemView.findViewById(R.id.imagevideo)
         val name:TextView=itemView.findViewById(R.id.videotitle)
     }
 }
