@@ -15,7 +15,6 @@ private const val COMIC_ID="comicId"
 class FireBaseRepo {
 
     private val fireBaseDataBase=Firebase.firestore
-
     private val users=fireBaseDataBase.collection(USERS)
 
 

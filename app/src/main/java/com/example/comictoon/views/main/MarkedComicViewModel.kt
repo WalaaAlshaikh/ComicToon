@@ -25,18 +25,11 @@ class MarkedComicViewModel:ViewModel() {
 
 
 
-    val fireBasePero = FireBaseRepo.get()
+    val firebaseRepo = FireBaseRepo.get()
 
     val markedComicErrorLiveData=MutableLiveData<String>()
     val markedStringComicLiveData=MutableLiveData<String>()
     var markLiveData = MutableLiveData<List<MarkedModel>>()
-   // var selectedItemLiveData=MutableLiveData<Result>()
-
-
-
-
-
-//////////////////////////////////////////////////////
 
 
 
@@ -46,7 +39,7 @@ fun deleteItem(userId: String, docId: String) {
     viewModelScope.launch(Dispatchers.IO) {
 
         try {
-            val response = fireBasePero.deleteItem(userId, docId)
+            val response = firebaseRepo.deleteItem(userId, docId)
             response.addOnCompleteListener {
                 if (it.isSuccessful) {
                     markedStringComicLiveData.postValue("deleted Successfully")
@@ -62,18 +55,13 @@ fun deleteItem(userId: String, docId: String) {
     }
 
 }
-    //
-
-///////////////////////////////////////////////
-
-
     ////////////////////////////////////////////////////////////////////////////////////////////
     fun receiveItemFromFireBase(userId: String) {
         var listOfMarked = mutableListOf<MarkedModel>()
         viewModelScope.launch(Dispatchers.IO) {
             try {
 
-                val responde = fireBasePero.receiveItemsFromFireBase(userId)
+                val responde = firebaseRepo.receiveItemsFromFireBase(userId)
 
                 responde.addSnapshotListener(object : EventListener<QuerySnapshot> {
                     override fun onEvent(

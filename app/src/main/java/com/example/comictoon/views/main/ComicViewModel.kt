@@ -22,9 +22,6 @@ private const val TAG = "ComicViewModel"
 class ComicViewModel : ViewModel() {
 
     val apiRepo = ApiReop.get()
-
-
-
     val comicLiveData = MutableLiveData<ComicModel>()
     val comicErrorLiveData = MutableLiveData<String>()
 
@@ -40,8 +37,6 @@ class ComicViewModel : ViewModel() {
 
                             Log.d(TAG, response.body().toString())
                             comicLiveData.postValue(this)
-
-
                         }
                     } else {
                         Log.d(TAG, response.message())
@@ -49,8 +44,6 @@ class ComicViewModel : ViewModel() {
 
                     }
                 }
-
-
             } catch (e: Exception) {
                 Log.d(TAG, e.message.toString())
                 comicErrorLiveData.postValue(e.message.toString())

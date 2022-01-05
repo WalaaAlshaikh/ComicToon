@@ -44,7 +44,7 @@ class ComicAdapter(val comic:ComicDetailViewModel) :
     ): ComicAdapter.ComicViewHolder {
         val binding = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        //binding.pogressBarmain.visibility=View.INVISIBLE
+
 
         return ComicViewHolder(binding)
     }
@@ -60,7 +60,6 @@ class ComicAdapter(val comic:ComicDetailViewModel) :
 
             comic.detailComicLiveData.postValue(item)
             comic.listOfResult= item
-            //holder.binding.pogressBarmain.visibility=View.VISIBLE
             holder.itemView.findNavController().navigate(R.id.action_comicsFragment_to_comicsDetailsFragment)
 
         }

@@ -13,7 +13,7 @@ import java.lang.Exception
 
 private const val TAG = "ComicDetailViewModel"
 class ComicDetailViewModel:ViewModel() {
-    val fireBaseRepo = FireBaseRepo.get()
+    val firebaseRepo = FireBaseRepo.get()
     var listOfResult: Result? = null
 
     val markedLiveData = MutableLiveData<String>()
@@ -34,7 +34,7 @@ class ComicDetailViewModel:ViewModel() {
                         "personalNote" to ""
 
                     )
-                    val response = fireBaseRepo.markedComic(userId, comicFav)
+                    val response = firebaseRepo.markedComic(userId, comicFav)
                     response.addOnSuccessListener() { documentReference ->
                         Log.d("repeat", "repeat")
                         markedLiveData.postValue("successfully added")
@@ -63,7 +63,7 @@ class ComicDetailViewModel:ViewModel() {
             try {
                 Log.d(TAG, listOfResult!!.id.toString())
 
-                val response = fireBaseRepo.markClick(userId, listOfResult!!.id)
+                val response = firebaseRepo.markClick(userId, listOfResult!!.id)
                 response.addOnSuccessListener {
                     if (it.count() > 0) {
                         comicDetailErrorLiveData.postValue("This comic has already been added")
