@@ -59,7 +59,7 @@ Follow the steps below to get started with the project's development environment
  $ cd ComicToon
  ```
  4. List of the depencenceies used in the project:
-   * for navigation fragments
+   * for [navigation fragments](https://developer.android.com/guide/navigation/navigation-getting-started)
  ```kotlin
     dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
@@ -67,7 +67,7 @@ Follow the steps below to get started with the project's development environment
     }
 ``` 
 
-   * for notification:
+   * for [notification](https://developer.android.com/training/notify-user/build-notification):
 ```kotlin
     val core_version = "1.6.0"
     dependencies {
@@ -78,7 +78,7 @@ Follow the steps below to get started with the project's development environment
     }
 ```
     
-   * for ViewModel
+   * for [ViewModel] (https://developer.android.com/topic/libraries/architecture/viewmodel)
 ```kotlin
     dependencies {
    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-rc01"
