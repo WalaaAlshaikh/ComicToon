@@ -29,9 +29,11 @@ class VideoAdapter(val context: Context ,
 ) :
     RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
     val DIFF_CALLBACK=object : DiffUtil.ItemCallback<Result>(){
+        /**Called to decide whether two objects represent the same item */
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem.id==newItem.id
         }
+        /**Called to decide whether two items have the same data. This information is used to detect if the contents of an item have changed*/
 
         override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem==newItem
@@ -62,7 +64,7 @@ class VideoAdapter(val context: Context ,
         Picasso.get().load(item.image.mediumUrl).into(holder.image)
         val dialog=VideoDialogFragment()
 
-        holder.image.setOnClickListener {
+        holder.itemView.setOnClickListener {
             videoViewModel.selectedLiveData.postValue(item)
 
             dialog.show(fragmentManger, "")

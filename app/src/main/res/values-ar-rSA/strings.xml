@@ -32,4 +32,10 @@
     <string name="logot_notice">تسجيل الخروج</string>
     <string name="yes">نعم</string>
     <string name="no">لا</string>
+    <string name="comics">الكوميكس</string>
+    <string name="comicsdetails">تفاصيل الكوميك</string>
+    <string name="markedcomic">الكوميك المفضلة</string>
+    <string name="videos">الفيديو</string>
+    <string name="english">الانجليزية</string>
+    <string name="arabic">العربية</string>
 </resources>

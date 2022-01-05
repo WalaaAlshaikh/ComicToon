@@ -12,6 +12,6 @@
     <item
         android:id="@+id/videoFragment"
         android:icon="@drawable/subscriptions"
-        android:title="Video" />
+        android:title="@string/video" />
 
 </menu>

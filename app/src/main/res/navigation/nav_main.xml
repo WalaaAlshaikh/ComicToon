@@ -56,6 +56,10 @@
             android:id="@+id/action_markedComicFragment_to_comicsDetailsFragment"
             app:destination="@id/comicsDetailsFragment"
             app:enterAnim="@android:anim/slide_in_left" />
+        <action
+            android:id="@+id/action_markedComicFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/videoFragment"

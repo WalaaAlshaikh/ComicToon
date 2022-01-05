@@ -24,6 +24,7 @@ class MarkedComicFragment : Fragment() {
 private lateinit var binding:FragmentMarkedComicBinding
 private lateinit var markList:MutableList<MarkedModel>
 private lateinit var markedAdapter:MarkedAdapter
+private lateinit var profileItem: MenuItem
  val comic:MarkedComicViewModel by activityViewModels()
     private lateinit var bottomNav: BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,6 +97,16 @@ private lateinit var markedAdapter:MarkedAdapter
 
     override fun onDestroy() {
         super.onDestroy()
+
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.profile_item -> {
+                findNavController().navigate(R.id.action_markedComicFragment_to_profileFragment)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+
 
     }
 
