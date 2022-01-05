@@ -51,7 +51,7 @@ class VideoAdapter(val context: Context) :
 
         var mediaControls: MediaController? = null
         if (mediaControls == null) {
-            // creating an object of media controller class
+           //  creating an object of media controller class
             mediaControls = MediaController(context)
 
             // set the anchor view for the video view
@@ -60,6 +60,7 @@ class VideoAdapter(val context: Context) :
           holder.video.setVideoURI(
               Uri.parse(item.highUrl))
             holder.video.requestFocus()
+            //holder.video.start()
         }
         holder.name.text=item.name
     }

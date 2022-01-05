@@ -24,7 +24,6 @@ class MarkedComicFragment : Fragment() {
 private lateinit var binding:FragmentMarkedComicBinding
 private lateinit var markList:MutableList<MarkedModel>
 private lateinit var markedAdapter:MarkedAdapter
-private lateinit var db:FirebaseFirestore
  val comic:MarkedComicViewModel by activityViewModels()
     private lateinit var bottomNav: BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,20 +47,13 @@ private lateinit var db:FirebaseFirestore
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         markList= mutableListOf()
         markedAdapter= MarkedAdapter(requireActivity(),requireActivity().supportFragmentManager,comic)
-        binding.comicProgressBar.animate().alpha(0f).setDuration(1000)
+        binding.videoProgressBar.animate().alpha(0f).setDuration(1000)
         binding.markedRecyclerView.adapter=markedAdapter
-
-
         comic.receiveItemFromFireBase(Firebase.auth.uid.toString())
 
        // markedAdapter.submittedList(markList)
-
-
-
-
 
 
     }
@@ -81,8 +73,6 @@ private lateinit var db:FirebaseFirestore
                binding.markedRecyclerView.animate().alpha(1f)
 
 
-
-
            }
             comic.markLiveData.postValue(null)
         })
@@ -99,11 +89,6 @@ private lateinit var db:FirebaseFirestore
                 comic.markedStringComicLiveData.postValue(null)
 
                 markedAdapter.submittedList(markList)
-
-
-
-
-
         }
         })
 
@@ -111,8 +96,6 @@ private lateinit var db:FirebaseFirestore
 
     override fun onDestroy() {
         super.onDestroy()
-
-
 
     }
 

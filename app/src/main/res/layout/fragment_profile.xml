@@ -126,7 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/nunito_bold"
-        android:text="@string/email"
+        android:text="@string/languagepref"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -144,15 +144,19 @@
             android:id="@+id/aciv_botton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/darkred"
             android:fontFamily="@font/nunito_bold"
-            android:text="@string/arabic" />
+            android:text="@string/arabic"
+            android:textColorLink="#000000" />
 
         <RadioButton
             android:id="@+id/eng_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/darkred"
             android:fontFamily="@font/nunito_bold"
-            android:text="@string/english" />
+            android:text="@string/english"
+            android:textColorLink="#000000" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -68,7 +68,7 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/comic_progressBar"
+        android:id="@+id/video_progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

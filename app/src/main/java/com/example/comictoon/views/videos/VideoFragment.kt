@@ -47,9 +47,10 @@ class VideoFragment : Fragment() {
 
 
         videoViewModel.videoLiveData.observe(viewLifecycleOwner,{
+            binding.videoProgressBar.animate().alpha(0f)
             videoAdapter.submittedList(it.results)
             list=it.results as MutableList<Result>
-          //  binding.videoRecyclerView.animate().alpha(1f)
+            binding.videoRecyclerView.animate().alpha(1f)
             Log.d(TAG,list.toString())
         })
 

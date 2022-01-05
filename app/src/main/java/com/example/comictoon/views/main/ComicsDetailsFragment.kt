@@ -40,9 +40,7 @@ import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 
 import android.widget.TextView
-
-
-
+import com.example.comictoon.util.MakeTextResizable
 
 
 private const val TAG = "ComicsDetailsFragment"
@@ -50,7 +48,6 @@ private const val TAG = "ComicsDetailsFragment"
 class ComicsDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentComicsDetailsBinding
-    val channelId:String="Channel"
     var notificationId=1
     private val db=Firebase.firestore
 
@@ -91,6 +88,7 @@ class ComicsDetailsFragment : Fragment() {
             }
         observers()
         try {
+            val textResize= MakeTextResizable(requireActivity())
 
             // this function is used to translate the HTML file as a string and then putting it in a Text View
             val convert =
@@ -103,7 +101,7 @@ class ComicsDetailsFragment : Fragment() {
 
 
             binding.descriptionTextView.text = convert
-            makeTextViewResizable(binding.descriptionTextView,3,"  ...")
+            textResize.makeTextViewResizable(binding.descriptionTextView,3,"  ...")
         }catch (e:Exception){
             // this will set the text to default string value if there is no description
 
@@ -125,7 +123,6 @@ class ComicsDetailsFragment : Fragment() {
         binding.unmarkedImageview.setOnClickListener {
 
             comicDetailViewModel.getComicfromClickComic(Firebase.auth.currentUser!!.uid)
-            //binding.pogressBarmain.visibility=View.VISIBLE
             binding.unmarkedImageview.setImageResource(R.drawable.ic_baseline_bookmarks_242)
         }
 
@@ -146,9 +143,8 @@ class ComicsDetailsFragment : Fragment() {
 
                 notifi.createNotificationChannel("Notice","Marked Comic",notificationId)
 
-                //binding.pogressBarmain.animate().alpha(1f)
                 findNavController().navigate(R.id.action_comicsDetailsFragment_to_markedComicFragment)
-               // binding.pogressBarmain.visibility=View.INVISIBLE
+
             }
             comicDetailViewModel.markedLiveData.postValue(null)
 
@@ -165,29 +161,7 @@ class ComicsDetailsFragment : Fragment() {
         })
     }
 
-    fun makeTextViewResizable(tv: TextView, maxLine: Int, expandText: String) {
-        if (tv.tag == null) {
-            tv.tag = tv.text
-        }
-        val vto = tv.viewTreeObserver
-        vto.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                val obs = tv.viewTreeObserver
-                obs.removeGlobalOnLayoutListener(this)
-                if (maxLine <= 0) {
-                    val lineEndIndex = tv.layout.getLineEnd(0)
-                    val text = tv.text.subSequence(0, lineEndIndex - expandText.length + 1)
-                        .toString() + " " + expandText
-                    tv.text = text
-                } else if (tv.lineCount >= maxLine) {
-                    val lineEndIndex = tv.layout.getLineEnd(maxLine - 1)
-                    val text = tv.text.subSequence(0, lineEndIndex - expandText.length + 1)
-                        .toString() + " " + expandText
-                    tv.text = text
-                }
-            }
-        })
-    }
+
 
 
 }

@@ -44,10 +44,14 @@ class MarkedAdapter(
 
     val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MarkedModel>() {
 
+
+        /**Called to decide whether two objects represent the same item */
         override fun areItemsTheSame(oldItem: MarkedModel, newItem: MarkedModel): Boolean {
             return oldItem.comicId == newItem.comicId
 
         }
+
+        /**Called to decide whether two items have the same data. This information is used to detect if the contents of an item have changed*/
 
         override fun areContentsTheSame(oldItem: MarkedModel, newItem: MarkedModel): Boolean {
             return oldItem == newItem

@@ -21,15 +21,20 @@ import kotlinx.coroutines.delay
 
 class ComicAdapter(val comic:ComicDetailViewModel) :
     RecyclerView.Adapter<ComicAdapter.ComicViewHolder>() {
+
+
     val DIFF_CALLBACK=object : DiffUtil.ItemCallback<Result>(){
+
+        /**Called to decide whether two objects represent the same item */
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem.id== newItem.id
         }
 
+        /**Called to decide whether two items have the same data. This information is used to detect if the contents of an item have changed*/
+
         override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem== newItem
         }
-
 
     }
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
@@ -38,7 +43,8 @@ class ComicAdapter(val comic:ComicDetailViewModel) :
         viewType: Int
     ): ComicAdapter.ComicViewHolder {
         val binding = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        binding.pogressBarmain.visibility=View.INVISIBLE
+
+        //binding.pogressBarmain.visibility=View.INVISIBLE
 
         return ComicViewHolder(binding)
     }
@@ -48,15 +54,13 @@ class ComicAdapter(val comic:ComicDetailViewModel) :
         val item = differ.currentList[position]
         holder.bind(item)
 
-
-
-
         holder.itemView.setOnClickListener {
 
+            // moving to the detail page when clicking on a specific item
 
             comic.detailComicLiveData.postValue(item)
             comic.listOfResult= item
-            holder.binding.pogressBarmain.visibility=View.VISIBLE
+            //holder.binding.pogressBarmain.visibility=View.VISIBLE
             holder.itemView.findNavController().navigate(R.id.action_comicsFragment_to_comicsDetailsFragment)
 
         }

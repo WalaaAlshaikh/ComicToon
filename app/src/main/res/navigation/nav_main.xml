@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/comicFragment"
         android:name="com.example.comictoon.views.main.ComicsFragment"
-        android:label="Comics"
+        android:label="@string/comics"
         tools:layout="@layout/fragment_comics">
         <action
             android:id="@+id/action_comicsFragment_to_comicsDetailsFragment"
@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/comicsDetailsFragment"
         android:name="com.example.comictoon.views.main.ComicsDetailsFragment"
-        android:label="Comic Details"
+        android:label="@string/comicsdetails"
         tools:layout="@layout/fragment_comics_details">
         <action
             android:id="@+id/action_comicsDetailsFragment_to_comicFragment"
@@ -44,8 +44,8 @@
     <fragment
         android:id="@+id/markedComicFragment"
         android:name="com.example.comictoon.views.main.MarkedComicFragment"
-        android:label="Marked Comics"
-        tools:layout="@layout/fragment_marked_comic" >
+        android:label="@string/markedcomic"
+        tools:layout="@layout/fragment_marked_comic">
         <action
             android:id="@+id/action_markedComicFragment_to_comicsDetailsFragment"
             app:destination="@id/comicsDetailsFragment" />
@@ -53,6 +53,6 @@
     <fragment
         android:id="@+id/videoFragment"
         android:name="com.example.comictoon.views.videos.VideoFragment"
-        android:label="fragment_video"
+        android:label="@string/videos"
         tools:layout="@layout/fragment_video" />
 </navigation>

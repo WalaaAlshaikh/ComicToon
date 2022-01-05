@@ -53,6 +53,9 @@
             android:id="@+id/delete_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
             app:srcCompat="@drawable/ic_baseline_delete_24" />
 
     </LinearLayout>

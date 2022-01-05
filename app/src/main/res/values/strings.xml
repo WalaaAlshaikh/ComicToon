@@ -31,8 +31,17 @@
     <string name="date">Date</string>
     <string name="publishers">publishers</string>
     <string name="readmore">Read More</string>
-    <string name="arabic">Arabic (العربية)</string>
+    <string name="arabic">Arabic</string>
     <string name="english">English</string>
+    <string name="languagepref">Language Preferences</string>
+    <string name="delete_message"> You are about to logout from your account \n Are you sure?</string>
+    <string name="logot_notice">Logout Notification</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="comics">Comics</string>
+    <string name="comicsdetails">Comic Details</string>
+    <string name="markedcomic">Marked Comics</string>
+    <string name="videos">Videos</string>
 
 
 </resources>

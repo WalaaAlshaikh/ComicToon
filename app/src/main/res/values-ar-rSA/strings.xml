@@ -27,4 +27,9 @@
     <string name="publish">سنة النشر</string>
     <string name="publisher">دار النشر</string>
     <string name="readmore">اقرأ المزيد</string>
+    <string name="languagepref">تفضيلات اللغة</string>
+    <string name="delete_message">انت على وشك تسجيل الخروج من حسابك هل انت متأكد؟</string>
+    <string name="logot_notice">تسجيل الخروج</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
 </resources>
