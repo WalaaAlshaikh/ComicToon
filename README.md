@@ -150,7 +150,8 @@ As for the obstacles that I faced,first I needed to decide the nature of the err
 
 ## My favorite functions work:
 * video View
-
+ 
+   ```kotlin
 // in class.kt file
 var video:VideoView=view.findViewById(R.id.videoView)
  var mediaControls: MediaController? = null
