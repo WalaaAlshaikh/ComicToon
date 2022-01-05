@@ -27,7 +27,6 @@ class UpdateFragment(val comicId: String, val personalNote: String) : DialogFrag
 
 private lateinit var binding:FragmentUpdateBinding
 private val updateViewModel:UpdateViewModel by activityViewModels()
-    private val markViewModel:MarkedComicViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -47,7 +46,6 @@ private val updateViewModel:UpdateViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //var test=markViewModel.receiveItemFromFireBase(Firebase.auth.currentUser!!.uid)
         observer()
 
         binding.reviewEditText.setText(personalNote)
@@ -55,36 +53,19 @@ private val updateViewModel:UpdateViewModel by activityViewModels()
         binding.saveButton.setOnClickListener {
 
             var userNote=binding.reviewEditText.text.toString()
-//            if (use rNote == "") {
-//                userNote=personalNote
-//            }
             updateViewModel.updateNote(Firebase.auth.currentUser!!.uid,userNote, comicId)
-          //markViewModel.receiveItemFromFireBase(Firebase.auth.currentUser!!.uid)
 
         }
 
         binding.cancelButton.setOnClickListener {
             dismiss()
         }
-
-
-
     }
     fun observer(){
-//        comicViewModel.markedStringComicLiveData.observe(viewLifecycleOwner,{
-//            it?.let {
-//                var userNote=binding.reviewEditText.text.toString()
-//                comicViewModel.updateNote(Firebase.auth.currentUser!!.uid,userNote, comicId)
-//
-//                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-//            }
-//
-//        })
 
         updateViewModel.updateStringLiveData.observe(viewLifecycleOwner,{
             it?.let{
 
-                //markViewModel.receiveItemFromFireBase(Firebase.auth.currentUser!!.uid)
                 updateViewModel.updateStringLiveData.postValue(null)
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
                 dismiss()

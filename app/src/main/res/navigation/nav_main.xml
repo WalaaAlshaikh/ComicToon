@@ -12,13 +12,16 @@
         tools:layout="@layout/fragment_comics">
         <action
             android:id="@+id/action_comicsFragment_to_comicsDetailsFragment"
-            app:destination="@id/comicsDetailsFragment" />
+            app:destination="@id/comicsDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_comicsFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profileFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_comicsFragment_to_markedComicFragment"
-            app:destination="@id/comicFragment" />
+            app:destination="@id/comicFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -27,7 +30,8 @@
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_comicFragment"
-            app:destination="@id/comicFragment" />
+            app:destination="@id/comicFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/comicsDetailsFragment"
@@ -36,10 +40,12 @@
         tools:layout="@layout/fragment_comics_details">
         <action
             android:id="@+id/action_comicsDetailsFragment_to_comicFragment"
-            app:destination="@id/comicFragment" />
+            app:destination="@id/comicFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_comicsDetailsFragment_to_markedComicFragment"
-            app:destination="@id/markedComicFragment" />
+            app:destination="@id/markedComicFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/markedComicFragment"
@@ -48,7 +54,8 @@
         tools:layout="@layout/fragment_marked_comic">
         <action
             android:id="@+id/action_markedComicFragment_to_comicsDetailsFragment"
-            app:destination="@id/comicsDetailsFragment" />
+            app:destination="@id/comicsDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/videoFragment"
