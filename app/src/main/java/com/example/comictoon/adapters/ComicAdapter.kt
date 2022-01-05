@@ -1,4 +1,4 @@
-package com.example.comictoon.adaptersimport
+package com.example.comictoon.adapters
 
 
 import android.os.Build
@@ -43,9 +43,6 @@ class ComicAdapter(val comic:ComicDetailViewModel) :
         viewType: Int
     ): ComicAdapter.ComicViewHolder {
         val binding = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
-
-
         return ComicViewHolder(binding)
     }
 

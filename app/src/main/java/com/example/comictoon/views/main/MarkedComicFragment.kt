@@ -11,7 +11,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.comictoon.R
-import com.example.comictoon.adaptersimport.MarkedAdapter
+import com.example.comictoon.adapters.MarkedAdapter
 import com.example.comictoon.databinding.FragmentMarkedComicBinding
 import com.example.comictoon.model.comic.MarkedModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,7 +23,7 @@ private const val TAG = "MarkedComicFragment"
 class MarkedComicFragment : Fragment() {
 private lateinit var binding:FragmentMarkedComicBinding
 private lateinit var markList:MutableList<MarkedModel>
-private lateinit var markedAdapter:MarkedAdapter
+private lateinit var markedAdapter: MarkedAdapter
 private lateinit var profileItem: MenuItem
  val comic:MarkedComicViewModel by activityViewModels()
     private lateinit var bottomNav: BottomNavigationView

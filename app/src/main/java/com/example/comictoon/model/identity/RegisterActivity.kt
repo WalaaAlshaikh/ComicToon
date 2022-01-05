@@ -38,7 +38,7 @@ private const val TAG = "RegisterActivity"
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
-    //private lateinit var progressDialog: ProgressDialog
+
     private lateinit var firebaseAuth: FirebaseAuth
     private val validator = RegisterValidation()
     private val registerViewModel: RegisterViewModel by viewModels()
@@ -48,11 +48,6 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         firebaseAuth = FirebaseAuth.getInstance()
         val dialog = setProgressDialog(this, "Loading..")
-//        progressDialog = ProgressDialog(this)
-//        progressDialog.apply {
-//            setTitle("Loading...")
-//            setCancelable(false)
-//        }
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -69,15 +64,10 @@ class RegisterActivity : AppCompatActivity() {
             val registerPasswordConfirm = binding.rPasswordConTextfield.editText?.text.toString()
           if (registerPassword.isNotBlank() && registerPasswordConfirm.isNotBlank() && registerEmail.isNotBlank() && registerUsername.isNotBlank())  {
 
-
-
-
               if (registerPassword == registerPasswordConfirm ) {
-////                    if (validator.emailIsValid(registerEmail)) {
+
                       if (validator.passIsValid(registerPassword)) {
                             dialog.show()
-
-//                            progressDialog.show()
                             firebaseAuth
                                 .createUserWithEmailAndPassword(registerEmail, registerPassword)
                                 .addOnCompleteListener {
@@ -90,7 +80,7 @@ class RegisterActivity : AppCompatActivity() {
                                             .setDisplayName(registerUsername).build()
                                         Toast.makeText(
                                             this,
-                                            "User Registered Successfully",
+                                            getString(R.string.sucessRegi),
                                             Toast.LENGTH_SHORT
 
 
@@ -103,20 +93,18 @@ class RegisterActivity : AppCompatActivity() {
                                         )
 
 
-// Add a new document with a generated ID
                                         registerViewModel.userInfo(firebaseUser.uid, user)
+                                        // to get the data from registration and updating it in the profile
                                         firebaseAuth.currentUser?.updateProfile(profileUpdate)
-
+                                        // navigate to the login page after registration
                                         val intent = Intent(this, LoginActivity::class.java)
                                         Log.d(TAG, firebaseUser.displayName.toString())
-
                                         startActivity(intent)
                                         finish()
                                     }  else {
 
                                         dialog.hide()
                                         binding.rEmailTextfield.error=it.exception!!.message.toString()
-                                        //checkFields(registerUsername,registerEmail,registerPassword,registerPasswordConfirm)
 
 
                                     }
@@ -125,18 +113,12 @@ class RegisterActivity : AppCompatActivity() {
                         } else {
 
 
-                            binding.rPasswordTextfield.error="Your password should be strong "
+                            binding.rPasswordTextfield.error=getString(R.string.strongPass)
                         }
-//
-//
-////                    } else {
-////                     binding.rEmailTextfield.error="Your email address should be correct"
-////                    }
-//
+
                 } else {
-//
-                    binding.rPasswordConTextfield.error="Password fields are not matched"
-                    binding.rPasswordTextfield.error="Password fields are not matched"
+                    binding.rPasswordConTextfield.error=getString(R.string.matchPass)
+                    binding.rPasswordTextfield.error=getString(R.string.matchPass)
 
                 }
 
@@ -144,10 +126,6 @@ class RegisterActivity : AppCompatActivity() {
             } else {
 
                 checkFields(registerUsername,registerEmail,registerPassword,registerPasswordConfirm)
-//                binding.rPasswordConTextfield.error="Required!"
-//                binding.rPasswordTextfield.error="Required!"
-//                binding.rEmailTextfield.error="Required!"
-//                binding.rUsernameTextfield.error="Required!"
 
             }
         }
@@ -158,16 +136,12 @@ class RegisterActivity : AppCompatActivity() {
         registerViewModel.registerLiveData.observe(this, {
             it?.let {
 
-
-                //progressDialog.dismiss()
-
                 registerViewModel.registerLiveData.postValue(null)
             }
         })
 
         registerViewModel.registerErrorLiveData.observe(this, {
             Log.d(TAG,it.toString())
-                //progressDialog.dismiss()
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         })
     }
@@ -236,9 +210,9 @@ class RegisterActivity : AppCompatActivity() {
         confirmPassLayout.error = null
 
         // Get needed string messages from strings.xml resource
-        val require = "required!"
-        val wrongEmailFormat = "Your email address should be correct"
-        val passwordConditions = "Password fields are not matched"
+        val require = getString(R.string.require)
+        val wrongEmailFormat = getString(R.string.emailcheck)
+        val passwordConditions = getString(R.string.matchPass)
 
         if (fullName.isBlank()) {
             fullNameLayout.error = require

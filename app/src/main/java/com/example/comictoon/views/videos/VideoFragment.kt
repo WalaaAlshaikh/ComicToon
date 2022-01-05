@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comictoon.R
-import com.example.comictoon.adaptersimport.VideoAdapter
+import com.example.comictoon.adapters.VideoAdapter
 import com.example.comictoon.databinding.FragmentVideoBinding
 import com.example.comictoon.model.videos.Result
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -20,7 +20,7 @@ import kotlin.math.log
 private const val TAG = "VideoFragment"
 class VideoFragment : Fragment() {
     private lateinit var binding:FragmentVideoBinding
-    private lateinit var videoAdapter:VideoAdapter
+    private lateinit var videoAdapter: VideoAdapter
     private val videoViewModel:VideoViewModel by activityViewModels()
     private var list= mutableListOf<Result>()
     private lateinit var bottomNav: BottomNavigationView

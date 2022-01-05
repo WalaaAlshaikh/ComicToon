@@ -9,21 +9,17 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
 
-// ConnectivityInterceptor to check for internet access
+/** ConnectivityInterceptor to check for internet access
+ * and override the method intercept(Chain) to check internet connection availability inside it.*/
 
 class ConnectivityInterceptor():Interceptor{
     @RequiresApi(Build.VERSION_CODES.M)
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!WifiService.instance.isOnline()) {
-
-
-            throw IOException("No internet connection \nCheck your internet then swipe down to refresh")
+            throw IOException("No internet connection, swipe down to refresh")
         } else {
             return chain.proceed(chain.request())
         }
     }
-    fun snack(view: Int){
 
-
-    }
 }

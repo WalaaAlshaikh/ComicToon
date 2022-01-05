@@ -1,4 +1,4 @@
-package com.example.comictoon.adaptersimport
+package com.example.comictoon.adapters
 
 import MarkedComicViewModel
 import android.app.AlertDialog

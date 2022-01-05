@@ -18,9 +18,6 @@ private const val TAG = "VideoViewModel"
 class VideoViewModel:ViewModel() {
 
     val apiRepo = ApiReop.get()
-
-
-    //var listOfVideos:Result?=null
     val videoLiveData = MutableLiveData<VideosModel>()
     val videoErrorLiveData = MutableLiveData<String>()
     val selectedLiveData=MutableLiveData<Result>()
@@ -38,15 +35,12 @@ class VideoViewModel:ViewModel() {
                             Log.d(TAG, response.body().toString())
                             videoLiveData.postValue(this)
 
-
                         }
                     } else {
                         Log.d(TAG, response.message())
                         videoErrorLiveData.postValue(response.message())
 
                     }
-
-
 
             } catch (e: Exception) {
                 Log.d(TAG, e.message.toString())

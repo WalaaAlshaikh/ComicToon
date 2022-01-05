@@ -15,7 +15,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comictoon.R
-import com.example.comictoon.adaptersimport.ComicAdapter
+import com.example.comictoon.adapters.ComicAdapter
+
 import com.example.comictoon.databinding.FragmentComicsBinding
 import com.example.comictoon.model.comic.Result
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -25,7 +26,7 @@ import com.google.firebase.ktx.Firebase
 private const val TAG = "ComicsFragment"
 class ComicsFragment : Fragment() {
     private lateinit var binding:FragmentComicsBinding
-    private lateinit var comicAdapter:ComicAdapter
+    private lateinit var comicAdapter: ComicAdapter
 
 
     private val comicViewModel:ComicViewModel by activityViewModels()

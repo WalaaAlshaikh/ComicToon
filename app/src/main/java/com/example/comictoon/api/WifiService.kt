@@ -7,8 +7,7 @@ import android.net.wifi.WifiManager
 import android.os.Build
 import androidx.annotation.RequiresApi
 
-//WiFiService class that will hold the connectivityManager
-
+/**WiFiService class that will hold the connectivityManager */
 class WifiService {
 
     private lateinit var wifiManager: WifiManager
@@ -23,7 +22,7 @@ class WifiService {
         connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     }
 
-    // Helper that detects if online
+    /** Helper that detects if online */
     @RequiresApi(Build.VERSION_CODES.M)
     fun isOnline(): Boolean {
         val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)

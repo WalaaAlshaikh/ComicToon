@@ -32,10 +32,16 @@
     <string name="logot_notice">تسجيل الخروج</string>
     <string name="yes">نعم</string>
     <string name="no">لا</string>
-    <string name="comics">الكوميكس</string>
-    <string name="comicsdetails">تفاصيل الكوميك</string>
+    <string name="comics">القصص المصورة</string>
+    <string name="comicsdetails">تفاصيل القصة</string>
     <string name="markedcomic">الكوميك المفضلة</string>
     <string name="videos">الفيديو</string>
     <string name="english">الانجليزية</string>
     <string name="arabic">العربية</string>
+    <string name="video">الفيديوهات</string>
+    <string name="sucessRegi">تم التسجبل بنجاح</string>
+    <string name="strongPass">كلمة المرور يجب أن تحتوي على الأقل 8 حروف وتحتوي على الاقل حرف كبير و رمز</string>
+    <string name="matchPass">كلمة المرور غير متطابقة</string>
+    <string name="require">مطلوب</string>
+    <string name="emailcheck">الايميل يجب ان يكون بالصيغة الصحيحة</string>
 </resources>

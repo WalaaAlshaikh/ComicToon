@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity(), OnLocaleChangedListener {
     companion object {
         lateinit var instance:  MainActivity
     }
-    var backPressedTime: Long = 0
 
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity(), OnLocaleChangedListener {
         // calling the function for WifiService initialization
         setupServices()
 
-
+        // for localization
         localizationDelegate.addOnLocaleChangedListener(this)
         localizationDelegate.onCreate()
 
@@ -85,7 +84,7 @@ class MainActivity : AppCompatActivity(), OnLocaleChangedListener {
             super.onBackPressed()
             else{
                 this.doubleBackToExitPressedOnce = true
-                Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.clickagain), Toast.LENGTH_SHORT).show()
 
                 Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
 
