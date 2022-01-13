@@ -3,11 +3,10 @@
 Tuwaiq Academy final Project.
 ComicToon Android Application using Kotlin
 ## Overview:
-![Image of app logo](https://g.top4top.io/p_2195pgt901.png)
+![Image of app logo](https://b.top4top.io/p_2204its031.png)
 
 
-This project represents an android application **ComicToon**,that allows comic readers to view famous classic comics, particularly from the 1990s. including each comic book's details
-## Technologies used:
+This project represents an android application **Scrolly**,that allows user to express their thoughts and ideas with each other.It's more like a social media app.
 This application was built using the following technologies:
 ### For Designing the logo of the app:
 * Canva
@@ -22,9 +21,6 @@ This application was built using the following technologies:
 * Android Architecture Components:MVVM,Navigation, Livedata.
 * RecyclerViews & Adapters.
 * Required Libraries
-* [Comicvine](https://comicvine.gamespot.com)
-* [Comicvine Api](https://comicvine.gamespot.com/api/)
-* Video View
 * [Firebase](https://firebase.google.com)
 
 ## Wireframes and User stories:
