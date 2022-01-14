@@ -3,10 +3,10 @@
 Tuwaiq Academy final Project.
 ComicToon Android Application using Kotlin
 ## Overview:
-![Image of app logo](https://b.top4top.io/p_2204its031.png)
+![Image of app logo](https://a.top4top.io/p_2205wfx7r1.png)
 
 
-This project represents an android application **Scrolly**,that allows user to express their thoughts and ideas with each other.It's more like a social media app.
+This project represents an android application **ComicToon**,that allows user to display classic comics especially in th 1990s, mark them and provide addtional information for each specific .
 This application was built using the following technologies:
 ### For Designing the logo of the app:
 * Canva
