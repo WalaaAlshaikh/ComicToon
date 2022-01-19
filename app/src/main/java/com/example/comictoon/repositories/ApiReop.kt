@@ -12,6 +12,8 @@ private const val BASE_URL = "https://comicvine.gamespot.com/api/"
 
 class ApiReop {
     // Define the retrofit clients
+    /**create a single OkHttpClient instance and reuse it for all of your HTTP calls */
+
     private val okHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(ConnectivityInterceptor())

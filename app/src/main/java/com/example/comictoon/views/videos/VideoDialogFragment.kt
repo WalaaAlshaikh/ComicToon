@@ -14,6 +14,17 @@ import com.example.comictoon.R
 import com.example.comictoon.databinding.FragmentUpdateBinding
 import com.example.comictoon.databinding.FragmentVideoDialogBinding
 import com.example.comictoon.model.videos.Result
+import android.webkit.WebViewClient
+
+import android.webkit.WebSettings.PluginState
+
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebChromeClient
+
+
+
+
 
 private const val TAG = "VideoDialogFragment"
 class VideoDialogFragment (): DialogFragment() {
@@ -23,12 +34,12 @@ class VideoDialogFragment (): DialogFragment() {
     private var list= mutableListOf<Result>()
 
     private lateinit var binding: FragmentVideoDialogBinding
-    override fun onStart() {
-        super.onStart()
-        val width = (resources.displayMetrics.widthPixels * 0.95).toInt()
-
-        dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        val width = (resources.displayMetrics.widthPixels * 0.95).toInt()
+//
+//        dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
+//    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,19 +56,54 @@ class VideoDialogFragment (): DialogFragment() {
 
         videoViewModel.selectedLiveData.observe(viewLifecycleOwner,{
             binding.videoProgressBar.animate().alpha(0f)
-            var mediaControls: MediaController? = null
-            if (mediaControls == null) {
-                //  creating an object of media controller class
-                mediaControls = MediaController(requireActivity())
+//            var mediaControls: MediaController? = null
+//            if (mediaControls == null) {
+//                //  creating an object of media controller class
+//                mediaControls = MediaController(requireContext())
+//
+//                // set the anchor view for the video view
+//                mediaControls.setAnchorView(binding.simpleVideoView)
+//                binding.simpleVideoView.setMediaController(mediaControls)
+//                binding.simpleVideoView.setVideoURI(
+//                    Uri.parse(it.lowUrl))
+//                binding.simpleVideoView.requestFocus()
+//                binding.simpleVideoView.start()
+//            }
 
-                // set the anchor view for the video view
-                mediaControls.setAnchorView(binding.simpleVideoView)
-                binding.simpleVideoView.setMediaController(mediaControls)
-                binding.simpleVideoView.setVideoURI(
-                    Uri.parse(it.highUrl))
-                binding.simpleVideoView.requestFocus()
-                binding.simpleVideoView.start()
-            }
+//            val controller = MediaController(requireActivity())
+//            controller.setAnchorView(binding.simpleVideoView)
+//            controller.setMediaPlayer(binding.simpleVideoView)
+//            binding.simpleVideoView.setMediaController(controller)
+//            binding.simpleVideoView.setVideoURI(Uri.parse("https://www.youtube.com/watch?v=${it.youtubeId}"))
+//
+//            binding.simpleVideoView.setOnPreparedListener { mp ->
+//                val lp: ViewGroup.LayoutParams = binding.simpleVideoView.getLayoutParams()
+//                val videoWidth: Int = mp.videoWidth
+//                val videoHeight: Int = mp.videoHeight
+//                val viewWidth: Int = binding.simpleVideoView.width
+//                lp.height = (viewWidth * (videoHeight / videoWidth)).toInt()
+//                binding.simpleVideoView.setLayoutParams(lp)
+//                //  if (!videoView.isPlaying()) optional
+//                binding.simpleVideoView.start()
+//            }
+
+            val webViewSettings: WebSettings = binding.webView.getSettings()
+            webViewSettings.javaScriptCanOpenWindowsAutomatically = true
+            webViewSettings.javaScriptEnabled = true
+//            webViewSettings.pluginState
+            webViewSettings.builtInZoomControls = true
+//            webViewSettings.pluginState = PluginState.ON
+
+//
+            binding.webView.setWebViewClient(object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                    return false
+                }
+            })
+            binding.webView.setWebChromeClient(WebChromeClient())
+
+            binding.webView.loadUrl("https://www.youtube.com/watch?v=${it.youtubeId}"
+            )
         })
 
 
