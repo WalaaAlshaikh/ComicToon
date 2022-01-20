@@ -6,7 +6,7 @@ ComicToon Android Application using Kotlin
 ![Image of app logo](https://a.top4top.io/p_2205wfx7r1.png)
 
 
-This project represents an android application **ComicToon**,that allows user to display classic comics especially in th 1990s, mark them and provide addtional information for each specific .
+This project represents an android application **ComicToon** ,that allows user to display classic comics especially in th 1990s , mark them and provide addtional information for each specific .
 This application was built using the following technologies:
 ### For Designing the logo of the app:
 * Canva
