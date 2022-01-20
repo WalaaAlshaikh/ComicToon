@@ -25,7 +25,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/nunito_bold"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="@color/red"
         android:textSize="48sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,17 +124,16 @@
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="20dp"
+        android:background="@drawable/strikeshape"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:background="@drawable/strikeshape"
         android:padding="15dp"
         android:text="@string/login"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_textfield" />
+        app:layout_constraintTop_toBottomOf="@+id/forgotPass_textView" />
 
     <TextView
         android:id="@+id/goToRegis_textView"
@@ -152,5 +151,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_button"
         app:layout_constraintVertical_bias="0.219" />
+
+    <TextView
+        android:id="@+id/forgotPass_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/nunito_bold"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:text="@string/forgot"
+        android:textColor="@color/gray"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_textfield" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

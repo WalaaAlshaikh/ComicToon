@@ -49,6 +49,13 @@
     <string name="require">Required!</string>
     <string name="emailcheck">Your email address should be correct</string>
     <string name="clickagain">Please click BACK again to exit</string>
+    <string name="forgot">Forgot your Password?</string>
+    <string name="newHere">New Here?</string>
+    <string name="resetPass">Reset Password</string>
+    <string name="enterEmail">Enter your email</string>
+    <string name="sendPass">Send Password</string>
+    <string name="passsent">Password Sent Successfully!</string>
+    <string name="putEmail">You need to put your Email first !</string>
 
 
 </resources>

@@ -1,10 +1,14 @@
 package com.example.comictoon.views.identity
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
+import android.widget.EditText
 import android.widget.Toast
+import com.example.comictoon.R
 import com.example.comictoon.databinding.ActivityLoginBinding
 import com.example.comictoon.views.main.MainActivity
 import com.example.comictoon.views.main.SHARED_PREF_FILE
@@ -58,6 +62,10 @@ class LoginActivity : AppCompatActivity() {
                 checkFields(emailAddress,password)
         }
     }
+        binding.forgotPassTextView.setOnClickListener {
+            resetPassDialog()
+
+        }
 }
 
     private fun checkFields(
@@ -87,5 +95,58 @@ class LoginActivity : AppCompatActivity() {
 
 
         return state
+    }
+
+
+    fun resetPassDialog() {
+        val builder: android.app.AlertDialog.Builder =
+            android.app.AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.resetPass))
+
+// Set up the input
+        val input = EditText(this)
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setHint(getString(R.string.enterEmail))
+        input.inputType = InputType.TYPE_CLASS_TEXT
+        builder.setView(input)
+
+// Set up the buttons
+        builder.setPositiveButton(
+            getString(R.string.sendPass),
+            DialogInterface.OnClickListener { dialog, which ->
+                // Here you get get input text from the Edittext
+                val email = input.text.toString()
+                if (email.isNotEmpty()) {
+                    FirebaseAuth.getInstance().sendPasswordResetEmail(input.text.toString())
+                        .addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Toast.makeText(
+                                    this,
+                                    getString(R.string.passsent),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                Toast.makeText(
+                                    this,
+                                    it.exception.toString(),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+
+                } else {
+                    Toast.makeText(
+                        this,
+                        getString(R.string.putEmail),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+            })
+        builder.setNegativeButton(
+            getString(R.string.Cancel),
+            DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+
+        builder.show()
     }
 }
