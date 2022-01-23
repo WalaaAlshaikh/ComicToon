@@ -1,22 +1,30 @@
 package com.example.comictoon.views.identity
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.comictoon.R
 import com.example.comictoon.databinding.FragmentProfileBinding
 import com.example.comictoon.views.main.SHARED_PREF_FILE
 import com.example.comictoon.views.main.STATE
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.zhihu.matisse.Matisse
+import com.zhihu.matisse.MimeType
+import com.zhihu.matisse.internal.entity.CaptureStrategy
 
 private const val TAG = "ProfileFragment"
 
@@ -25,6 +33,12 @@ class ProfileFragment : Fragment() {
     private lateinit var sharedPref: SharedPreferences
     private lateinit var sharedPrfEditor: SharedPreferences.Editor
     private lateinit var bottomNav:BottomNavigationView
+    private val updateItemViewModel: UpdateProfileImageViewModel by activityViewModels()
+
+    private val IMAGE_PICKER = 0
+    private var imageUri: Uri? = null
+
+
 
 
     override fun onCreateView(
@@ -55,6 +69,11 @@ class ProfileFragment : Fragment() {
         binding.engButton.setOnClickListener{
             localizationDelegate.setLanguage(requireContext(),"en")
 
+        }
+
+        binding.circleImageView.setOnClickListener {
+
+            showImagePicker()
         }
 
         // getting the login info after registration
@@ -91,6 +110,38 @@ class ProfileFragment : Fragment() {
         }
 
     }
+
+    // showing ImagePicker using Matisse library
+    fun showImagePicker() {
+        Matisse.from(this)
+            .choose(MimeType.ofImage(), false) // image or image and video or whatever
+            .captureStrategy(CaptureStrategy(true, "com.example.comictoon"))
+            .forResult(IMAGE_PICKER)
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
+
+            //using Matisse library to take uri of chosen image
+            imageUri = Matisse.obtainResult(data)[0]//[0] index 0 to take first index of the array of photo selected
+
+            Glide
+                .with(requireContext())
+                .load(imageUri)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(binding.circleImageView)
+
+//            // check if user pick new image before update it
+//            imageUri?.let { updateItemViewModel.updateItemImage(it,) }
+
+        }
+
+    }
+
+
+
 
 
 }
