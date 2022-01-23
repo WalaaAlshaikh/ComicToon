@@ -6,7 +6,7 @@ ComicToon Android Application using Kotlin
 ![Image of app logo](https://a.top4top.io/p_2205wfx7r1.png)
 
 
-This project represents an android application **ComicToon**,that allows user to display classic comics especially in th 1990s, mark them and provide addtional information for each specific .
+This project represents an android application **ComicToon** ,that allows user to display classic comics especially in th 1990s , mark them and provide addtional information for each specific .
 This application was built using the following technologies:
 ### For Designing the logo of the app:
 * Canva
@@ -20,8 +20,10 @@ This application was built using the following technologies:
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=windows) for improving code quality.
 * Android Architecture Components:MVVM,Navigation, Livedata.
 * RecyclerViews & Adapters.
+* [Postman API Platform](https://www.postman.com/downloads/)
 * Required Libraries
 * [Firebase](https://firebase.google.com)
+* API from [ComicVine](https://comicvine.gamespot.com/api/)
 
 ## Wireframes and User stories:
 
@@ -39,6 +41,8 @@ link to Figma [Figma Wireframe](https://www.figma.com/file/ImjWEZmgzFlljOfWqHUWb
 - As a user I would like to be able to add/ edit my personal review for my favourite comic so that I write down my personal opinion and thoughts.
 
 - As a user I would like to be able to delete the comics that I marked so that I can remove the one that no longer see it a favourite.
+
+- As a user I would like to be able to to play videos realted to comics so that I can enjoy watching various comic videos.
 
 
 -------------------------------------------------------------------------
