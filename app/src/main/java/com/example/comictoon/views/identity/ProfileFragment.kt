@@ -133,7 +133,7 @@ class ProfileFragment : Fragment() {
                 .skipMemoryCache(true)
                 .into(binding.circleImageView)
 
-//            // check if user pick new image before update it
+
 //            imageUri?.let { updateItemViewModel.updateItemImage(it,) }
 
         }
