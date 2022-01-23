@@ -21,16 +21,16 @@ class UpdateProfileImageViewModel:ViewModel() {
 
 
     // to upload Item Image to fireStorage
-    fun updateItemImage(imageUri: Uri, filename: String) {
+    fun updateItemImage(imageUri: Uri) {
         viewModelScope.launch(Dispatchers.IO) {
 
             try {
-                val response = firebaseRepo.uploadItemImage(imageUri, filename)
+                val response = firebaseRepo.uploadItemImage(imageUri)
                 response.addOnCompleteListener {
 
                     if (it.isSuccessful) {
                         // post filename to use it in upload item info
-                        updateImageLiveData.postValue(filename)
+                        updateImageLiveData.postValue(imageUri.toString())
                         Log.d(TAG, "Image upload success: $response")
 
                     } else {

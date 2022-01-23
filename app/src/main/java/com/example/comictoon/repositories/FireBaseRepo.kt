@@ -50,7 +50,7 @@ class FireBaseRepo {
     fun deleteItem(userId: String,docId:String)=users.document(userId).collection(FAVOURITE).document(docId).delete()
 
     // upload Item Image to fireStorage
-    fun uploadItemImage(imageUri: Uri, filename:String)= imageRef.child("images/$filename").putFile(imageUri)
+    fun uploadItemImage(imageUri: Uri)= imageRef.putFile(imageUri)
 
 
 

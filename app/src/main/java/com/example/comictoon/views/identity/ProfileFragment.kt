@@ -12,19 +12,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.comictoon.R
 import com.example.comictoon.databinding.FragmentProfileBinding
+import com.example.comictoon.util.Permission
+import com.example.comictoon.util.Permission.checkPermission
 import com.example.comictoon.views.main.SHARED_PREF_FILE
 import com.example.comictoon.views.main.STATE
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.rpc.context.AttributeContext
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.internal.entity.CaptureStrategy
+import java.security.Permissions
 
 private const val TAG = "ProfileFragment"
 
@@ -36,7 +42,7 @@ class ProfileFragment : Fragment() {
     private val updateItemViewModel: UpdateProfileImageViewModel by activityViewModels()
 
     private val IMAGE_PICKER = 0
-    private var imageUri: Uri? = null
+
 
 
 
@@ -49,6 +55,8 @@ class ProfileFragment : Fragment() {
         bottomNav=activity!!.findViewById(R.id.bottomNavigation)
         sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
         sharedPrfEditor = sharedPref.edit()
+
+
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         return binding.root
@@ -70,18 +78,51 @@ class ProfileFragment : Fragment() {
             localizationDelegate.setLanguage(requireContext(),"en")
 
         }
+        updateItemViewModel.updateImageLiveData.observe(viewLifecycleOwner,{
+
+            it?.let {
+                Toast.makeText(requireActivity(), "image_upload_successfully", Toast.LENGTH_SHORT).show()
+            }
+
+            updateItemViewModel.updateImageLiveData.postValue(null)
+
+        })
 
         binding.circleImageView.setOnClickListener {
+            checkPermission(requireContext(),requireActivity())
 
-            showImagePicker()
+
+
+          ImagePicker()
+
+
+
         }
 
         // getting the login info after registration
+
         FirebaseAuth.getInstance().currentUser?.let {
 
             Log.d(TAG, it.displayName.toString())
             binding.userIdTextView.text = it.displayName // username
-            binding.emailTextView.text = it.email  // email address
+            binding.emailTextView.text = it.email
+            Log.d(TAG,it.photoUrl.toString())
+
+
+
+
+
+//
+
+
+//            imageUri=it.photoUrl
+            Glide
+                .with(requireContext())
+                .load(it.photoUrl)
+                .into(binding.circleImageView)
+//            Log.d(TAG,"the new one $imageUri")
+
+        // email address
         }
 
         binding.logoutButton.setOnClickListener {
@@ -112,7 +153,7 @@ class ProfileFragment : Fragment() {
     }
 
     // showing ImagePicker using Matisse library
-    fun showImagePicker() {
+    fun ImagePicker() {
         Matisse.from(this)
             .choose(MimeType.ofImage(), false) // image or image and video or whatever
             .captureStrategy(CaptureStrategy(true, "com.example.comictoon"))
@@ -122,9 +163,18 @@ class ProfileFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
+            val imageUri:Uri? = Matisse.obtainResult(data)[0]
+            Log.d(TAG,imageUri.toString())
+
+            val profileUpdates = UserProfileChangeRequest.Builder()
+
+                .setPhotoUri(imageUri)
+                .build()
+            FirebaseAuth.getInstance().currentUser?.updateProfile(profileUpdates)
+
 
             //using Matisse library to take uri of chosen image
-            imageUri = Matisse.obtainResult(data)[0]//[0] index 0 to take first index of the array of photo selected
+            //[0] index 0 to take first index of the array of photo selected
 
             Glide
                 .with(requireContext())
@@ -133,10 +183,22 @@ class ProfileFragment : Fragment() {
                 .skipMemoryCache(true)
                 .into(binding.circleImageView)
 
+            imageUri?.let { updateItemViewModel.updateItemImage(imageUri!!) }
 
-//            imageUri?.let { updateItemViewModel.updateItemImage(it,) }
+
+
+
+
+
+
+
+
+
 
         }
+           }
+
+
 
     }
 
@@ -144,4 +206,3 @@ class ProfileFragment : Fragment() {
 
 
 
-}
