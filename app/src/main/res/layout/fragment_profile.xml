@@ -159,6 +159,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="@color/darkred"
+            android:checked="true"
             android:fontFamily="@font/nunito_bold"
             android:text="@string/english"
             android:textColorLink="#000000" />

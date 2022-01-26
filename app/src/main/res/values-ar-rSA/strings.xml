@@ -44,4 +44,12 @@
     <string name="matchPass">كلمة المرور غير متطابقة</string>
     <string name="require">مطلوب</string>
     <string name="emailcheck">الايميل يجب ان يكون بالصيغة الصحيحة</string>
+    <string name="clickagain">اضغط للخلف مرة أخرى للخروج</string>
+    <string name="forgot">نسيت كلمة المرور؟</string>
+    <string name="newHere">أنت جديد هنا؟</string>
+    <string name="resetPass">تجديد كلمة المرور</string>
+    <string name="enterEmail">أدخل ايميلك الشخصي</string>
+    <string name="sendPass">أرسل كلمة المرور</string>
+    <string name="passsent">تم أرسال كلمة المرور بنجاح</string>
+    <string name="putEmail">يجب عليك أن تضع ايميلك الشخصي أولا</string>
 </resources>
