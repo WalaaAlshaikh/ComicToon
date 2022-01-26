@@ -36,6 +36,10 @@ link to Figma [Figma Wireframe](https://www.figma.com/file/ImjWEZmgzFlljOfWqHUWb
 
 - As a user I want to see the details of each comic so that I can see additional information about it (such as description of the comic, publisher , publish date ..etc)  .
 
+
+
+
+
 - As a user I want to mark my favourite comic so that I can get back to them easily.
  
 - As a user I would like to be able to add/ edit my personal review for my favourite comic so that I write down my personal opinion and thoughts.
@@ -46,6 +50,13 @@ link to Figma [Figma Wireframe](https://www.figma.com/file/ImjWEZmgzFlljOfWqHUWb
 
 
 -------------------------------------------------------------------------
+## Demo of the Application:
+https://user-images.githubusercontent.com/91417065/151183556-c3c0a3ce-0acd-482f-a596-1835d922e0a8.mp4
+
+
+
+
+
 ## Installation:
 Follow the steps below to get started with the project's development environment:
 1. Install Android Studio from [Android Studio](https://developer.android.com/studio?gclid=Cj0KCQjw5oiMBhDtARIsAJi0qk2WOPjxp2Wij5sgO3bAK6Rp18zrs4Y0L5S6W89Fk7OClhAiVuNr1mgaAsT-EALw_wcB&gclsrc=aw.ds)
