@@ -38,13 +38,9 @@ class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var sharedPref: SharedPreferences
     private lateinit var sharedPrfEditor: SharedPreferences.Editor
-    private lateinit var bottomNav:BottomNavigationView
+    private lateinit var bottomNav: BottomNavigationView
     private val updateItemViewModel: UpdateProfileImageViewModel by activityViewModels()
-
     private val IMAGE_PICKER = 0
-
-
-
 
 
     override fun onCreateView(
@@ -52,9 +48,11 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // calling the bottom navigation bar to set it GONE in this page
-        bottomNav=activity!!.findViewById(R.id.bottomNavigation)
+        bottomNav = activity!!.findViewById(R.id.bottomNavigation)
         sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
         sharedPrfEditor = sharedPref.edit()
+        // to check the permission of getting the access of the gallery of the phone
+        checkPermission(requireContext(), requireActivity())
 
 
         binding = FragmentProfileBinding.inflate(inflater, container, false)
@@ -66,22 +64,23 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val localizationDelegate = LocalizationActivityDelegate(requireActivity())
-        bottomNav.visibility=View.GONE
+        bottomNav.visibility = View.GONE
 
         // set the language into Arabic when clicking on it
         binding.acivBotton.setOnClickListener {
-            localizationDelegate.setLanguage(requireContext(),"ar")
+            localizationDelegate.setLanguage(requireContext(), "ar")
 
         }
         // set the language into English when clicking on it
-        binding.engButton.setOnClickListener{
-            localizationDelegate.setLanguage(requireContext(),"en")
+        binding.engButton.setOnClickListener {
+            localizationDelegate.setLanguage(requireContext(), "en")
 
         }
-        updateItemViewModel.updateImageLiveData.observe(viewLifecycleOwner,{
+        updateItemViewModel.updateImageLiveData.observe(viewLifecycleOwner, {
 
             it?.let {
-                Toast.makeText(requireActivity(), "image_upload_successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), "image_upload_successfully", Toast.LENGTH_SHORT)
+                    .show()
             }
 
             updateItemViewModel.updateImageLiveData.postValue(null)
@@ -89,14 +88,9 @@ class ProfileFragment : Fragment() {
         })
 
         binding.circleImageView.setOnClickListener {
-            checkPermission(requireContext(),requireActivity())
 
 
-
-          ImagePicker()
-
-
-
+            ImagePicker()
         }
 
         // getting the login info after registration
@@ -105,24 +99,13 @@ class ProfileFragment : Fragment() {
 
             Log.d(TAG, it.displayName.toString())
             binding.userIdTextView.text = it.displayName // username
-            binding.emailTextView.text = it.email
-            Log.d(TAG,it.photoUrl.toString())
+            binding.emailTextView.text = it.email // email address
+            Log.d(TAG, it.photoUrl.toString())
 
-
-
-
-
-//
-
-
-//            imageUri=it.photoUrl
             Glide
                 .with(requireContext())
                 .load(it.photoUrl)
                 .into(binding.circleImageView)
-//            Log.d(TAG,"the new one $imageUri")
-
-        // email address
         }
 
         binding.logoutButton.setOnClickListener {
@@ -159,22 +142,22 @@ class ProfileFragment : Fragment() {
             .captureStrategy(CaptureStrategy(true, "com.example.comictoon"))
             .forResult(IMAGE_PICKER)
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
-            val imageUri:Uri? = Matisse.obtainResult(data)[0]
-            Log.d(TAG,imageUri.toString())
+            //using Matisse library to take uri of chosen image
+            //[0] index 0 to take first index of the array of photo selected
+
+            val imageUri: Uri? = Matisse.obtainResult(data)[0]
+            Log.d(TAG, imageUri.toString())
 
             val profileUpdates = UserProfileChangeRequest.Builder()
 
                 .setPhotoUri(imageUri)
                 .build()
             FirebaseAuth.getInstance().currentUser?.updateProfile(profileUpdates)
-
-
-            //using Matisse library to take uri of chosen image
-            //[0] index 0 to take first index of the array of photo selected
 
             Glide
                 .with(requireContext())
@@ -183,26 +166,11 @@ class ProfileFragment : Fragment() {
                 .skipMemoryCache(true)
                 .into(binding.circleImageView)
 
+
             imageUri?.let { updateItemViewModel.updateItemImage(imageUri!!) }
 
 
-
-
-
-
-
-
-
-
-
         }
-           }
-
-
-
     }
 
-
-
-
-
+}
