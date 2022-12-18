@@ -16,7 +16,7 @@ This application was built using the following technologies:
 * Figma 
 
 * Adobe Photoshop
-### For Programming the app:
+### For Programming the app: 
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=windows) for improving code quality.
 * Android Architecture Components:MVVM,Navigation, Livedata.
 * RecyclerViews & Adapters.
